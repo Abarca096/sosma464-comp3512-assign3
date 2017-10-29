@@ -1,6 +1,6 @@
 <?php
 include 'includes/book-config.inc.php';
-include 'includes/database.inc.php';
+
 
 
 function displayStates() {
