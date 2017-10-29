@@ -1,3 +1,2 @@
-# PHP Lab 3 - Chapter 14
-making a change here huehue
-qwrqwrqw
+# COMP 3512 - Assignment 2
+    By Jorge Abarca, Josh Blair, Sam Osman, Cryston Robin
