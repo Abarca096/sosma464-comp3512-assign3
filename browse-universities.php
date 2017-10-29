@@ -1,6 +1,7 @@
 <?php
-
+include 'includes/book-config.inc.php';
 include 'includes/database.inc.php';
+
 
 function displayStates() {
     $sql="SELECT DISTINCT State FROM Universities ORDER BY State;";
