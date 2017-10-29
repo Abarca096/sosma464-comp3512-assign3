@@ -7,7 +7,7 @@
 
     <nav class="mdl-navigation mdl-color-text--blue-grey-300">
         <a class="mdl-navigation__link mdl-color-text--red-A200" href="index.php"><i class="material-icons" role="presentation">dashboard</i> Dashboard</a>
-        <a class="mdl-navigation__link mdl-color-text--blue-grey-300" href="aboutus.php"><i class="material-icons" role="presentation">message</i> About Us</a>
+        <a class="mdl-navigation__link mdl-color-text--red-A200" href="aboutus.php"><i class="material-icons" role="presentation">message</i> About Us</a>
         <a class="mdl-navigation__link mdl-color-text--blue-grey-300" href="browse-universities.php"><i class="material-icons" role="presentation">view_list</i> Browse Universities</a>
         <a class="mdl-navigation__link mdl-color-text--blue-grey-300" href="browse-employees.php"><i class="material-icons" role="presentation">contacts</i> Browse Employees</a>
         <a class="mdl-navigation__link mdl-color-text--blue-grey-300" href="browse-books.php"><i class="material-icons" role="presentation">view_list</i> Browse Books</a>
