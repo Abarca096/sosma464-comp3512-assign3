@@ -1,10 +1,12 @@
 <?php
 
-include 'includes/database.inc.php';
+//include 'includes/database.inc.php';
 
 function displayBookList() {
-        $sql="SELECT Title, CopyrightYear, SubcategoryID, ImprintID, ISBN10 FROM Books ";
-    
+    include 'includes/book-config.inc.php';
+    $db = new BookGateway($connection);
+
+    /**
         if ((isset($_GET['subcat'])) || (isset($_GET['imprint']))) {
             // if the value is 'all' then the user specifically selected to remove that filter
             // set to null so it is treated appropriately later on
@@ -28,27 +30,25 @@ function displayBookList() {
             $sql .= "WHERE ImprintID=?";
             $bindArray[0]=$_GET['imprint'];
         }
-        
-        $sql .= " ORDER BY Title LIMIT 20;";
-        $result=queryDatabase($sql,$bindArray);
-        $returnVar;
-        
+        */
+        //$sql .= " ORDER BY Title LIMIT 20;";
+       $result = $db->findAll();
         if ($result != false) { // check for errors getting data from mysql
-            while ($row=$result->fetch()) { // go through mysql results, echo appropriate information
+            foreach($result as $row) { // go through mysql results, echo appropriate information
                 $ISBN10=$row['ISBN10']; // variable for temporary storage of ISBN10
                 
                 // fetch sub category information
-                $subCategoryReturn=queryDatabase("SELECT SubcategoryName FROM Subcategories WHERE SubcategoryID='" . $row['SubcategoryID'] . "';", array())->fetch();
+                //$subCategoryReturn=queryDatabase("SELECT SubcategoryName FROM Subcategories WHERE SubcategoryID='" . $row['SubcategoryID'] . "';", array())->fetch();
                 
                 // fetch imprint information
-                $imprintReturn=queryDatabase("SELECT Imprint FROM Imprints WHERE ImprintID='" . $row['ImprintID'] . "';", array())->fetch();
+                //$imprintReturn=queryDatabase("SELECT Imprint FROM Imprints WHERE ImprintID='" . $row['ImprintID'] . "';", array())->fetch();
                 
-                $returnVar .= ("<tr><td><a href='single-book.php?ISBN10=" . $row['ISBN10'] . "'><img src='book-images/tinysquare/" . $ISBN10 . ".jpg' alt='$ISBN10'></a></td><td><a href='single-book.php?ISBN10=" . $row['ISBN10'] . "'>" . $row['Title'] . "</td><td>" . $row['CopyrightYear'] . "</td><td>" . $subCategoryReturn['SubcategoryName'] . "</td><td>" . $imprintReturn['Imprint'] . "</td></tr>");
+                $returnVar .= "<tr><td><a href='single-book.php?ISBN10=" . $row['ISBN10'] . "'><img src='book-images/tinysquare/" . $ISBN10 . ".jpg' alt='$ISBN10'></a></td><td><a href='single-book.php?ISBN10=" . $row['ISBN10'] . "'>" . $row['Title'] . "</a></td><td>" . $row['CopyrightYear'] . "</td><td>Subcategory</td><td>Imprint</td></tr>";//<td>" . $subCategoryReturn['SubcategoryName'] . "</td><td>" . $imprintReturn['Imprint'] . "</td></tr>");
             }
         }
         return $returnVar;
 }
-
+/**
 function displaySubCatList() {
     $imprint = '';
     $returnVar;
@@ -96,6 +96,7 @@ function displayImprintList() {
     }
     return $returnVar;
 }
+*/
 ?>
 
 <!DOCTYPE html>
@@ -150,7 +151,7 @@ function displayImprintList() {
                     <div class="mdl-card__supporting-text">
                         <ul class="demo-list-item mdl-list">
                             <!-- display list of subcategories -->
-                            <?php echo displaySubCatList(); ?>
+                            <?php //echo displaySubCatList(); ?>
                         </ul>
                     </div>
                 </div>  <!-- / mdl-cell + mdl-card -->
@@ -189,7 +190,7 @@ function displayImprintList() {
                     <div class="mdl-card__supporting-text">
                         <ul class="demo-list-item mdl-list">
                             <!-- display list of imprints -->
-                            <?php echo displayImprintList(); ?>
+                            <?php //echo displayImprintList(); ?>
                         </ul>
                     </div>
                 </div>  <!-- / mdl-cell + mdl-card -->
