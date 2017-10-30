@@ -1,13 +1,14 @@
 <?php
 
-include 'includes/database.inc.php';
 
 function displayStates() {
-    $sql="SELECT DISTINCT State FROM Universities ORDER BY State;";
-    $result=queryDatabase($sql,array());
-    $returnVar;
+    include 'includes/book-config.inc.php';
+    $university = new UniversitiesGateway($connection);
+    $result = $university->findStates();
     
-    while ($row=$result->fetch()) {
+    
+    
+   foreach ($result as $row) {
         $returnVar .= ("<option 'value='" . $row['State'] . "'>" . $row['State'] . "</option>");
     }
     return $returnVar;
