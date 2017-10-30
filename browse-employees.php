@@ -1,24 +1,29 @@
 <?php
 
 header("Content-Type:text/html; charset=ISO-8859-1");
-include 'includes/database.inc.php';
+//include 'includes/database.inc.php';
+include 'includes/book-config.inc.php';
+//include 'includes/Gateways/EmployeesGateway.class.php';
+$connection = createConnString();
 
-function displayEmpList() {
-    $sql="select * from Employees order by LastName";
-    $result=queryDatabase($sql, array());
-    $returnVar;
-    
-    while ($row=$result->fetch()) {
+function displayEmpList($connection) {
+
+    $employee = new EmployeesGateway($connection);
+    $result = $employee->getAllEmployees();
+    $returnVar = "";
+    foreach ($result as $row) {
         $EmployeeID=$row['EmployeeID'];
         $returnVar .= ("<li><a href='?emp=$EmployeeID'>" . $row['FirstName'] . " " . $row['LastName'] . "</a></li>");
     }
     return $returnVar;
 }
 
-function displayDetailedEmpInformation() {
+function displayDetailedEmpInformation($connection) {
     if (isset($_GET['emp'])) { // check to see if server query exists
         $sql="SELECT FirstName, LastName, Address, City, Region, Country, Postal, Email FROM Employees WHERE EmployeeID=? order by LastName;";
-        $result=queryDatabase($sql, array($_GET['emp']));
+        //$result=queryDatabase($sql, array($_GET['emp']));
+        $employee = new EmployeesGateway($connection);
+        $result=$employee->findById(array($_GET['emp']));
         $returnVar;
         
         if (($result != false) && ($result->rowCount() > 0)) { // check for errors getting data from mysql
@@ -121,7 +126,7 @@ function displayEmpMessages() {
                     <div class="mdl-card__supporting-text">
                         <ul class="demo-list-item mdl-list">
                             <!-- display list of employees -->
-                            <?php echo displayEmpList(); ?>            
+                            <?php echo displayEmpList($connection); ?>            
                         </ul>
                     </div>
                 </div>  <!-- / mdl-cell + mdl-card -->
@@ -141,7 +146,7 @@ function displayEmpMessages() {
                         
                             <div class="mdl-tabs__panel is-active" id="address-panel">
                                 <!-- display requested employees information based on employee id -->
-                                <?php echo displayDetailedEmpInformation(); ?>
+                                <?php echo displayDetailedEmpInformation($connection); ?>
                             </div>
                           
                             <div class="mdl-tabs__panel" id="todo-panel">
@@ -156,7 +161,7 @@ function displayEmpMessages() {
                                     </thead>
                                     <tbody>
                                         <!-- display requested employees to-do list information based on employee id -->
-                                        <?php echo displayDetailedEmpToDoRecords(); ?>
+                                        <?php //echo displayDetailedEmpToDoRecords(); ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -172,7 +177,7 @@ function displayEmpMessages() {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php echo displayEmpMessages(); ?>
+                                        <?php //echo displayEmpMessages(); ?>
                                     </tbody>
                                 </table>
                             </div>    
