@@ -1,8 +1,9 @@
 <?php
 
-
-function displayStates() {
-    include 'includes/book-config.inc.php';
+include 'includes/book-config.inc.php';
+$connection = createConnString();
+function displayStates($connection) {
+    $connection = createConnString();
     $university = new UniversitiesGateway($connection);
     $result = $university->findStates();
     
@@ -14,36 +15,44 @@ function displayStates() {
     return $returnVar;
 }
 
-function displayUniversities() {
+function displayUniversities($connection) {
+     
+     $university = new UniversitiesGateway($connection);
+     $returnVar ="";
     if ((isset($_GET['state'])) && ($_GET['state'] != "top20")) {
         // a state was selected
-        $returnVar;
-        $sql="SELECT DISTINCT Name, UniversityID FROM Universities WHERE State=? ORDER BY Name LIMIT 20;";
-        $returnVar .= ("<p>The top universities for " . $_GET['state'] . " are listed below (alphabetically). <a href='browse-universities.php'>Click here to see the top 20 universities from all states (remove this filter)</a>.</p>");
         
-        $bindArray = array($_GET['state']);
-        $result=queryDatabase($sql,$bindArray);
+        
+        $returnVar = ("<p>The top universities for " . $_GET['state'] . " are listed below (alphabetically). <a href='browse-universities.php'>Click here to see the top 20 universities from all states (remove this filter)</a>.</p>");
+        
+      
+        $result = $university->findByState($_GET['state']);
+        
     } else {
         // a state was not selected
-        $sql="SELECT DISTINCT Name, UniversityID FROM Universities ORDER BY Name LIMIT 20;";
-        $result=queryDatabase($sql,array());
+      
+           $result = $university->findAllSorted(true);
     }
     
     if (!(isset($_GET['uid']))) {
-        while ($row=$result->fetch()) {
+        foreach ($result as $row) {
             $returnVar .= ("<li><a href='browse-universities.php?uid=" .$row['UniversityID'] . "'>" . $row['Name'] . "</a></li>");
         }
+        return $returnVar;
     }
-    return $returnVar;
+    
+    
 }
 
-function displayDetailedUniversity() {
+function displayDetailedUniversity($connection) {
+    
+     $university = new UniversitiesGateway($connection);
     if (isset($_GET['uid'])) {
         // a university was specified, show the detailed information about that univeristy
-        $sql = "SELECT Name, Address, City, State, Zip, Website, Longitude, Latitude FROM Universities WHERE UniversityID=?;";
-        $result = queryDatabase($sql,array($_GET['uid']));
-        $infoArray = $result->fetch();
-        $returnVar .= ("<li><h5>" . $infoArray['Name'] . "</h5></li><li>Address: " . $infoArray['Address'] . "</li><li>State: " . $infoArray['State'] . "</li><li>Zip: " . $infoArray['Zip'] . "</li><li>Website: <a href='http://" . $infoArray['Website'] . "'>" . $infoArray['Website'] . "</a></li><li>Longitude: " . $infoArray['Longitude'] . "</li><li>Latitude: " . $infoArray['Latitude'] . "</li>");
+        
+        
+        $infoArray = $university->findById($_GET['uid']);
+        $returnVar = ("<li><h5>" . $infoArray['Name'] . "</h5></li><li>Address: " . $infoArray['Address'] . "</li><li>State: " . $infoArray['State'] . "</li><li>Zip: " . $infoArray['Zip'] . "</li><li>Website: <a href='http://" . $infoArray['Website'] . "'>" . $infoArray['Website'] . "</a></li><li>Longitude: " . $infoArray['Longitude'] . "</li><li>Latitude: " . $infoArray['Latitude'] . "</li>");
         $returnVar .= ("<br><p><a href='browse-universities.php'>Click here to see the top 20 universities from all states (remove this filter)</a>.</p>");
         
         return $returnVar;
@@ -94,7 +103,7 @@ function displayDetailedUniversity() {
                             <form action="browse-universities.php" method="GET">
                                 <select name="state">
                                     <option value='top20'>No Filter</option>
-                                    <?php echo displayStates(); ?>
+                                    <?php echo displayStates($connection); ?>
                                 </select><br><br>
                                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">SUBMIT</button>
                             </form>
@@ -111,8 +120,8 @@ function displayDetailedUniversity() {
                         <!-- display requested list of universities, detailed university information -->
                         <ul class="universitylist">
                             <?php 
-                            echo displayUniversities();
-                            echo displayDetailedUniversity();
+                            echo displayUniversities($connection);
+                            echo displayDetailedUniversity($connection);
                             ?>
                         </ul>
                     </div>    
