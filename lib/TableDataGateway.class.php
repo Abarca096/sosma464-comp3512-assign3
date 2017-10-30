@@ -66,12 +66,15 @@ public function findAll($sortFields=null)
  return $statement->fetchAll();
 }
 
+/*
+Returns all records in the table, with a limit 20
+*/
 public function findAllLimit20($sortFields=null){
     $sql = $this->getSelectStatement();
     if(! is_null($sortFields)){
         $sql .= ' ORDER BY ' . $sortFields;
     }
-    $sql .= ' LIMIT 20 ';
+    $sql .= ' LIMIT 20';
     $statement = DatabaseHelper::runQuery($this->connection, $sql, null);
     return $statement->fetchAll();
 }
