@@ -109,6 +109,14 @@ public function findById($id)
  Array(':id' => $id));
  return $statement->fetch();
 } 
+
+public function findByIdJoin($id, $table){
+    $sql = $this->getSelectStatementJoin($table);
+
+ $statement = DatabaseHelper::runQuery($this->connection, $sql,
+ Array(':id' => $id));
+ return $statement->fetchAll();
+}
   
  
 

@@ -18,14 +18,14 @@ class BookGateway extends TableDataGateway {
  return "BookID";
  }
 
-protected function getBySubcategory(){
- return "SELECT BookID, ISBN10, ISBN13, Title, CopyrightYear, SubcategoryID, ImprintID, ProductionStatusID, BindingTypeID, TrimSize, PageCountsEditorialEst, LatestInstockDate, Description, CoverImage FROM Books WHERE SubcategoryID=?";
+protected function getSelectStatementJoin($table){
+ if ($table == "Subcategories"){
+ return "SELECT BookID, ISBN10, ISBN13, Title, CopyrightYear, SubcategoryID, ImprintID, ProductionStatusID, BindingTypeID, TrimSize, PageCountsEditorialEst, LatestInstockDate, Description, CoverImage FROM Books WHERE SubcategoryID=:id";
+}else if($table == "Imprints"){
+ return "SELECT BookID, ISBN10, ISBN13, Title, CopyrightYear, SubcategoryID, ImprintID, ProductionStatusID, BindingTypeID, TrimSize, PageCountsEditorialEst, LatestInstockDate, Description, CoverImage FROM Books WHERE ImprintID=:id";
+}else{
+ return getSelectStatement();
 }
-
-protected function getByImprint(){
-  return "SELECT BookID, ISBN10, ISBN13, Title, CopyrightYear, SubcategoryID, ImprintID, ProductionStatusID, BindingTypeID, TrimSize, PageCountsEditorialEst, LatestInstockDate, Description, CoverImage FROM Books WHERE ImprintID=?";
-
 }
 }
-
 ?>
