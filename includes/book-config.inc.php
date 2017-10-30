@@ -1,5 +1,6 @@
 
 <?php
+function createConnString(){
 // set error reporting on to help with debugging
 error_reporting(E_ALL);
 ini_set('display_errors','1');
@@ -21,8 +22,8 @@ spl_autoload_register(function ($class) {
 });
 
 // connect to the database
-$connection = DatabaseHelper::createConnectionInfo(array(DBCONNECTION, DBUSER, DBPASS));
-
+ $connection = DatabaseHelper::createConnectionInfo(array(DBCONNECTION, DBUSER, DBPASS));
+return $connection;
 // we can then pass this connection variable to other classes that need it
-
+}
 ?>
