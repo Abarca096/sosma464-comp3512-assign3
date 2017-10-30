@@ -10,11 +10,15 @@ class EmployeesGateway extends TableDataGateway {
  }
 
  protected function getOrderFields() {
-  return "SELECT LastName, FirstName FROM Employees ";
+  return "LastName, FirstName, DateBy";
  }
  
  protected function getPrimaryKeyName() {
   return "EmployeeID";
+ }
+ 
+ protected function getEmployeeMessages() {
+  return "SELECT DateBy, Status, Priority, Description FROM EmployeeToDo ";
  }
  
  public function getAllEmployees() {
@@ -23,13 +27,17 @@ class EmployeesGateway extends TableDataGateway {
   return $statement->fetchAll();
  }
  
- // Returns a record for the specificed ID
  public function findById($id) {
-  $sql = $this->getSelectStatement() . ' WHERE ' .
-  $this->getPrimaryKeyName() . '=:id';
+  $sql = $this->getSelectStatement() . ' WHERE ' . $this->getPrimaryKeyName() . '=:id';
   $statement = DatabaseHelper::runQuery($this->connection, $sql, Array(':id' => $id));
   return $statement->fetch();
-  }
+ }
+  
+ public function findEmployeeMessagesById($id) {
+  $sql = $this->getEmployeeMessages() . ' WHERE ' . $this->getPrimaryKeyName() . '=:id';
+  $statement = DatabaseHelper::runQuery($this->connection, $sql, Array(':id' => $id));
+  return $statement->fetch();
+ }
 }
 
 ?>

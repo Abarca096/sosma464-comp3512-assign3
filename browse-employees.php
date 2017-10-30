@@ -1,15 +1,12 @@
 <?php
 
 header("Content-Type:text/html; charset=ISO-8859-1");
-//include 'includes/database.inc.php';
 include 'includes/book-config.inc.php';
-//include 'includes/Gateways/EmployeesGateway.class.php';
 $connection = createConnString();
 
 function displayEmpList($connection) {
-
     $employee = new EmployeesGateway($connection);
-    $result = $employee->getAllEmployees();
+    $result = $employee->findAllSorted();
     $returnVar = "";
     foreach ($result as $row) {
         $EmployeeID=$row['EmployeeID'];
@@ -20,19 +17,19 @@ function displayEmpList($connection) {
 
 function displayDetailedEmpInformation($connection) {
     if (isset($_GET['emp'])) { // check to see if server query exists
-        $sql="SELECT FirstName, LastName, Address, City, Region, Country, Postal, Email FROM Employees WHERE EmployeeID=? order by LastName;";
+        //$sql="SELECT FirstName, LastName, Address, City, Region, Country, Postal, Email FROM Employees WHERE EmployeeID=? order by LastName;";
         //$result=queryDatabase($sql, array($_GET['emp']));
         $employee = new EmployeesGateway($connection);
-        $result=$employee->findById(array($_GET['emp']));
-        $returnVar;
+        $result=$employee->findById($_GET['emp']);
+        $returnVar = "";
         
-        if (($result != false) && ($result->rowCount() > 0)) { // check for errors getting data from mysql
-            $row=$result->fetch();  // go through mysql results, echo appropriate information
-            $returnVar .= ("<h3>" . $row['FirstName'] . " " . $row['LastName'] . "</h3>");
-            $returnVar .= ("<p>" . $row['Address'] . "<br />");
-            $returnVar .= ($row['City'] . ", " . $row['Region'] . "<br />");
-            $returnVar .= ($row['Country'] . ", " . $row['Postal'] . "<br />");
-            $returnVar .= ($row['Email'] . "</p>");
+        if ($result != false) { // check for errors getting data from mysql
+            // go through mysql results, echo appropriate information
+            $returnVar .= ("<h3>" . $result['FirstName'] . " " . $result['LastName'] . "</h3>");
+            $returnVar .= ("<p>" . $result['Address'] . "<br />");
+            $returnVar .= ($result['City'] . ", " . $result['Region'] . "<br />");
+            $returnVar .= ($result['Country'] . ", " . $result['Postal'] . "<br />");
+            $returnVar .= ($result['Email'] . "</p>");
         } else {
             $returnVar .= ("An error has occurred!<br>");
             $returnVar .= ("No employee found that matches request! ... try clicking on an employee from the list.<br>"); 
@@ -43,14 +40,15 @@ function displayDetailedEmpInformation($connection) {
     return $returnVar;
 }
 
-function displayDetailedEmpToDoRecords() {
+function displayDetailedEmpToDoRecords($connection) {
     if (isset($_GET['emp'])) { // check to see if server query exists
-        $sql="SELECT DateBy, Status, Priority, Description FROM EmployeeToDo WHERE EmployeeID=? order by DateBy;";
-        $result=queryDatabase($sql, array($_GET['emp']));
-        $returnVar;
+        //$sql="SELECT DateBy, Status, Priority, Description FROM EmployeeToDo WHERE EmployeeID=? order by DateBy;";
+        $employee = new EmployeesGateway($connection);
+        $result=$employee->findEmployeeMessagesById($_GET['emp']);
+        $returnVar = "";
 
-        if (($result != false) && ($result->rowCount() > 0)) { // check for errors getting data from mysql
-            while($row=$result->fetch()) { // loop through mysql results, echo appropriate information
+        if ($result != false) { // check for errors getting data from mysql
+            foreach ($result as $row) { // loop through mysql results, echo appropriate information
                 $returnVar .= ("<tr><td>" . date('Y-M-d',strtotime($row['DateBy'])) . "</td><td>" . $row['Status'] . "</td><td>" . $row['Priority'] . "</td><td>" . substr($row['Description'],0,40));
             }
         } else {
@@ -64,14 +62,15 @@ function displayDetailedEmpToDoRecords() {
     return $returnVar;
 }
 
-function displayEmpMessages() {
+function displayEmpMessages($connection) {
     if (isset($_GET['emp'])) { // check to see if server query exists
         $sql = "SELECT MessageDate, Category, ContactID, Content FROM EmployeeMessages WHERE EmployeeID=?;";
-        $result=queryDatabase($sql, array($_GET['emp']));
-        $returnVar;
+        $employee = new EmployeesGateway($connection);
+        $result=$employee->findById($_GET['emp']);
+        $returnVar = "";
         
-        if (($result != false) && ($result->rowCount() > 0)) { // check for errors getting data from mysql
-            while($row=$result->fetch()) { // loop through mysql results, echo appropriate information
+        if ($result != false) { // check for errors getting data from mysql
+            foreach ($result as $row) { // loop through mysql results, echo appropriate information
                 $sql2 = 'SELECT FirstName, LastName FROM Employees WHERE EmployeeID=?;';
                 $result2=queryDatabase($sql2,array($row['ContactID']));
                 $contactInfo=$result2->fetch();
@@ -161,7 +160,7 @@ function displayEmpMessages() {
                                     </thead>
                                     <tbody>
                                         <!-- display requested employees to-do list information based on employee id -->
-                                        <?php //echo displayDetailedEmpToDoRecords(); ?>
+                                        <?php echo displayDetailedEmpToDoRecords($connection); ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -177,7 +176,7 @@ function displayEmpMessages() {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php //echo displayEmpMessages(); ?>
+                                        <?php echo displayEmpMessages($connection); ?>
                                     </tbody>
                                 </table>
                             </div>    
