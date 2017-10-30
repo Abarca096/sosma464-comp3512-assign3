@@ -8,7 +8,7 @@ class BookGateway extends TableDataGateway {
  protected function getSelectStatement()
  {
  return "SELECT BookID, ISBN10, ISBN13, Title,
- CopyrightYear, SubcategoryID, ImprintID, ProductionStatusID, BindingTypeID, TrimSize, PageCountsEditorialEst, LatestInstockDate, Description, CoverImage FROM Books LIMIT 20 ";
+ CopyrightYear, SubcategoryID, ImprintID, ProductionStatusID, BindingTypeID, TrimSize, PageCountsEditorialEst, LatestInstockDate, Description, CoverImage FROM Books ";
  }
 
  protected function getOrderFields() {
@@ -18,6 +18,14 @@ class BookGateway extends TableDataGateway {
  return "BookID";
  }
 
+protected function getBySubcategory(){
+ return "SELECT BookID, ISBN10, ISBN13, Title, CopyrightYear, SubcategoryID, ImprintID, ProductionStatusID, BindingTypeID, TrimSize, PageCountsEditorialEst, LatestInstockDate, Description, CoverImage FROM Books WHERE SubcategoryID=?";
+}
+
+protected function getByImprint(){
+  return "SELECT BookID, ISBN10, ISBN13, Title, CopyrightYear, SubcategoryID, ImprintID, ProductionStatusID, BindingTypeID, TrimSize, PageCountsEditorialEst, LatestInstockDate, Description, CoverImage FROM Books WHERE ImprintID=?";
+
+}
 }
 
 ?>
