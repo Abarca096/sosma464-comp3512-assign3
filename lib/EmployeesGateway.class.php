@@ -10,7 +10,7 @@ class EmployeesGateway extends TableDataGateway {
  }
 
  protected function getOrderFields() {
-  return "LastName, FirstName, DateBy";
+  return "LastName, FirstName";
  }
  
  protected function getPrimaryKeyName() {
@@ -21,6 +21,14 @@ class EmployeesGateway extends TableDataGateway {
   return "SELECT DateBy, Status, Priority, Description FROM EmployeeToDo ";
  }
 
+ protected function getSelectStatementJoin($table){
+  if ($table == "EmployeeToDo") {
+   return "SELECT DateBy, Status, Priority, Description FROM EmployeeToDo WHERE EmployeeID=:id order by DateBy;";
+  } else if ($table == "EmployeeMessages") {
+   return "SELECT MessageDate, Category, ContactID, Content FROM EmployeeMessages WHERE EmployeeID=:id;";
+  }
+ }
+ 
 }
 
 ?>

@@ -6,7 +6,7 @@ $connection = createConnString();
 
 function displayEmpList($connection) {
     $employee = new EmployeesGateway($connection);
-    $result = $employee->getAllEmployees();
+    $result = $employee->findAllSorted(true);
     $returnVar = "";
     foreach ($result as $row) {
         $EmployeeID=$row['EmployeeID'];
@@ -44,7 +44,7 @@ function displayDetailedEmpToDoRecords($connection) {
     if (isset($_GET['emp'])) { // check to see if server query exists
         //$sql="SELECT DateBy, Status, Priority, Description FROM EmployeeToDo WHERE EmployeeID=? order by DateBy;";
         $employee = new EmployeesGateway($connection);
-        $result=$employee->findById($_GET['emp']);
+        $result=$employee->findByIdJoin($_GET['emp'],"EmployeeToDo");
         $returnVar = "";
 
         if ($result != false) { // check for errors getting data from mysql
@@ -66,15 +66,15 @@ function displayEmpMessages($connection) {
     if (isset($_GET['emp'])) { // check to see if server query exists
         //$sql = "SELECT MessageDate, Category, ContactID, Content FROM EmployeeMessages WHERE EmployeeID=?;";
         $employee = new EmployeesGateway($connection);
-        $result=$employee->findById($_GET['emp']);
+        $result=$employee->findByIdJoin($_GET['emp'],"EmployeeMessages");
         $returnVar = "";
         
         if ($result != false) { // check for errors getting data from mysql
             foreach ($result as $row) { // loop through mysql results, echo appropriate information
-                $sql2 = 'SELECT FirstName, LastName FROM Employees WHERE EmployeeID=?;';
-                $result2=queryDatabase($sql2,array($row['ContactID']));
-                $contactInfo=$result2->fetch();
-                $returnVar .= ("<tr><td>" . date("Y-M-d",strtotime($row['MessageDate'])) . "</td><td>" . $row['Category'] . "</td><td>" . $contactInfo['FirstName'] . " " . $contactInfo['LastName'] . "</td><td>" . substr($row['Content'],0,40) . "</td></tr>");
+                //$sql2 = 'SELECT FirstName, LastName FROM Employees WHERE EmployeeID=?;';
+                $var=$employee->findById($row['ContactID']);
+                //$contactInfo=$result2->fetch();
+                $returnVar .= ("<tr><td>" . date("Y-M-d",strtotime($row['MessageDate'])) . "</td><td>" . $row['Category'] . "</td><td>" . $var['FirstName'] . " " . $var['LastName'] . "</td><td>" . substr($row['Content'],0,40) . "</td></tr>");
             }
         } else {
             $returnVar .= ("An error has occurred!<br>");
@@ -176,7 +176,7 @@ function displayEmpMessages($connection) {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php //echo displayEmpMessages($connection); ?>
+                                        <?php echo displayEmpMessages($connection); ?>
                                     </tbody>
                                 </table>
                             </div>    
