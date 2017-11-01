@@ -6,7 +6,7 @@ $connection = createConnString();
 
 function displayEmpList($connection) {
     $employee = new EmployeesGateway($connection);
-    $result = $employee->findAllSorted();
+    $result = $employee->getAllEmployees();
     $returnVar = "";
     foreach ($result as $row) {
         $EmployeeID=$row['EmployeeID'];
@@ -44,7 +44,7 @@ function displayDetailedEmpToDoRecords($connection) {
     if (isset($_GET['emp'])) { // check to see if server query exists
         //$sql="SELECT DateBy, Status, Priority, Description FROM EmployeeToDo WHERE EmployeeID=? order by DateBy;";
         $employee = new EmployeesGateway($connection);
-        $result=$employee->findEmployeeMessagesById($_GET['emp']);
+        $result=$employee->findById($_GET['emp']);
         $returnVar = "";
 
         if ($result != false) { // check for errors getting data from mysql
@@ -64,7 +64,7 @@ function displayDetailedEmpToDoRecords($connection) {
 
 function displayEmpMessages($connection) {
     if (isset($_GET['emp'])) { // check to see if server query exists
-        $sql = "SELECT MessageDate, Category, ContactID, Content FROM EmployeeMessages WHERE EmployeeID=?;";
+        //$sql = "SELECT MessageDate, Category, ContactID, Content FROM EmployeeMessages WHERE EmployeeID=?;";
         $employee = new EmployeesGateway($connection);
         $result=$employee->findById($_GET['emp']);
         $returnVar = "";
@@ -176,7 +176,7 @@ function displayEmpMessages($connection) {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php echo displayEmpMessages($connection); ?>
+                                        <?php //echo displayEmpMessages($connection); ?>
                                     </tbody>
                                 </table>
                             </div>    

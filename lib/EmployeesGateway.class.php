@@ -20,24 +20,7 @@ class EmployeesGateway extends TableDataGateway {
  protected function getEmployeeMessages() {
   return "SELECT DateBy, Status, Priority, Description FROM EmployeeToDo ";
  }
- 
- public function getAllEmployees() {
-  $sql = $this->getSelectStatement() . ' order by LastName ';
-  $statement = DatabaseHelper::runQuery($this->connection, $sql, Array());
-  return $statement->fetchAll();
- }
- 
- public function findById($id) {
-  $sql = $this->getSelectStatement() . ' WHERE ' . $this->getPrimaryKeyName() . '=:id';
-  $statement = DatabaseHelper::runQuery($this->connection, $sql, Array(':id' => $id));
-  return $statement->fetch();
- }
-  
- public function findEmployeeMessagesById($id) {
-  $sql = $this->getEmployeeMessages() . ' WHERE ' . $this->getPrimaryKeyName() . '=:id';
-  $statement = DatabaseHelper::runQuery($this->connection, $sql, Array(':id' => $id));
-  return $statement->fetch();
- }
+
 }
 
 ?>
