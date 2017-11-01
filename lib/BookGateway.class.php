@@ -7,8 +7,7 @@ class BookGateway extends TableDataGateway {
 
  protected function getSelectStatement()
  {
- return "SELECT BookID, ISBN10, ISBN13, Title,
- CopyrightYear, SubcategoryID, ImprintID, ProductionStatusID, BindingTypeID, TrimSize, PageCountsEditorialEst, LatestInstockDate, Description, CoverImage FROM Books ";
+ return "SELECT BookID, ISBN10, ISBN13, Title, CopyrightYear, SubcategoryID, ImprintID, ProductionStatusID, BindingTypeID, TrimSize, PageCountsEditorialEst, LatestInstockDate, Description, CoverImage FROM Books ";
  }
 
  protected function getOrderFields() {
@@ -26,6 +25,10 @@ protected function getSelectStatementJoin($table){
 }else{
  return getSelectStatement();
 }
+}
+
+protected function getSecondaryKeyName(){
+  return "ISBN10";
 }
 }
 ?>

@@ -1,18 +1,44 @@
 <?php
 
 header("Content-Type:text/html; charset=ISO-8859-1");
-include 'includes/database.inc.php';
+include 'includes/book-config.inc.php';
 
-function displayBookInfo() {
+$connection = createConnString();
+
+function displayBookInfo($connection) {
     if (isset($_GET['ISBN10'])) {
-        $sql = "SELECT ISBN10, ISBN13, Title, CopyrightYear, TrimSize, PageCountsEditorialEst, Description, SubcategoryName, Status, Imprint, BindingType FROM Books, Subcategories, Imprints,Statuses, BindingTypes WHERE ISBN10=? AND Books.SubcategoryID=Subcategories.SubcategoryID AND Books.ImprintID=Imprints.ImprintID AND Books.ProductionStatusID=Statuses.StatusID AND Books.BindingTypeID=BindingTypes.BindingTypeID;";
-        $result = queryDatabase($sql,array($_GET['ISBN10']))->fetch();
+        /* $sql = "SELECT ISBN10, ISBN13, Title, CopyrightYear, TrimSize, PageCountsEditorialEst, Description, SubcategoryName, Status, Imprint, BindingType 
+                FROM Books, Subcategories, Imprints,Statuses, BindingTypes 
+                WHERE ISBN10=? 
+                AND Books.SubcategoryID=Subcategories.SubcategoryID 
+                AND Books.ImprintID=Imprints.ImprintID AND Books.ProductionStatusID=Statuses.StatusID 
+                AND Books.BindingTypeID=BindingTypes.BindingTypeID;";
+        $result = queryDatabase($sql,array($_GET['ISBN10']))->fetch(); */
+        $bookDB = new BookGateway($connection);
+        $result = $bookDB->findBySecondaryKey($_GET['ISBN10']);
         $returnVar;
-        
         if ($result != false) {
             $ISBN10=$_GET['ISBN10'];
-            $returnVar .= ("<td><img src='book-images/medium/" . $ISBN10 . ".jpg' alt='$ISBN10 Image'></td>");
-            $returnVar .= ("<td><ul><li><h5>" . $result['Title'] . "</h3></li><li>ISBN10: ". $result['ISBN10'] . "</li><li>ISBN13: " . $result['ISBN13'] . "</li><li>Copyright: &copy;" . $result['CopyrightYear'] . "</li><li>Subcategory: " . $result['SubcategoryName'] . "</li><li>Imprint: " . $result['Imprint'] . "</li><li>Production Status: " . $result['Status']  . "</li><li>Binding Type: " . $result['BindingType'] . "</li><li>Trim Size: " . $result['TrimSize'] . "</li><li>Page Count: " . $result['PageCountsEditorialEst'] . "</li><li>Description: " . $result['Description'] . "</li></ul></td>");
+            $returnVar .= "<td><img src='book-images/medium/" . $result['ISBN10'] . ".jpg' alt='$ISBN10 Image'></td>";
+            $returnVar .= "<td><ul><li><h5>" . $result['Title'] . "</h3></li><li>ISBN10: ". $result['ISBN10'] . "</li><li>ISBN13: " . $result['ISBN13'] 
+                            . "</li><li>Copyright: &copy;" . $result['CopyrightYear']; 
+            /* Get the Subcategory name */
+            $subDB = new SubcategoriesGateway($connection);
+            $subS = $subDB->findByID($result['SubcategoryID']);
+            $returnVar .= "</li><li>Subcategory: " . $subC['SubcategoryName'];
+            /* Get the Imprint name */
+            $impDB = new ImprintsGateway($connection);
+            $impS = $impDB->findByID($result['ImprintID']);
+            $returnVar .= "</li><li>Imprint: " . $result['Imprint'];
+            /* Get the Production Status */
+            $statDB = new StatusGateway($connection);
+            $statS = $statDB->findByID($result['StatusID']);
+            $returnVar .= "</li><li>Production Status: " . $statS['Status'];
+            /* Get the Binding Type and finish the rest of the markup*/
+            $bindBD = new BindingGateway($connection);
+            $bindS = $bindBD->findByID($result['BindingTypeID']);
+            $returnVar .= "</li><li>Binding Type: " . $bindS['BindingType'] . "</li><li>Trim Size: " . $result['TrimSize'] 
+                        . "</li><li>Page Count: " . $result['PageCountsEditorialEst'] . "</li><li>Description: " . $result['Description'] . "</li></ul></td>";
         } else {
             $returnVar .= ("An error has occured! No information about the book you have selected exists! <a href='browse-books.php'>Click Here</a> to go back.");
         }
@@ -103,7 +129,7 @@ function displayAdoptedByUniverisities() {
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <?php echo displayBookInfo(); ?>
+                                            <?php echo displayBookInfo($connection); ?>
                                         </tr>
                                     </tbody>
                             </table>

@@ -7,14 +7,14 @@ class SubcategoriesGateway extends TableDataGateway {
 
  protected function getSelectStatement()
  {
- return "SELECT SubcategoryName, SubCategoryID FROM Subcategories ";
+ return "SELECT BindingType, BindingTypeID FROM BindingTypes";
  }
 
  protected function getOrderFields() {
- return 'SubcategoryName';
+ return "BindingType";
  }
  protected function getPrimaryKeyName() {
- return 'SubCategoryID';
+ return "BindingTypeID";
  }
 }
 

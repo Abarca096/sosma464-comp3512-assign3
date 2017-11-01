@@ -7,14 +7,14 @@ class SubcategoriesGateway extends TableDataGateway {
 
  protected function getSelectStatement()
  {
- return "SELECT SubcategoryName, SubCategoryID FROM Subcategories ";
+ return "SELECT Status, StatusID FROM Statuses";
  }
 
  protected function getOrderFields() {
- return 'SubcategoryName';
+ return 'Status';
  }
  protected function getPrimaryKeyName() {
- return 'SubCategoryID';
+ return "StatusID";
  }
 }
 

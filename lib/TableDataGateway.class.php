@@ -89,7 +89,7 @@ public function findAllLimit20($sortFields=null){
 public function findAllSorted($ascending)
 {
  $sql = $this->getSelectStatement() . ' ORDER BY ' .
- $this->getOrderFields();
+ $this->getOrderFields();  
  if (! $ascending) {
  $sql .= " DESC";
  }
@@ -117,8 +117,16 @@ public function findByIdJoin($id, $table){
  Array(':id' => $id));
  return $statement->fetchAll();
 }
-  
- 
+
+public function findBySecondaryKey($id)
+{
+ $sql = $this->getSelectStatement() . ' WHERE ' .
+ $this->getSecondaryKeyName() . '=:id';
+
+ $statement = DatabaseHelper::runQuery($this->connection, $sql,
+ Array(':id' => $id));
+ return $statement->fetch();
+} 
 
 }
 
