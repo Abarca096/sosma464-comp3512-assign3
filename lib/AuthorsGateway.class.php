@@ -1,20 +1,20 @@
 <?php
 
-class SubcategoriesGateway extends TableDataGateway {
+class AuthorsGateway extends TableDataGateway {
  public function __construct($connect) {
  parent::__construct($connect);
  }
 
  protected function getSelectStatement()
  {
- return "SELECT Status, StatusID FROM Statuses";
+ return "SELECT AuthorID, FirstName, LastName, Institution FROM Authors ";
  }
 
  protected function getOrderFields() {
- return 'Status';
+ return "LastName";
  }
  protected function getPrimaryKeyName() {
- return "StatusID";
+ return "AuthorID";
  }
 }
 

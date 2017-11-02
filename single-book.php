@@ -15,8 +15,9 @@ function displayBookInfo($connection) {
                 AND Books.BindingTypeID=BindingTypes.BindingTypeID;";
         $result = queryDatabase($sql,array($_GET['ISBN10']))->fetch(); */
         $bookDB = new BookGateway($connection);
+        
         $result = $bookDB->findBySecondaryKey($_GET['ISBN10']);
-        $returnVar;
+        $returnVar = "";
         if ($result != false) {
             $ISBN10=$_GET['ISBN10'];
             $returnVar .= "<td><img src='book-images/medium/" . $result['ISBN10'] . ".jpg' alt='$ISBN10 Image'></td>";
@@ -25,14 +26,14 @@ function displayBookInfo($connection) {
             /* Get the Subcategory name */
             $subDB = new SubcategoriesGateway($connection);
             $subS = $subDB->findByID($result['SubcategoryID']);
-            $returnVar .= "</li><li>Subcategory: " . $subC['SubcategoryName'];
+            $returnVar .= "</li><li>Subcategory: " . $subS['SubcategoryName'];
             /* Get the Imprint name */
             $impDB = new ImprintsGateway($connection);
             $impS = $impDB->findByID($result['ImprintID']);
-            $returnVar .= "</li><li>Imprint: " . $result['Imprint'];
+            $returnVar .= "</li><li>Imprint: " . $impS['Imprint'];
             /* Get the Production Status */
-            $statDB = new StatusGateway($connection);
-            $statS = $statDB->findByID($result['StatusID']);
+            $statDB = new StatusesGateway($connection);
+            $statS = $statDB->findByID($result['ProductionStatusID']);
             $returnVar .= "</li><li>Production Status: " . $statS['Status'];
             /* Get the Binding Type and finish the rest of the markup*/
             $bindBD = new BindingGateway($connection);
@@ -46,22 +47,38 @@ function displayBookInfo($connection) {
     }
 }
 
-function displayAuthors() {
+function displayAuthors($connection) {
     if (isset($_GET['ISBN10'])) {
-        $sql = "SELECT FirstName, LastName, Institution FROM BookAuthors, Authors, Books WHERE Books.BookID=BookAuthors.BookID AND BookAuthors.AuthorID=Authors.AuthorID AND ISBN10=? ORDER BY 'Order';";
-        $result = queryDatabase($sql,array($_GET['ISBN10']));
-        $returnVar;
+        /* $sql = "SELECT FirstName, LastName, Institution                                  
+                FROM BookAuthors, Authors, Books WHERE Books.BookID=BookAuthors.BookID 
+                AND BookAuthors.AuthorID=Authors.AuthorID 
+                AND ISBN10=? ORDER BY 'Order';";
+        $result = queryDatabase($sql,array($_GET['ISBN10'])); */
+        $authDB = new AuthorsGateway($connection);
         
-        while($row=$result->fetch()) { // loop through mysql results, echo appropriate information
+        /* Get the Book ID from the Books table*/
+        $bookDB = new BookGateway($connection);
+        $bID = $bookDB->findBySecondaryKey($_GET['ISBN10']);
+        $bookID = $bID['BookID'];
+        /* Get the Author ID from the BookAuthors table */
+        $abDB = new BookAuthorsGateway($connection);
+        $authID = $abDB->findBySecondaryKey($bookID);
+        $returnVar ="";
+  
+        /*For each author found */
+        foreach($authID as $row) {
+            /* Get the Author's First and last name, and their institution from the Authors table*/
+            $aID = $row['AuthorId'];
+            $result = $authDB->findByID($aID);
             // check to see if an institution is listed
-            if (($row['Institution'] == "")) { $row['Institution'] = "No Institution Listed"; }
+            if (($result['Institution'] == "")) { $result['Institution'] = "No Institution Listed"; }
 
             // echo list, because this needs to be set for each author a sizable portion of HTML may be needed
             $returnVar .= ("<li class='mdl-list__item mdl-list__item--three-line'>");
             $returnVar .= ("<span class='mdl-list__item-primary-content'>");
             $returnVar .= ("<i class='material-icons mdl-list__item-avatar'>person</i>");
-            $returnVar .= ("<span>" . $row['FirstName'] . " " . $row['LastName'] . "</span>");
-            $returnVar .= ("<span class='mdl-list__item-text-body'>" . $row['Institution']);
+            $returnVar .= ("<span>" . $result['FirstName'] . " " . $result['LastName'] . "</span>");
+            $returnVar .= ("<span class='mdl-list__item-text-body'>" . $result['Institution']);
             $returnVar .= ("</span></span></li>");
         }
         return $returnVar;
@@ -70,8 +87,13 @@ function displayAuthors() {
 
 function displayAdoptedByUniverisities() {
     if (isset($_GET['ISBN10'])) {
-        $sql = "SELECT DISTINCT Name FROM Universities, Books, AdoptionBooks, Adoptions WHERE Adoptions.UniversityID=Universities.UniversityID AND Adoptions.AdoptionID=AdoptionBooks.AdoptionID AND Books.BookID=AdoptionBooks.BookID AND ISBN10=?;";
-        $result = queryDatabase($sql,array($_GET['ISBN10']));
+        /* $sql = "SELECT DISTINCT Name 
+                FROM Universities, Books, AdoptionBooks, Adoptions 
+                WHERE Adoptions.UniversityID=Universities.UniversityID 
+                AND Adoptions.AdoptionID=AdoptionBooks.AdoptionID 
+                AND Books.BookID=AdoptionBooks.BookID AND ISBN10=?;";
+        $result = queryDatabase($sql,array($_GET['ISBN10'])); */
+        
         $returnVar;
         
         while($row=$result->fetch()) { // loop through mysql results, echo appropriate information
@@ -148,7 +170,7 @@ function displayAdoptedByUniverisities() {
                         <p>The authors who contributed to the creation of this material are:</p>
                         <ul class="demo-list-three mdl-list">
                             <!-- display author information -->
-                            <?php echo displayAuthors(); ?>
+                            <?php echo displayAuthors($connection); ?>
                         </ul>
                     </div>
                 </div>  <!-- / mdl-cell + mdl-card -->
@@ -161,7 +183,7 @@ function displayAdoptedByUniverisities() {
                         <p>The universities who have adopted this book are:</p>
                         <ul class="demo-list-item mdl-list">
                             <!-- display universities that have adopted the book -->
-                            <?php echo displayAdoptedByUniverisities(); ?>
+                            <?php echo displayAdoptedByUniverisities($connection); ?>
                         </ul>
                     </div>
                 </div>  <!-- / mdl-cell + mdl-card -->

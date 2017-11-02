@@ -1,20 +1,20 @@
 <?php
 
-class ImprintsGateway extends TableDataGateway {
+class StatusesGateway extends TableDataGateway {
  public function __construct($connect) {
  parent::__construct($connect);
  }
 
  protected function getSelectStatement()
  {
- return "SELECT Imprint, ImprintID FROM Imprints ";
+ return 'SELECT Status, StatusID FROM Statuses ';
  }
 
  protected function getOrderFields() {
- return 'Imprint ';
+ return 'Status ';
  }
  protected function getPrimaryKeyName() {
- return "ImprintID ";
+ return 'StatusID ';
  }
 }
 
