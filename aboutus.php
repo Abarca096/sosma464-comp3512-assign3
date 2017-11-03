@@ -98,7 +98,6 @@
                                 </tr>
                             </tbody>
                         </table>
-                
                     </div>
                 </div> <!--  / mdl-cell + mdl-card -->
                 </div>
