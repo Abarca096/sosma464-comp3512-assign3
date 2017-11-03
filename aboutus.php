@@ -37,8 +37,7 @@
                     <div class="mdl-card__supporting-text">
                         <p>This site is hypothetical and was created as an assignment for COMP-3532-001 at Mount Royal University.<br><br>
                             Contributors:<br></p>
-
-                            <ul class="demo-list-control mdl-list">
+                                <ul class="demo-list-control mdl-list">
                                 <li class="mdl-list__item">
                                     <span class="mdl-list__item-primary-content"><i class="material-icons  mdl-list__item-avatar">person</i>Josh Blair</span>
                                 </li>
