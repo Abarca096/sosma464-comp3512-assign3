@@ -1,7 +1,3 @@
-<?php
-
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -57,7 +53,8 @@
                                 </li>
                             </ul>
                     </div>
-                </div>  <!-- / mdl-cell + mdl-card -->
+                </div>  
+                <!-- / mdl-cell + mdl-card -->
             </div>
             <div class="mdl-grid">
                 <div class="mdl-cell mdl-cell--8-col card-lesson mdl-card  mdl-shadow--2dp">
@@ -105,11 +102,9 @@
                 
                     </div>
                 </div> <!--  / mdl-cell + mdl-card -->
-                
                 </div>
                 </div>
             </div>
-            
         </section>
     </main>    
 </div>    <!-- / mdl-layout --> 
