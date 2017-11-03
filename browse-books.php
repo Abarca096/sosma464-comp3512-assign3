@@ -38,7 +38,7 @@ function displayBookList($connection) {
         }else if(isset($_GET['imprint'])){
             $result = $db->findByIdJoin($_GET['imprint'],"Imprints");
         }else{
-            $result = $db->findAllLimit20();
+            $result = $db->findAllLimit(null,20,null);
         }
         if ($result != false) { // check for errors getting data from mysql
             foreach($result as $row) { // go through mysql results, echo appropriate information

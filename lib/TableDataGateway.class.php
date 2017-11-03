@@ -46,6 +46,8 @@ abstract class TableDataGateway
    */    
    abstract protected function getPrimaryKeyName();
    
+
+   
    // ***********************************************************
    // PUBLIC FINDERS 
    //
@@ -69,12 +71,15 @@ public function findAll($sortFields=null)
 /*
 Returns all records in the table, with a limit 20
 */
-public function findAllLimit20($sortFields=null){
+public function findAllLimit($sortFields=null, $limit, $ascending = null){
     $sql = $this->getSelectStatement();
     if(! is_null($sortFields)){
         $sql .= ' ORDER BY ' . $sortFields;
+        if (! $ascending) {
+        $sql .= " DESC";
+        }
     }
-    $sql .= ' LIMIT 20';
+    $sql .= " LIMIT $limit";
     $statement = DatabaseHelper::runQuery($this->connection, $sql, null);
     return $statement->fetchAll();
 }
@@ -127,6 +132,21 @@ public function findBySecondaryKey($id)
  Array(':id' => $id));
  return $statement->fetch();
 } 
+
+ public function findAllByJoin($sortFields=null, $limit, $ascending=null, $table, $pk){
+     $sql = $this->getFirstJoin($table,$pk);
+      if(! is_null($sortFields)){
+        $sql .= ' ORDER BY ' . $sortFields;
+        if (! $ascending) {
+        $sql .= " DESC";
+        }
+    }
+    $sql .= " LIMIT $limit";
+    $statement = DatabaseHelper::runQuery($this->connection, $sql, null);
+    return $statement->fetchAll();
+     
+}
+
 
 }
 
