@@ -1,7 +1,3 @@
-<?php
-
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,16 +29,38 @@
             <div class="mdl-grid">
                 
                 <!-- mdl-cell + mdl-card-->
-                <div class="mdl-cell mdl-cell--9-col card-lesson mdl-card  mdl-shadow--2dp">
-                    <div class="mdl-card__title mdl-color--pink">
+                <div class="mdl-cell mdl-cell--8-col card-lesson mdl-card  mdl-shadow--2dp">
+                    <div class="mdl-card__title mdl-color--orange">
                         <h2 class="mdl-card__title-text">About Us</h2>
                     </div>
                     
                     <div class="mdl-card__supporting-text">
-                        <p>Josh Blair<br>
-                        COMP-3512 Web II (Fall 2017)<br>
-                        8 Oct 2017</p>
-                        
+                        <p>This site is hypothetical and was created as an assignment for COMP-3532-001 at Mount Royal University.<br><br>
+                            Contributors:<br></p>
+                                <ul class="demo-list-control mdl-list">
+                                <li class="mdl-list__item">
+                                    <span class="mdl-list__item-primary-content"><i class="material-icons  mdl-list__item-avatar">person</i>Josh Blair</span>
+                                </li>
+                                <li class="mdl-list__item">
+                                    <span class="mdl-list__item-primary-content"><i class="material-icons  mdl-list__item-avatar">person</i>Sam Osman</span>
+                                </li>
+                                <li class="mdl-list__item">
+                                    <span class="mdl-list__item-primary-content"><i class="material-icons  mdl-list__item-avatar">person</i>Jorge Abarca</span>
+                                </li>
+                                <li class="mdl-list__item">
+                                    <span class="mdl-list__item-primary-content"><i class="material-icons  mdl-list__item-avatar">person</i>Cryston Robin</span>
+                                </li>
+                            </ul>
+                    </div>
+                </div>  
+                <!-- / mdl-cell + mdl-card -->
+            </div>
+            <div class="mdl-grid">
+                <div class="mdl-cell mdl-cell--8-col card-lesson mdl-card  mdl-shadow--2dp">
+                    <div class="mdl-card__title mdl-color--pink">
+                        <h2 class="mdl-card__title-text">Resource Links</h2>
+                    </div>
+                    <div class="mdl-card__supporting-text">
                         <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
                             <thead>
                                 <tr>
@@ -80,14 +98,11 @@
                                 </tr>
                             </tbody>
                         </table>
-                
                     </div>
                 </div> <!--  / mdl-cell + mdl-card -->
-                
                 </div>
                 </div>
             </div>
-            
         </section>
     </main>    
 </div>    <!-- / mdl-layout --> 
