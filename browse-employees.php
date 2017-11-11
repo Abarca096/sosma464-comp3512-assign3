@@ -6,10 +6,15 @@ $connection = createConnString();
 
 function displayEmpList($connection) {
     $employee = new EmployeesGateway($connection);
-    if ((isset($_GET['filter_city'])) && (isset($_GET['filter_lastname']))) {
+    if ((isset($_GET['filter_city'])) && (isset($_GET['filter_lastname'])) && ($_GET['filter_city']!=null) && ($_GET['filter_lastname']!=null)) {
+        // if city and lastname are set and are not null
         $result = $employee->getEmployeeByCityAndName($_GET['filter_city'],$_GET['filter_lastname']);
-    } elseif (isset($_GET['filter_city'])) {
+    } elseif ((isset($_GET['filter_city']) && ($_GET['filter_city']!=null))) {
+        // if city is set and is not null
         $result = $employee->getEmployeeByCity($_GET['filter_city']);
+    } elseif ((isset($_GET['filter_lastname']) && ($_GET['filter_lastname']!=null))) {
+        // if lastname is set and is not null
+        $result = $employee->getEmployeeByName($_GET['filter_lastname']);
     } else {
         $result = $employee->findAllSorted(true);
     }
@@ -61,11 +66,11 @@ function displayDetailedEmpToDoRecords($connection) {
             $returnVar .= ("An error has occurred!<br>");
             $returnVar .= ("No employee found that matches request! ... try clicking on an employee from the list.<br>"); 
         }
+    return $returnVar;
     } else { // inform the user that nothing was queried
         //echo "Your query was misunderstood! No employee found that matches request!<br>";
-        $returnVar .= ("<p>Please try clicking on an employee from the list.</p>");
+        return ("<p>Please try clicking on an employee from the list.</p>");
     }
-    return $returnVar;
 }
 
 function displayEmpMessages($connection) {
@@ -86,17 +91,17 @@ function displayEmpMessages($connection) {
             $returnVar .= ("An error has occurred!<br>");
             $returnVar .= ("No employee found that matches request! ... try clicking on an employee from the list.<br>"); 
         }
-    } else { // inform the user that something went wrong
-        $returnVar .= ("<p>Please try clicking on an employee from the list.</p>");
-    }
     return $returnVar;
+    } else { // inform the user that something went wrong
+        return ("<p>Please try clicking on an employee from the list.</p>");
+    }
 }
 
 function displayCityFilterList($connection) {
     $employee = new EmployeesGateway($connection);
     $result=$employee->getEmployeeCities(true);
     
-    $returnVar = "";
+    $returnVar = "<option value=''></option>";
     foreach ($result as $row) {
         $returnVar .= "<option value='" . $row['City'] . "'>" . $row['City'] . "</option>";
     }
@@ -177,7 +182,7 @@ function displayCityFilterList($connection) {
                                     </thead>
                                     <tbody>
                                         <!-- display requested employees to-do list information based on employee id -->
-                                        <?php //echo displayDetailedEmpToDoRecords($connection); ?>
+                                        <?php echo displayDetailedEmpToDoRecords($connection); ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -193,7 +198,7 @@ function displayCityFilterList($connection) {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php //echo displayEmpMessages($connection); ?>
+                                        <?php echo displayEmpMessages($connection); ?>
                                     </tbody>
                                 </table>
                             </div>    

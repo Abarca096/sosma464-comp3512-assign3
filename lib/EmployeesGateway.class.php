@@ -49,6 +49,13 @@ class EmployeesGateway extends TableDataGateway {
   $statement = DatabaseHelper::runQuery($this->connection,$sql,array(":city" => $city,":name" => $name));
   return $statement->fetchAll();
  }
+ 
+ public function getEmployeeByName($name) {
+  $sql = "SELECT EmployeeID, FirstName, LastName FROM Employees WHERE LastName LIKE CONCAT('%', :name, '%')";
+  
+  $statement = DatabaseHelper::runQuery($this->connection,$sql,array(":name" => $name));
+  return $statement->fetchAll();
+ }
 }
 
 ?>
