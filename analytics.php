@@ -12,15 +12,17 @@ if(isset($_GET['data'])){
     }
 }
 function displayData($display){
-    if($display == "book"){
-        $display = "<table><th>Country</th><th>Count</th>";
+    if($display == "books"){
+        $analytics = "<table><th>Country</th><th>Count</th></table>";
         //call gateway here and append the data to this string
     }else if($display =="activity"){
         //what the heck kind of html am i supposed to do here??
+        $analytics = "<ul id ='boxes'><ul><li>Box</li><li>Number</li><li>Label</li></ul></ul>";
     }else if ($display =="adopted"){
-        $display = "<table><th>ImagePlaceHolder</th><th>Title</th><th>Quantity</th>";
+        $analytics = "<table><th>ImagePlaceHolder</th><th>Title</th><th>Quantity</th>";
         //call gateway here and append the data to this string
-    }
+}
+    return $analytics;
 }
 ?>
 <!DOCTYPE html>
@@ -87,7 +89,7 @@ function displayData($display){
                 </div>
                 
                 <div class="mdl-card__actions mdl-card--border">
-                    <?php echo displayData;?>
+                    <?php echo displayData($display);?>
                 </div>
             </div>
         </section>
