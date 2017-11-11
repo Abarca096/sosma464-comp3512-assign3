@@ -29,6 +29,26 @@ class EmployeesGateway extends TableDataGateway {
   }
  }
  
+ public function getEmployeeCities() {
+  $sql = "SELECT DISTINCT City FROM Employees;";
+  
+  $statement = DatabaseHelper::runQuery($this->connection, $sql, null);
+  return $statement->fetchAll();
+ }
+ 
+ public function getEmployeeByCity($city) {
+  $sql = "SELECT EmployeeID, FirstName, LastName FROM Employees WHERE City=:city; ";
+  
+  $statement = DatabaseHelper::runQuery($this->connection,$sql,array(":city" => $city));
+  return $statement->fetchAll();
+ }
+ 
+  public function getEmployeeByCityAndName($city,$name) {
+  $sql = "SELECT EmployeeID, FirstName, LastName FROM Employees WHERE City=:city AND LastName LIKE CONCAT('%', :name, '%')";
+  
+  $statement = DatabaseHelper::runQuery($this->connection,$sql,array(":city" => $city,":name" => $name));
+  return $statement->fetchAll();
+ }
 }
 
 ?>

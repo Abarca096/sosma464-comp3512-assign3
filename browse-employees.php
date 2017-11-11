@@ -6,7 +6,13 @@ $connection = createConnString();
 
 function displayEmpList($connection) {
     $employee = new EmployeesGateway($connection);
-    $result = $employee->findAllSorted(true);
+    if ((isset($_GET['filter_city'])) && (isset($_GET['filter_lastname']))) {
+        $result = $employee->getEmployeeByCityAndName($_GET['filter_city'],$_GET['filter_lastname']);
+    } elseif (isset($_GET['filter_city'])) {
+        $result = $employee->getEmployeeByCity($_GET['filter_city']);
+    } else {
+        $result = $employee->findAllSorted(true);
+    }
     $returnVar = "";
     foreach ($result as $row) {
         $EmployeeID=$row['EmployeeID'];
@@ -85,6 +91,17 @@ function displayEmpMessages($connection) {
     }
     return $returnVar;
 }
+
+function displayCityFilterList($connection) {
+    $employee = new EmployeesGateway($connection);
+    $result=$employee->getEmployeeCities(true);
+    
+    $returnVar = "";
+    foreach ($result as $row) {
+        $returnVar .= "<option value='" . $row['City'] . "'>" . $row['City'] . "</option>";
+    }
+    return $returnVar;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -118,7 +135,7 @@ function displayEmpMessages($connection) {
             <div class="mdl-grid">
 
               <!-- mdl-cell + mdl-card -->
-                <div class="mdl-cell mdl-cell--3-col card-lesson mdl-card  mdl-shadow--2dp">
+                <div class="mdl-cell mdl-cell--2-col card-lesson mdl-card  mdl-shadow--2dp">
                     <div class="mdl-card__title mdl-color--orange">
                         <h2 class="mdl-card__title-text">Employees</h2>
                     </div>
@@ -131,7 +148,7 @@ function displayEmpMessages($connection) {
                 </div>  <!-- / mdl-cell + mdl-card -->
               
               <!-- mdl-cell + mdl-card -->
-                <div class="mdl-cell mdl-cell--8-col card-lesson mdl-card  mdl-shadow--2dp">
+                <div class="mdl-cell mdl-cell--7-col card-lesson mdl-card  mdl-shadow--2dp">
                     <div class="mdl-card__title mdl-color--deep-purple mdl-color-text--white">
                         <h2 class="mdl-card__title-text">Employee Details</h2>
                     </div>
@@ -160,7 +177,7 @@ function displayEmpMessages($connection) {
                                     </thead>
                                     <tbody>
                                         <!-- display requested employees to-do list information based on employee id -->
-                                        <?php echo displayDetailedEmpToDoRecords($connection); ?>
+                                        <?php //echo displayDetailedEmpToDoRecords($connection); ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -176,11 +193,31 @@ function displayEmpMessages($connection) {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php echo displayEmpMessages($connection); ?>
+                                        <?php //echo displayEmpMessages($connection); ?>
                                     </tbody>
                                 </table>
                             </div>    
                         </div>                         
+                    </div>    
+              </div>  <!-- / mdl-cell + mdl-card -->   
+              
+              
+              <div class="mdl-cell mdl-cell--3-col card-lesson mdl-card  mdl-shadow--2dp">
+                    <div class="mdl-card__title mdl-color--light-green mdl-color-text--white">
+                        <h2 class="mdl-card__title-text"><div id="tt1" class="icon material-icons">chevron_right</div>Filters</h2>
+                    </div>
+                    <div class="mdl-card__supporting-text" id="filtercard">
+                        
+                        <form action="browse-employees.php" method="GET">
+                            <!-- Filter by city -->
+                            Filter By City: <select name="filter_city">
+                                <?php echo displayCityFilterList($connection); ?>
+                            </select><br><br>
+                            
+                            <!-- Filter by name -->
+                            Filter By Lastname: <input type="text" name="filter_lastname"><br>
+                            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">SUBMIT</button>
+                        </form>
                     </div>    
               </div>  <!-- / mdl-cell + mdl-card -->   
             </div>  <!-- / mdl-grid -->    
