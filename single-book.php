@@ -15,7 +15,7 @@ function displayBookInfo($connection) {
             $returnVar .= "<td><img src='book-images/medium/" . $ISBN10 . ".jpg' alt='$ISBN10 Image'></td>";
             $returnVar .= "<td><ul><li><h5>" . $result['Title']
                         . "</h5></li><li>ISBN10: ". $ISBN10
-                        . "</li><li>ISBN13: " . $result['ISBN13'] 
+                        . "</li><li>ISBN13: " . $result['ISBN13']
                         . "</li><li>Copyright: &copy;" . $result['CopyrightYear']
                         . "</li><li>Subcategory: <a href='browse-books.php?subcat=". $result['SubID'] . "'>" . $result['SubcategoryName'] . '</a>'
                         . "</li><li>Imprint: <a href='browse-books.php?imprint=". $result['ImpID'] . "'>" . $result['Imprint'] . '</a>'
