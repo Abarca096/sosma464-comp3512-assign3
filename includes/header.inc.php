@@ -15,15 +15,15 @@
 <label id="tt3" class="material-icons mdl-badge mdl-badge--overlap" data-badge="4">notifications</label> 
  <div class="mdl-tooltip" for="tt3">Notifications</div>           
                   
-        <label class="mdl-button mdl-js-button mdl-button--icon"
-               for="fixed-header-drawer-exp">
-          <i class="material-icons">search</i>
-        </label>
+        <label class="mdl-button mdl-js-button mdl-button--icon" ><i class="material-icons" id = "main">search</i> </label>
+        <div id = "searchbar">
         <div class="mdl-textfield__expandable-holder">
           <input class="mdl-textfield__input" type="text" name="sample"
                  id="fixed-header-drawer-exp">
         </div>
-        
+        <input type="text" id="search" value="Enter as 'City-LastName'">
+        <button type="button">SEARCH</button>
+        </div>
       </div>
     </div>
   </header>

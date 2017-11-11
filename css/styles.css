@@ -141,3 +141,13 @@ td, th, table, tbody, thead {
     white-space: normal;
     word-wrap: break-word;
 }
+#searchbar{
+ display: none;
+ padding-right: 25%;
+
+}
+#reveal{
+  margin:0;
+  visibility: visible;
+  
+}
