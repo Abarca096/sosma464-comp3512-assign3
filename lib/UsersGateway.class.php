@@ -7,18 +7,18 @@ class BookAuthorsGateway extends TableDataGateway {
 
  protected function getSelectStatement()
  {
- return "SELECT AuthorId FROM BookAuthors ";
+ return "SELECT FirstName, LastName, Address, City, Region, Country, Postal, Phone, Email, Privacy FROM Users ";
  }
 
  protected function getOrderFields() {
- return "AuthorId ";
+ return "LastName ";
  }
  protected function getPrimaryKeyName() {
- return "BookAuthorID ";
+ return "UserID ";
  }
  
  protected function getSecondaryKeyName(){
-  return "BookID ";
+  return "LastName ";
  }
 }
 

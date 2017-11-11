@@ -16,12 +16,12 @@ class AdoptionBooksGateway extends TableDataGateway {
  protected function getPrimaryKeyName() {
  return "AdoptionDetailID";
  }
- protected function getSelectStatementJoin($table){
-     if($table == "Books"){
-         return "SELECT SUM(Quantity), ISBN10, Title FROM AdoptionBooks as a1 JOIN Books as b1 ON a1.BookID = b1.BookID GROUP BY a1.BookID ORDER BY SUM(Quantity) DESC LIMIT 10";
-     }else{
-     return getSelectStatement();
- }
+ protected function getQuery(){
+  return "SELECT DISTINCT Name, Universities.UniversityID
+          FROM Universities, Books, AdoptionBooks, Adoptions 
+          WHERE Adoptions.UniversityID=Universities.UniversityID 
+          AND Adoptions.AdoptionID=AdoptionBooks.AdoptionID 
+          AND Books.BookID=AdoptionBooks.BookID AND ISBN10";
  }
 }
 ?>

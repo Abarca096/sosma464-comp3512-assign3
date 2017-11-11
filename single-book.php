@@ -7,39 +7,22 @@ $connection = createConnString();
 
 function displayBookInfo($connection) {
     if (isset($_GET['ISBN10'])) {
-        /* $sql = "SELECT ISBN10, ISBN13, Title, CopyrightYear, TrimSize, PageCountsEditorialEst, Description, SubcategoryName, Status, Imprint, BindingType 
-                FROM Books, Subcategories, Imprints,Statuses, BindingTypes 
-                WHERE ISBN10=? 
-                AND Books.SubcategoryID=Subcategories.SubcategoryID 
-                AND Books.ImprintID=Imprints.ImprintID AND Books.ProductionStatusID=Statuses.StatusID 
-                AND Books.BindingTypeID=BindingTypes.BindingTypeID;";
-        $result = queryDatabase($sql,array($_GET['ISBN10']))->fetch(); */
         $bookDB = new BookGateway($connection);
-        
-        $result = $bookDB->findBySecondaryKey($_GET['ISBN10']);
+        $result = $bookDB->fetchSpecificQuery(null, $_GET['ISBN10']);
         $returnVar = "";
         if ($result != false) {
             $ISBN10=$_GET['ISBN10'];
-            $returnVar .= "<td><img src='book-images/medium/" . $result['ISBN10'] . ".jpg' alt='$ISBN10 Image'></td>";
-            $returnVar .= "<td><ul><li><h5>" . $result['Title'] . "</h3></li><li>ISBN10: ". $result['ISBN10'] . "</li><li>ISBN13: " . $result['ISBN13'] 
-                            . "</li><li>Copyright: &copy;" . $result['CopyrightYear']; 
-            /* Get the Subcategory name */
-            $subDB = new SubcategoriesGateway($connection);
-            $subS = $subDB->findByID($result['SubcategoryID']);
-            $returnVar .= "</li><li>Subcategory: " . $subS['SubcategoryName'];
-            /* Get the Imprint name */
-            $impDB = new ImprintsGateway($connection);
-            $impS = $impDB->findByID($result['ImprintID']);
-            $returnVar .= "</li><li>Imprint: " . $impS['Imprint'];
-            /* Get the Production Status */
-            $statDB = new StatusesGateway($connection);
-            $statS = $statDB->findByID($result['ProductionStatusID']);
-            $returnVar .= "</li><li>Production Status: " . $statS['Status'];
-            /* Get the Binding Type and finish the rest of the markup*/
-            $bindBD = new BindingGateway($connection);
-            $bindS = $bindBD->findByID($result['BindingTypeID']);
-            $returnVar .= "</li><li>Binding Type: " . $bindS['BindingType'] . "</li><li>Trim Size: " . $result['TrimSize'] 
-                        . "</li><li>Page Count: " . $result['PageCountsEditorialEst'] . "</li><li>Description: " . $result['Description'] . "</li></ul></td>";
+            $returnVar .= "<td><img src='book-images/medium/" . $ISBN10 . ".jpg' alt='$ISBN10 Image'></td>";
+            $returnVar .= "<td><ul><li><h5>" . $result['Title']
+                        . "</h5></li><li>ISBN10: ". $ISBN10
+                        . "</li><li>ISBN13: " . $result['ISBN13']
+                        . "</li><li>Copyright: &copy;" . $result['CopyrightYear']
+                        . "</li><li>Subcategory: <a href='browse-books.php?subcat=". $result['SubID'] . "'>" . $result['SubcategoryName'] . '</a>'
+                        . "</li><li>Imprint: <a href='browse-books.php?imprint=". $result['ImpID'] . "'>" . $result['Imprint'] . '</a>'
+                        . "</li><li>Production Status: " . $result['Status']
+                        . "</li><li>Binding Type: " . $result['BindingType'] . "</li><li>Trim Size: " . $result['TrimSize'] 
+                        . "</li><li>Page Count: " . $result['PageCountsEditorialEst'] 
+                        . "</li><li>Description: " . $result['Description'] . "</li></ul></td>"; 
         } else {
             $returnVar .= ("An error has occured! No information about the book you have selected exists! <a href='browse-books.php'>Click Here</a> to go back.");
         }
@@ -49,31 +32,15 @@ function displayBookInfo($connection) {
 
 function displayAuthors($connection) {
     if (isset($_GET['ISBN10'])) {
-        /* $sql = "SELECT FirstName, LastName, Institution                                  
-                FROM BookAuthors, Authors, Books WHERE Books.BookID=BookAuthors.BookID 
-                AND BookAuthors.AuthorID=Authors.AuthorID 
-                AND ISBN10=? ORDER BY 'Order';";
-        $result = queryDatabase($sql,array($_GET['ISBN10'])); */
         $authDB = new AuthorsGateway($connection);
-        
-        /* Get the Book ID from the Books table*/
-        $bookDB = new BookGateway($connection);
-        $bID = $bookDB->findBySecondaryKey($_GET['ISBN10']);
-        $bookID = $bID['BookID'];
-        /* Get the Author ID from the BookAuthors table */
-        $abDB = new BookAuthorsGateway($connection);
-        $authID = $abDB->findBySecondaryKey($bookID);
         $returnVar ="";
-  
+        $getA = $authDB->fetchAllSpecificQuery("lastName", $_GET['ISBN10']);
         /*For each author found */
-        foreach($authID as $row) {
-            /* Get the Author's First and last name, and their institution from the Authors table*/
-            $aID = $row['AuthorId'];
-            $result = $authDB->findByID($aID);
-            // check to see if an institution is listed
+        foreach($getA as $result) {
+            /* Check to see if the Author has an institution */
             if (($result['Institution'] == "")) { $result['Institution'] = "No Institution Listed"; }
-
-            // echo list, because this needs to be set for each author a sizable portion of HTML may be needed
+            
+            /* Echo a list of the Authors that wrote the book */
             $returnVar .= ("<li class='mdl-list__item mdl-list__item--three-line'>");
             $returnVar .= ("<span class='mdl-list__item-primary-content'>");
             $returnVar .= ("<i class='material-icons mdl-list__item-avatar'>person</i>");
@@ -85,19 +52,14 @@ function displayAuthors($connection) {
     }
 }
 
-function displayAdoptedByUniverisities() {
+function displayAdoptedByUniverisities($connection) {
     if (isset($_GET['ISBN10'])) {
-        /* $sql = "SELECT DISTINCT Name 
-                FROM Universities, Books, AdoptionBooks, Adoptions 
-                WHERE Adoptions.UniversityID=Universities.UniversityID 
-                AND Adoptions.AdoptionID=AdoptionBooks.AdoptionID 
-                AND Books.BookID=AdoptionBooks.BookID AND ISBN10=?;";
-        $result = queryDatabase($sql,array($_GET['ISBN10'])); */
+        $adoptDB = new AdoptionBooksGateway($connection);
+        $returnVar = "";
+        $getUni = $adoptDB->fetchAllSpecificQuery(null, $_GET['ISBN10']);
         
-        $returnVar;
-        
-        while($row=$result->fetch()) { // loop through mysql results, echo appropriate information
-            $returnVar .= ("<li>" . $row['Name'] . "</li>");
+        foreach($getUni as $row) { // loop through mysql results, echo appropriate information
+            $returnVar .= ("<li><a href='browse-universities.php?uid=". $row['UniversityID'] . "'>" . $row['Name'] . "</a></li>");
         }
     return $returnVar;
     }

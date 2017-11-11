@@ -1,8 +1,9 @@
 <?php
+include 'includes/book-config.inc.php';
 $display="";
 if(isset($_GET['data'])){
     switch($_GET['data']){
-        case 'book': $display = "book"; 
+        case 'books': $display = "books"; 
             break;
         case 'activity': $display = "activity";
             break;
@@ -12,15 +13,43 @@ if(isset($_GET['data'])){
     }
 }
 function displayData($display){
-    if($display == "book"){
-        $display = "<table><th>Country</th><th>Count</th>";
+    $connection = createConnString();
+$db = new AnalyticsGateway($connection);
+    $analytics="";
+    if($display == "books"){
+        $result = $db->findGetBookVisits(null);
+        $analytics = "<table><th>Country</th><th>Count</th>";
         //call gateway here and append the data to this string
+        foreach($result as $row){
+            $analytics.="<tr><td>".$row['countryName']."</td><td>".$row['count']."</td></tr>";
+        }
+        $analytics.="</table>";
     }else if($display =="activity"){
         //what the heck kind of html am i supposed to do here??
+        $analytics = "<ul id ='boxes'><li><ul>";
+        $result = $db->findNumberofVisits(null);
+        $visits = $result['visits'];
+        $analytics.="<li>Box</li><li>$visits</li><li>There were $visits visits in June</li></ul></li>";
+        $result = $db->findUniqueCountryCount(null);
+        $countryCount = $result['countries'];
+        $analytics.="<li><ul><li>Box</li><li>$countryCount</li><li>There were $countryCount unique countries</li></ul></li>";
+        $result = $db->findEmployeeToDoCount(null);
+        $toDoCount = $result['todos'];
+        $analytics.="<li><ul><li>Box</li><li>$toDoCount</li><li>There were $toDoCount employee tasks</li></ul></li>";
+        $result = $db->findEmployeeMessageCount(null);
+        $messages = $result['messages'];
+        $analytics.="<li><ul><li>Box</li><li>$messages</li><li>There were $messages messages exchanged</li></ul></li>";
+        $analytics.="</ul>";
     }else if ($display =="adopted"){
-        $display = "<table><th>ImagePlaceHolder</th><th>Title</th><th>Quantity</th>";
+        $result = $db->findTopTen(null);
+        $analytics = "<table><th>ImagePlaceHolder</th><th>Title</th><th>Quantity</th>";
+        foreach($result as $row){
+            $analytics.="<tr><td><img src ='book-images/small/".$row['ISBN10'].".jpg'></td><td>".$row['Title']."</td><td>".$row['sum']."</td></tr>";
+        }
+        $analytics.="</table>";
         //call gateway here and append the data to this string
-    }
+}
+    return $analytics;
 }
 ?>
 <!DOCTYPE html>
@@ -87,7 +116,7 @@ function displayData($display){
                 </div>
                 
                 <div class="mdl-card__actions mdl-card--border">
-                    <?php echo displayData;?>
+                    <?php echo displayData($display);?>
                 </div>
             </div>
         </section>

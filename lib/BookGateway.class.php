@@ -30,5 +30,15 @@ protected function getSelectStatementJoin($table){
 protected function getSecondaryKeyName(){
   return "ISBN10";
 }
+
+protected function getQuery(){
+ return "SELECT ISBN10, ISBN13, Title, CopyrightYear, TrimSize, PageCountsEditorialEst, Description, SubcategoryName, Subcategories.SubcategoryID as SubID, Status, Imprint, Imprints.ImprintID as ImpID, BindingType 
+                FROM Books, Subcategories, Imprints,Statuses, BindingTypes 
+                WHERE Books.SubcategoryID=Subcategories.SubcategoryID 
+                AND Books.ImprintID=Imprints.ImprintID 
+                AND Books.ProductionStatusID=Statuses.StatusID 
+                AND Books.BindingTypeID=BindingTypes.BindingTypeID
+                AND ISBN10";
+}
 }
 ?>
