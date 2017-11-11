@@ -127,6 +127,7 @@ function generateMapScript($lat, $long){
                     </div>
                     <div class="mdl-card__supporting-text">
                         <!-- display requested list of universities, detailed university information -->
+                         
                          <div id='map'></div>
                         <ul class="universitylist">
                             <?php 

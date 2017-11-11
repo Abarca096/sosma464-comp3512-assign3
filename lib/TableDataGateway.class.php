@@ -133,19 +133,7 @@ public function findBySecondaryKey($id)
  return $statement->fetch();
 } 
 
- public function findAllByJoin($sortFields=null, $limit, $ascending=null, $table, $pk){
-     $sql = $this->getFirstJoin($table,$pk);
-      if(! is_null($sortFields)){
-        $sql .= ' ORDER BY ' . $sortFields;
-        if (! $ascending) {
-        $sql .= " DESC";
-        }
-    }
-    $sql .= " LIMIT $limit";
-    $statement = DatabaseHelper::runQuery($this->connection, $sql, null);
-    return $statement->fetchAll();
-     
-}
+ 
 
 
 }
