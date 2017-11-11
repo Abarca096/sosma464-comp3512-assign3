@@ -124,7 +124,7 @@ function displayCityFilterList($connection) {
 
     <script src="https://code.jquery.com/jquery-1.7.2.min.js" ></script>
     <script src="https://code.getmdl.io/1.1.3/material.min.js"></script>
-    
+    <script src="js/search.js"></script>
 </head>
 
 <body>
@@ -216,6 +216,7 @@ function displayCityFilterList($connection) {
                         <form action="browse-employees.php" method="GET">
                             <!-- Filter by city -->
                             Filter By City: <select name="filter_city">
+                            
                                 <?php echo displayCityFilterList($connection); ?>
                             </select><br><br>
                             
