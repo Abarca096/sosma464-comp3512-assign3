@@ -7,7 +7,11 @@ class AuthorsGateway extends TableDataGateway {
 
  protected function getSelectStatement()
  {
- return "SELECT AuthorID, FirstName, LastName, Institution FROM Authors ";
+ return " SELECT FirstName, LastName, Institution                                  
+          FROM BookAuthors, Authors, Books 
+          WHERE Books.BookID=BookAuthors.BookID 
+          AND BookAuthors.AuthorID=Authors.AuthorID 
+          AND ISBN10 ";
  }
 
  protected function getOrderFields() {
@@ -16,6 +20,15 @@ class AuthorsGateway extends TableDataGateway {
  protected function getPrimaryKeyName() {
  return "AuthorID";
  }
+ 
+ protected function getQuery(){
+  return "SELECT FirstName, LastName, Institution                                  
+          FROM BookAuthors, Authors, Books 
+          WHERE Books.BookID=BookAuthors.BookID 
+          AND BookAuthors.AuthorID=Authors.AuthorID 
+          AND ISBN10 ";
+ }
+ 
 }
 
 ?>

@@ -7,7 +7,7 @@ class BookAuthorsGateway extends TableDataGateway {
 
  protected function getSelectStatement()
  {
- return "SELECT BookAuthorID, AuthorId, BookId FROM BookAuthors ";
+ return "SELECT AuthorId FROM BookAuthors ";
  }
 
  protected function getOrderFields() {
@@ -18,7 +18,7 @@ class BookAuthorsGateway extends TableDataGateway {
  }
  
  protected function getSecondaryKeyName(){
-  return "BookId ";
+  return "BookID ";
  }
 }
 

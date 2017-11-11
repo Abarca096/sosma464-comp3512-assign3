@@ -147,6 +147,28 @@ public function findBySecondaryKey($id)
      
 }
 
+public function fetchSpecificQuery($sortFields=null, $id)
+{
+ $sql = $this->getQuery() . '=:id';
+ // add sort order if required
+ if (! is_null($sortFields)) {
+ $sql .= ' ORDER BY ' . $sortFields;
+ }
+ $statement = DatabaseHelper::runQuery($this->connection, $sql, Array(':id' => $id));
+ return $statement->fetch();
+}
+
+public function fetchAllSpecificQuery($sortFields=null, $id)
+{
+ $sql = $this->getQuery() . '=:id';
+ // add sort order if required
+ if (! is_null($sortFields)) {
+ $sql .= ' ORDER BY ' . $sortFields;
+ }
+ $statement = DatabaseHelper::runQuery($this->connection, $sql, Array(':id' => $id));
+ return $statement->fetchAll();
+}
+
 
 }
 
