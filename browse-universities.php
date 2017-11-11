@@ -52,7 +52,7 @@ function displayDetailedUniversity($connection) {
         
         
         $infoArray = $university->findById($_GET['uid']);
-        $returnVar = ("<li><h5>" . $infoArray['Name'] . "</h5></li><li>Address: " . $infoArray['Address'] . "</li><li>State: " . $infoArray['State'] . "</li><li>Zip: " . $infoArray['Zip'] . "</li><li>Website: <a href='http://" . $infoArray['Website'] . "'>" . $infoArray['Website'] . "</a></li><li>Longitude: " . $infoArray['Longitude'] . "</li><li>Latitude: " . $infoArray['Latitude'] . "</li>");
+        $returnVar = ("<li><h5>" . $infoArray['Name'] . "</h5></li><li>Address: " . $infoArray['Address'] . "</li><li>State: " . $infoArray['State'] . "</li><li>Zip: " . $infoArray['Zip'] . "</li><li>Website: <a href='http://" . $infoArray['Website'] . "'>" . $infoArray['Website'] . "</a></li>");
         $returnVar .= ("<br><p><a href='browse-universities.php'>Click here to see the top 20 universities from all states (remove this filter)</a>.</p>");
         $returnVar .= generateMapScript($infoArray['Latitude'], $infoArray['Longitude']);
         return $returnVar;
