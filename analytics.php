@@ -18,7 +18,7 @@ $db = new AnalyticsGateway($connection);
     $analytics="";
     if($display == "books"){
         $result = $db->findGetBookVisits(null);
-        $analytics = "<table><th>Country</th><th>Count</th>";
+        $analytics = "<table class='mdl-data-table  mdl-shadow--2dp'><th>Country</th><th>Count</th>";
         //call gateway here and append the data to this string
         foreach($result as $row){
             $analytics.="<tr><td>".$row['countryName']."</td><td>".$row['count']."</td></tr>";
@@ -38,13 +38,14 @@ $db = new AnalyticsGateway($connection);
         $analytics.="<li><ul><li>Box</li><li>$toDoCount</li><li>There were $toDoCount employee tasks</li></ul></li>";
         $result = $db->findEmployeeMessageCount(null);
         $messages = $result['messages'];
-        $analytics.="<li><ul><li>Box</li><li>$messages</li><li>There were $messages messages exchanged</li></ul></li>";
+        $analytics.="<li><ul><li><i class='material-icons'>mail</i></li><li>$messages</li><li>There were $messages messages exchanged</li></ul></li>";
         $analytics.="</ul>";
     }else if ($display =="adopted"){
         $result = $db->findTopTen(null);
-        $analytics = "<table><th>ImagePlaceHolder</th><th>Title</th><th>Quantity</th>";
+        $analytics = "<table class='mdl-data-table  mdl-shadow--2dp'><th>ImagePlaceHolder</th><th>Title</th><th>Quantity</th>";
         foreach($result as $row){
-            $analytics.="<tr><td><img src ='book-images/small/".$row['ISBN10'].".jpg'></td><td>".$row['Title']."</td><td>".$row['sum']."</td></tr>";
+            $isbn = $row['ISBN10'];
+            $analytics.="<tr><td><img src ='book-images/small/$isbn.jpg'></td><td><a href ='single-book.php?ISBN10=$isbn'>".$row['Title']."</a></td><td>".$row['sum']."</td></tr>";
         }
         $analytics.="</table>";
         //call gateway here and append the data to this string
@@ -82,42 +83,27 @@ $db = new AnalyticsGateway($connection);
     <main class="mdl-layout__content mdl-color--grey-50">
         <section class="page-content">
             <div class="mdl-grid">
+                <div class="mdl-card__actions mdl-card--border">
+                    <?php echo displayData($display);?>
+                </div>
                 <div class="topBooks-card-wide mdl-card mdl-shadow--2dp">
-                    <div class="mdl-card__title">
-                    </div>
-                    <div class="mdl-card__supporting-text">
-                        Top Books
-                    </div>
                     <div class="mdl-card__actions mdl-card--border">
                         <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="analytics.php?data=books">Top Books</a>
                     </div>
                 </div>
                 
                 <div class="activity-card-wide mdl-card mdl-shadow--2dp">
-                    <div class="mdl-card__title">
-                    </div>
-                    <div class="mdl-card__supporting-text">
-                        Activity
-                    </div>
                     <div class="mdl-card__actions mdl-card--border">
                         <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="analytics.php?data=activity">Activity</a>
                     </div>
                 </div>
                 <div class="adoptedBooks-card-wide mdl-card mdl-shadow--2dp">
-                    <div class="mdl-card__title">
-                    </div>
-                    <div class="mdl-card__supporting-text">
-                        Top Adopted Books
-                    </div>
                     <div class="mdl-card__actions mdl-card--border">
                         <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="analytics.php?data=adopted">Top Adopted Books</a>
                     </div>
                 </div>
                 </div>
                 
-                <div class="mdl-card__actions mdl-card--border">
-                    <?php echo displayData($display);?>
-                </div>
             </div>
         </section>
     </main>    
