@@ -19,10 +19,11 @@ function init (){
         function submit(){
             var text = document.querySelector("#search").value;
             var query = text.split("-");
-
-            if(query[0]==null || query[0]=="Enter as 'City"){
+            alert(query[1]);
+            if(query[0]==null || query[0]=="Search Format 'City"){
                 query[0]= "";
-            }else if(query[1]==null || query[1]=="LastName'" ){
+            }
+            if(query[1]==null || query[1]=="LastName'" ){
                 query[1]="";
             }
             
