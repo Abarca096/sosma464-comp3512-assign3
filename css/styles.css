@@ -143,11 +143,13 @@ td, th, table, tbody, thead {
 }
 #searchbar{
  display: none;
- padding-right: 25%;
+
 
 }
 #reveal{
-  margin:0;
+  padding:0;
+  
+  
   visibility: visible;
   
 }

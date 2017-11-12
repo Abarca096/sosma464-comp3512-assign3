@@ -5,16 +5,15 @@ function init (){
     
     function generateSearch(){
         
-         document.getElementById("main").innerHTML="";
-       
+     
 
         
         var searchbar = document.getElementById("searchbar");
         searchbar.setAttribute("id","reveal");
         
         var search = document.querySelector("#reveal button");
-       
-        search.addEventListener("click",submit);
+        alert("Search Format:  'City' or  '-LastName' or  'City-LastName'");
+        visible.addEventListener("click",submit);
 
        
         function submit(){
@@ -37,7 +36,7 @@ function init (){
         }
         
         
-       
+      
     }
 }
 addEventListener("load",init);

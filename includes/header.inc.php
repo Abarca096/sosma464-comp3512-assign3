@@ -21,8 +21,8 @@
           <input class="mdl-textfield__input" type="text" name="sample"
                  id="fixed-header-drawer-exp">
         </div>
-        <input type="text" id="search" value="Enter as 'City-LastName'">
-        <button type="button">SEARCH</button>
+        <input type="text" id="search" value="Search Format 'City-LastName'">
+
         </div>
       </div>
     </div>
