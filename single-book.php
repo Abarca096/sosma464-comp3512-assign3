@@ -12,7 +12,7 @@ function displayBookInfo($connection) {
         $returnVar = "";
         if ($result != false) {
             $ISBN10=$_GET['ISBN10'];
-            $returnVar .= "<td><img src='book-images/medium/" . $ISBN10 . ".jpg' alt='$ISBN10 Image'></td>";
+            $returnVar .= "<td><img src='book-images/medium/" . $ISBN10 . ".jpg' alt='$ISBN10 Image' id='mainImg'></td>";
             $returnVar .= "<td><ul><li><h5>" . $result['Title']
                         . "</h5></li><li>ISBN10: ". $ISBN10
                         . "</li><li>ISBN13: " . $result['ISBN13']
@@ -85,6 +85,24 @@ function displayAdoptedByUniverisities($connection) {
     <script src="https://code.getmdl.io/1.1.3/material.min.js"></script>
     
 </head>
+<script type="text/javascript" src=""> 
+    var img = document.getElementById("mainImg");
+    var src = document.getElementById("mainImg").src;
+    window.document.write("<img class='large'");
+    /*  Create onclick listener
+        Dim the body of the page by adding a class to it
+        Grab the source of the IMG and make it larger - add a class to it?
+        Add another onclick listener for the large image to remove all the classes
+    */
+    
+    /* onclick listener */
+    img.addEventListener("onclick", function(){
+        /* Dim the body of the page */
+        var page = document.getElementsByTagName("body");
+        page.classList.add('dimmer');
+        /* Grab the source of the IMG and add the largeImg class to it */
+    });
+</script>
 
 <body>
     
