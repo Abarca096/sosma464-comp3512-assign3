@@ -1,22 +1,9 @@
 <?php
 include 'includes/book-config.inc.php';
-$display="";
-if(isset($_GET['data'])){
-    switch($_GET['data']){
-        case 'books': $display = "books"; 
-            break;
-        case 'activity': $display = "activity";
-            break;
-        case 'adopted': $display = "adopted";
-            break;
-        default: $display = "";
-    }
-}
-function displayData($display){
-    $connection = createConnString();
+$connection = createConnString();
 $db = new AnalyticsGateway($connection);
+function displayCountries($db){
     $analytics="";
-    if($display == "books"){
         $result = $db->findGetBookVisits(null);
         $analytics = "<table class='mdl-data-table  mdl-shadow--2dp'><th>Country</th><th>Count</th>";
         //call gateway here and append the data to this string
@@ -24,23 +11,40 @@ $db = new AnalyticsGateway($connection);
             $analytics.="<tr><td>".$row['countryName']."</td><td>".$row['count']."</td></tr>";
         }
         $analytics.="</table>";
-    }else if($display =="activity"){
-        //what the heck kind of html am i supposed to do here??
-        $analytics = "<ul id ='boxes'><li><ul>";
+        return $analytics;
+    }
+
+function displayVisitors($db){
+    $analytics="";
         $result = $db->findNumberofVisits(null);
         $visits = $result['visits'];
-        $analytics.="<li>Box</li><li>$visits</li><li>There were $visits visits in June</li></ul></li>";
-        $result = $db->findUniqueCountryCount(null);
+        $analytics.="<p>$visits</br>There were $visits visits in June</p>";
+        return $analytics;
+}
+
+function displayUniqueCountries($db){
+    $result = $db->findUniqueCountryCount(null);
+    $analytics="";
         $countryCount = $result['countries'];
-        $analytics.="<li><ul><li>Box</li><li>$countryCount</li><li>There were $countryCount unique countries</li></ul></li>";
-        $result = $db->findEmployeeToDoCount(null);
+        $analytics.="<p>$countryCount</br>There were $countryCount unique countries</p>";
+        return $analytics;
+}
+
+function displayEmployeeToDo($db){
+    $result = $db->findEmployeeToDoCount(null);
+    $analytics="";
         $toDoCount = $result['todos'];
-        $analytics.="<li><ul><li>Box</li><li>$toDoCount</li><li>There were $toDoCount employee tasks</li></ul></li>";
+        $analytics.="<p>$toDoCount</br>There were $toDoCount employee tasks</p>";
+        return $analytics;
+}
+function displayMessages($db){
         $result = $db->findEmployeeMessageCount(null);
+        $analytics="";
         $messages = $result['messages'];
-        $analytics.="<li><ul><li><i class='material-icons'>mail</i></li><li>$messages</li><li>There were $messages messages exchanged</li></ul></li>";
-        $analytics.="</ul>";
-    }else if ($display =="adopted"){
+        $analytics.="<p>$messages</br>There were $messages messages exchanged</p>";
+        return $analytics;
+}
+function displayAdoptedBooks($db){
         $result = $db->findTopTen(null);
         $analytics = "<table class='mdl-data-table  mdl-shadow--2dp'><th>ImagePlaceHolder</th><th>Title</th><th>Quantity</th>";
         foreach($result as $row){
@@ -48,8 +52,7 @@ $db = new AnalyticsGateway($connection);
             $analytics.="<tr><td><img src ='book-images/small/$isbn.jpg'></td><td><a href ='single-book.php?ISBN10=$isbn'>".$row['Title']."</a></td><td>".$row['sum']."</td></tr>";
         }
         $analytics.="</table>";
-        //call gateway here and append the data to this string
-}
+
     return $analytics;
 }
 ?>
@@ -83,23 +86,52 @@ $db = new AnalyticsGateway($connection);
     <main class="mdl-layout__content mdl-color--grey-50">
         <section class="page-content">
             <div class="mdl-grid">
-                <div class="mdl-card__actions mdl-card--border">
-                    <?php echo displayData($display);?>
-                </div>
-                <div class="topBooks-card-wide mdl-card mdl-shadow--2dp">
+                
+                 <div class="mdl-cell mdl-cell--3-col card-lesson mdl-card  mdl-shadow--2dp">
+                    <div class="mdl-card__title">Visitors
+                    </div>
                     <div class="mdl-card__actions mdl-card--border">
-                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="analytics.php?data=books">Top Books</a>
+                        <?php echo displayVisitors($db);?>
                     </div>
                 </div>
                 
-                <div class="activity-card-wide mdl-card mdl-shadow--2dp">
+                 <div class="mdl-cell mdl-cell--3-col card-lesson mdl-card  mdl-shadow--2dp">
+                    <div class="mdl-card__title">Unique Countries
+                    </div>
                     <div class="mdl-card__actions mdl-card--border">
-                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="analytics.php?data=activity">Activity</a>
+                        <?php echo displayUniqueCountries($db);?>
                     </div>
                 </div>
-                <div class="adoptedBooks-card-wide mdl-card mdl-shadow--2dp">
+                
+                 <div class="mdl-cell mdl-cell--3-col card-lesson mdl-card  mdl-shadow--2dp">
+                    <div class="mdl-card__title">Employee Tasks
+                    </div>
                     <div class="mdl-card__actions mdl-card--border">
-                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="analytics.php?data=adopted">Top Adopted Books</a>
+                        <?php echo displayEmployeeToDo($db);?>
+                    </div>
+                </div>
+                
+                 <div class="mdl-cell mdl-cell--3-col card-lesson mdl-card  mdl-shadow--2dp">
+                    <div class="mdl-card__title">Messages Exchanged
+                    </div>
+                    <div class="mdl-card__actions mdl-card--border">
+                        <?php echo displayMessages($db);?>
+                    </div>
+                </div>
+                
+                <div class="mdl-cell mdl-cell--6-col card-lesson mdl-card  mdl-shadow--2dp">
+                    <div class="mdl-card__title">Top Visitor Countries
+                    </div>
+                    <div class="mdl-card__actions mdl-card--border">
+                        <?php echo displayCountries($db);?>
+                    </div>
+                </div>
+ 
+                <div class="mdl-cell mdl-cell--6-col card-lesson mdl-card  mdl-shadow--2dp">
+                    <div class="mdl-card__title">Top Adopted Books
+                    </div>
+                    <div class="mdl-card__actions mdl-card--border">
+                        <?php echo displayAdoptedBooks($db);?>
                     </div>
                 </div>
                 </div>
