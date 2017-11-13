@@ -153,3 +153,29 @@ td, th, table, tbody, thead {
   visibility: visible;
   
 }
+.title{
+  margin:auto;
+
+}
+.content{
+  font-size:200%;
+  z-index: -1;
+  position: absolute;
+  margin-top:65px;
+  
+  
+}
+.content b{
+  margin:auto;
+  position: relative;
+}
+.support{
+  margin:auto;
+  position: relative;
+  margin-top:10%;
+}
+.mdl-card i{
+  margin:auto;
+  position: relative;
+  
+}

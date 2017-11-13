@@ -72,47 +72,52 @@ function displayAdoptedBooks($db){
             <div class="mdl-grid">
                 
                  <div class="mdl-cell mdl-cell--3-col card-lesson mdl-card  mdl-shadow--2dp">
-                    <div class="mdl-card__title">Visitors
+                    <div class="mdl-card__title title ">Visitors
                     </div>
-                    <div class="mdl-card__actions mdl-card--border">
+                    <i class="material-icons">people</i>
+                    <div class="mdl-card__actions mdl-card--border content">
                         <b>
                         <?php $visits =  displayVisitors($db); echo $visits?>
                         </b>
                     </div>
-                    <div class="mdl-card__supporting-text">
+                    <div class="mdl-card__supporting-text support">
                         <p>There were <?php echo $visits?> visits in June</p>
                     </div>
                 </div>
                 
                  <div class="mdl-cell mdl-cell--3-col card-lesson mdl-card  mdl-shadow--2dp">
-                    <div class="mdl-card__title">Unique Countries
+                    <div class="mdl-card__title title">Unique Countries
                     </div>
-                    <div class="mdl-card__actions mdl-card--border">
+                    <i class="material-icons">public</i>
+                    <div class="mdl-card__actions mdl-card--border content">
                         <b><?php $countries =  displayUniqueCountries($db); echo $countries?></b>
                     </div>
-                    <div class="mdl-card__supporting-text">
+                    <div class="mdl-card__supporting-text support">
                         <p>There were <?php echo $countries?> unique countries</p>
                     </div>
                 </div>
                 
                  <div class="mdl-cell mdl-cell--3-col card-lesson mdl-card  mdl-shadow--2dp">
-                    <div class="mdl-card__title">Employee Tasks
+                    <div class="mdl-card__title title">Employee Tasks
                     </div>
-                    <div class="mdl-card__actions mdl-card--border">
+                    <i class="material-icons">content_paste</i>
+                    <div class="mdl-card__actions mdl-card--border content">
                         <b><?php $toDos= displayEmployeeToDo($db); echo $toDos?></b>
                     </div>
-                    <div class="mdl-card__supporting-text">
+                    <div class="mdl-card__supporting-text support">
                         <p>There were <?php echo $toDos?> employee tasks</p>
                     </div>
                 </div>
                 
                  <div class="mdl-cell mdl-cell--3-col card-lesson mdl-card  mdl-shadow--2dp">
-                    <div class="mdl-card__title">Messages Exchanged
+                    <div class="mdl-card__title title">Messages Exchanged
                     </div>
-                    <div class="mdl-card__actions mdl-card--border">
+                    <i class="material-icons">message</i>
+                    <div class="mdl-card__actions mdl-card--border content">
+                        
                         <b><?php $messages =  displayMessages($db); echo $messages?></b>
                     </div>
-                    <div class="mdl-card__supporting-text">
+                    <div class="mdl-card__supporting-text support">
                         <p>There were <?php echo $messages?> messages exchanged</p>
                     </div>
                 </div>
