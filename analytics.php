@@ -122,21 +122,21 @@ function displayAdoptedBooks($db){
                     </div>
                 </div>
                 
-                <div class="mdl-cell mdl-cell--6-col card-lesson mdl-card  mdl-shadow--2dp">
-                    <div class="mdl-card__title">Top Visitor Countries
+                <div class="mdl-cell mdl-cell--4-col card-lesson mdl-card  mdl-shadow--2dp">
+                    <div class="mdl-card__title" id = "special">Top Visitor Countries
                     </div>
                     <div class="mdl-card__actions mdl-card--border">
-                        <table class='mdl-data-table  mdl-shadow--2dp'><th class='mdl-data-table__cell--non-numeric'>Country</th><th class='mdl-data-table__cell--non-numeric'>Count</th>
+                        <table class='mdl-data-table  mdl-shadow--2dp tWidth '><th class='mdl-data-table__cell--non-numeric'>Country</th><th class='mdl-data-table__cell--non-numeric'>Count</th>
                         <?php echo displayCountries($db);?>
                         </table>
                     </div>
                 </div>
  
-                <div class="mdl-cell mdl-cell--6-col card-lesson mdl-card  mdl-shadow--2dp">
-                    <div class="mdl-card__title">Top Adopted Books
+                <div class="mdl-cell mdl-cell--8-col card-lesson mdl-card  mdl-shadow--2dp  ">
+                    <div class="mdl-card__title title">Top Adopted Books
                     </div>
                     <div class="mdl-card__actions mdl-card--border">
-                        <table class='mdl-data-table  mdl-shadow--2dp'><th class='mdl-data-table__cell--non-numeric'></th><th class='mdl-data-table__cell--non-numeric'>Title</th><th class='mdl-data-table__cell--non-numeric'>Quantity</th>
+                        <table class='mdl-data-table  mdl-shadow--2dp tWidthD'><th class='mdl-data-table__cell--non-numeric'></th><th class='mdl-data-table__cell--non-numeric'>Title</th><th class='mdl-data-table__cell--non-numeric'>Quantity</th>
                         <?php echo displayAdoptedBooks($db);?>
                         </table>
                     </div>

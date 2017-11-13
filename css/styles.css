@@ -161,7 +161,7 @@ td, th, table, tbody, thead {
   font-size:200%;
   z-index: -1;
   position: absolute;
-  margin-top:65px;
+  margin-top:64px;
   
   
 }
@@ -178,4 +178,18 @@ td, th, table, tbody, thead {
   margin:auto;
   position: relative;
   
+}
+#special{
+  margin-left:auto;
+  margin-right:auto;
+}
+.tWidth{
+  width: 100%;
+  
+}
+.tWidth th{
+  width: 100%;
+}
+.tWidthD th:nth-child(n+2){
+  width: 100%;
 }
