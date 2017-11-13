@@ -7,7 +7,7 @@ function displayCountries($db){
         $result = $db->findGetBookVisits(null);
         //call gateway here and append the data to this string
         foreach($result as $row){
-            $analytics.="<tr><td>".$row['countryName']."</td><td>".$row['count']."</td></tr>";
+            $analytics.="<tr><td>"."<img src = 'images/flags/".strtolower($row['Code']).".svg' width = '35' height = '25'>". $row['countryName']."</td><td>".$row['count']."</td></tr>";
         }
         return $analytics;
     }
