@@ -5,54 +5,38 @@ $db = new AnalyticsGateway($connection);
 function displayCountries($db){
     $analytics="";
         $result = $db->findGetBookVisits(null);
-        $analytics = "<table class='mdl-data-table  mdl-shadow--2dp'><th>Country</th><th>Count</th>";
         //call gateway here and append the data to this string
         foreach($result as $row){
             $analytics.="<tr><td>".$row['countryName']."</td><td>".$row['count']."</td></tr>";
         }
-        $analytics.="</table>";
         return $analytics;
     }
 
 function displayVisitors($db){
-    $analytics="";
         $result = $db->findNumberofVisits(null);
-        $visits = $result['visits'];
-        $analytics.="<p>$visits</br>There were $visits visits in June</p>";
-        return $analytics;
+        return $result['visits'];
 }
 
 function displayUniqueCountries($db){
     $result = $db->findUniqueCountryCount(null);
-    $analytics="";
-        $countryCount = $result['countries'];
-        $analytics.="<p>$countryCount</br>There were $countryCount unique countries</p>";
-        return $analytics;
+        return $result['countries'];
 }
 
 function displayEmployeeToDo($db){
     $result = $db->findEmployeeToDoCount(null);
-    $analytics="";
-        $toDoCount = $result['todos'];
-        $analytics.="<p>$toDoCount</br>There were $toDoCount employee tasks</p>";
-        return $analytics;
+    return $result['todos'];
 }
 function displayMessages($db){
         $result = $db->findEmployeeMessageCount(null);
-        $analytics="";
-        $messages = $result['messages'];
-        $analytics.="<p>$messages</br>There were $messages messages exchanged</p>";
-        return $analytics;
+        return $result['messages'];
 }
 function displayAdoptedBooks($db){
         $result = $db->findTopTen(null);
-        $analytics = "<table class='mdl-data-table  mdl-shadow--2dp'><th>ImagePlaceHolder</th><th>Title</th><th>Quantity</th>";
+        $analytics="";
         foreach($result as $row){
             $isbn = $row['ISBN10'];
             $analytics.="<tr><td><img src ='book-images/small/$isbn.jpg'></td><td><a href ='single-book.php?ISBN10=$isbn'>".$row['Title']."</a></td><td>".$row['sum']."</td></tr>";
         }
-        $analytics.="</table>";
-
     return $analytics;
 }
 ?>
@@ -91,7 +75,12 @@ function displayAdoptedBooks($db){
                     <div class="mdl-card__title">Visitors
                     </div>
                     <div class="mdl-card__actions mdl-card--border">
-                        <?php echo displayVisitors($db);?>
+                        <b>
+                        <?php $visits =  displayVisitors($db); echo $visits?>
+                        </b>
+                    </div>
+                    <div class="mdl-card__supporting-text">
+                        <p>There were <?php echo $visits?> visits in June</p>
                     </div>
                 </div>
                 
@@ -99,7 +88,10 @@ function displayAdoptedBooks($db){
                     <div class="mdl-card__title">Unique Countries
                     </div>
                     <div class="mdl-card__actions mdl-card--border">
-                        <?php echo displayUniqueCountries($db);?>
+                        <b><?php $countries =  displayUniqueCountries($db); echo $countries?></b>
+                    </div>
+                    <div class="mdl-card__supporting-text">
+                        <p>There were <?php echo $countries?> unique countries</p>
                     </div>
                 </div>
                 
@@ -107,7 +99,10 @@ function displayAdoptedBooks($db){
                     <div class="mdl-card__title">Employee Tasks
                     </div>
                     <div class="mdl-card__actions mdl-card--border">
-                        <?php echo displayEmployeeToDo($db);?>
+                        <b><?php $toDos= displayEmployeeToDo($db); echo $toDos?></b>
+                    </div>
+                    <div class="mdl-card__supporting-text">
+                        <p>There were <?php echo $toDos?> employee tasks</p>
                     </div>
                 </div>
                 
@@ -115,7 +110,10 @@ function displayAdoptedBooks($db){
                     <div class="mdl-card__title">Messages Exchanged
                     </div>
                     <div class="mdl-card__actions mdl-card--border">
-                        <?php echo displayMessages($db);?>
+                        <b><?php $messages =  displayMessages($db); echo $messages?></b>
+                    </div>
+                    <div class="mdl-card__supporting-text">
+                        <p>There were <?php echo $messages?> messages exchanged</p>
                     </div>
                 </div>
                 
@@ -123,7 +121,9 @@ function displayAdoptedBooks($db){
                     <div class="mdl-card__title">Top Visitor Countries
                     </div>
                     <div class="mdl-card__actions mdl-card--border">
+                        <table class='mdl-data-table  mdl-shadow--2dp'><th class='mdl-data-table__cell--non-numeric'>Country</th><th class='mdl-data-table__cell--non-numeric'>Count</th>
                         <?php echo displayCountries($db);?>
+                        </table>
                     </div>
                 </div>
  
@@ -131,7 +131,9 @@ function displayAdoptedBooks($db){
                     <div class="mdl-card__title">Top Adopted Books
                     </div>
                     <div class="mdl-card__actions mdl-card--border">
+                        <table class='mdl-data-table  mdl-shadow--2dp'><th class='mdl-data-table__cell--non-numeric'></th><th class='mdl-data-table__cell--non-numeric'>Title</th><th class='mdl-data-table__cell--non-numeric'>Quantity</th>
                         <?php echo displayAdoptedBooks($db);?>
+                        </table>
                     </div>
                 </div>
                 </div>
