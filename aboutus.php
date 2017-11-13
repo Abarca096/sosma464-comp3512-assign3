@@ -13,7 +13,7 @@
     
     <script src="https://code.getmdl.io/1.1.3/material.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.7.2.min.js" ></script>
-    
+    <script src="js/search.js"></script>
 </head>
 
 <body>
@@ -29,13 +29,14 @@
             <div class="mdl-grid">
                 
                 <!-- mdl-cell + mdl-card-->
-                <div class="mdl-cell mdl-cell--8-col card-lesson mdl-card  mdl-shadow--2dp">
+                <div class="mdl-cell mdl-cell--9-col card-lesson mdl-card  mdl-shadow--2dp">
                     <div class="mdl-card__title mdl-color--orange">
                         <h2 class="mdl-card__title-text">About Us</h2>
                     </div>
                     
                     <div class="mdl-card__supporting-text">
-                        <p>This site is hypothetical and was created as an assignment for COMP-3532-001 at Mount Royal University.<br><br>
+                        <p>This site is hypothetical and was created as an assignment for COMP-3532-001 at Mount Royal University taught by Randy Connolly.<br>
+                        GitHub Project Page: <a href='https://github.com/samocr7/web-assign2'>https://github.com/samocr7/web-assign2</a><br><br>
                             Contributors:<br></p>
                                 <ul class="demo-list-control mdl-list">
                                 <li class="mdl-list__item">

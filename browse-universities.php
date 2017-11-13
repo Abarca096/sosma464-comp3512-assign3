@@ -52,7 +52,7 @@ function displayDetailedUniversity($connection) {
         
         
         $infoArray = $university->findById($_GET['uid']);
-        $returnVar = ("<li><h5>" . $infoArray['Name'] . "</h5></li><li>Address: " . $infoArray['Address'] . "</li><li>State: " . $infoArray['State'] . "</li><li>Zip: " . $infoArray['Zip'] . "</li><li>Website: <a href='http://" . $infoArray['Website'] . "'>" . $infoArray['Website'] . "</a></li><li>Longitude: " . $infoArray['Longitude'] . "</li><li>Latitude: " . $infoArray['Latitude'] . "</li>");
+        $returnVar = ("<li><h5>" . $infoArray['Name'] . "</h5></li><li>Address: " . $infoArray['Address'] . "</li><li>State: " . $infoArray['State'] . "</li><li>Zip: " . $infoArray['Zip'] . "</li><li>Website: <a href='http://" . $infoArray['Website'] . "'>" . $infoArray['Website'] . "</a></li>");
         $returnVar .= ("<br><p><a href='browse-universities.php'>Click here to see the top 20 universities from all states (remove this filter)</a>.</p>");
         $returnVar .= generateMapScript($infoArray['Latitude'], $infoArray['Longitude']);
         return $returnVar;
@@ -85,7 +85,7 @@ function generateMapScript($lat, $long){
     
     <script src="https://code.jquery.com/jquery-1.7.2.min.js" ></script>
     <script src="https://code.getmdl.io/1.1.3/material.min.js"></script>
-    
+    <script src="js/search.js"></script>
 </head>
 
 <body>

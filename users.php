@@ -1,12 +1,13 @@
 <?php 
+if(!isset($_COOKIE['userid'])){
+    header('Location: index.php');
+}
 function getUserInfo(){
     if(isset($_COOKIE['userid'])){
     $userID = $_COOKIE['userid'];
     $db = new UsersGateway();
     $result = $db->findById($userID);
     $userInfo = "<td>".$result['FirstName']."</td><td>".$result['LastName']."</td><td>".$result['Address']."</td><td>".$result['City']."</td><td>".$result['Region']."</td><td>".$result['Country']."</td><td>".$result['Postal']."</td><td>".$result['Phone']."</td><td>".$result['Email']."</td>";
-}else{
-    header('Location: login.php');
 }
 return $userInfo;
 }
