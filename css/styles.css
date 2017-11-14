@@ -143,11 +143,57 @@ td, th, table, tbody, thead {
 }
 #searchbar{
  display: none;
- padding-right: 25%;
+
 
 }
 #reveal{
-  margin:0;
+  padding:0;
+  
+  
   visibility: visible;
   
+}
+.title{
+  margin:auto;
+
+}
+.content{
+  font-size:200%;
+  z-index: -1;
+  position: absolute;
+  margin-top:64px;
+  
+  
+}
+.content b{
+  margin:auto;
+  position: relative;
+}
+.support{
+  margin:auto;
+  position: relative;
+  margin-top:10%;
+}
+.mdl-card i{
+  margin:auto;
+  position: relative;
+  
+}
+#special{
+  margin-left:auto;
+  margin-right:auto;
+}
+.tWidth{
+  width: 100%;
+
+}
+.tWidth th{
+  width: 100%;
+  
+}
+.tWidthD th:nth-child(n+2){
+  width: 100%;
+}
+.tWidth img{
+  padding-right:4%;
 }
