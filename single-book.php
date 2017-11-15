@@ -12,7 +12,8 @@ function displayBookInfo($connection) {
         $returnVar = "";
         if ($result != false) {
             $ISBN10=$_GET['ISBN10'];
-            $returnVar .= "<td><img src='book-images/medium/" . $ISBN10 . ".jpg' alt='$ISBN10 Image' id='mainImg'></td>";
+            $returnVar .= "<td id='bookDiv'><img src='book-images/medium/" . $ISBN10 . ".jpg' onload='addClick()' alt='". $result['Title'] . "' id='bookImg'></td>
+                            </div>";
             $returnVar .= "<td><ul><li><h5>" . $result['Title']
                         . "</h5></li><li>ISBN10: ". $ISBN10
                         . "</li><li>ISBN13: " . $result['ISBN13']
@@ -84,26 +85,22 @@ function displayAdoptedByUniverisities($connection) {
     <script src="https://code.jquery.com/jquery-1.7.2.min.js" ></script>
     <script src="https://code.getmdl.io/1.1.3/material.min.js"></script>
     <script src="js/search.js"></script>
-</head>
-<script type="text/javascript" src=""> 
-    var img = document.getElementById("mainImg");
-    var src = document.getElementById("mainImg").src;
-    window.document.write("<img class='large'");
-    /*  Create onclick listener
-        Dim the body of the page by adding a class to it
-        Grab the source of the IMG and make it larger - add a class to it?
-        Add another onclick listener for the large image to remove all the classes
-    */
-    
-    /* onclick listener */
-    img.addEventListener("onclick", function(){
-        /* Dim the body of the page */
-        var page = document.getElementsByTagName("body");
-        page.classList.add('dimmer');
-        /* Grab the source of the IMG and add the largeImg class to it */
+    <script> 
+    function addClick(){
+    // Get the image and insert it inside the modal - use its "alt" text as a caption
+    document.getElementById('bookImg').addEventListener("click", function(e){
+        document.getElementById('imgModal').style.display = "block";
+        document.getElementById("largeImg").src = e.target.src;
+        document.getElementById("caption").textContent = e.target.alt;
     });
-</script>
-
+    
+    // When the user clicks on the image it closes it
+    document.getElementById('largeImg').addEventListener("click", function() { 
+        document.getElementById('imgModal').style.display = "none";
+    });
+    } 
+    </script>
+</head>
 <body>
     
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer
@@ -114,7 +111,13 @@ function displayAdoptedByUniverisities($connection) {
     
     <main class="mdl-layout__content mdl-color--grey-50">
         <section class="page-content">
-
+            
+        <!-- Large Image Modal -->
+        <div id='imgModal' class='modal'>
+            <img class='modal-content' id='largeImg'>
+            <div id='caption'></div>
+        </div>
+        
             <div class="mdl-grid">
                 <!-- mdl-cell + mdl-card -->
                 <div class="mdl-cell mdl-cell--12-col card-lesson mdl-card  mdl-shadow--2dp">
