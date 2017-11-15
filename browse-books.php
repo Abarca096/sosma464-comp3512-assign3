@@ -3,9 +3,6 @@ include 'includes/book-config.inc.php';
 $connection = createConnString();
 function displayBookList($connection) {
     $db = new BookGateway($connection);
-    $scDB = new SubcategoriesGateway($connection);
-    $impDB = new ImprintsGateway($connection);
-    
     // if the value is 'all' then the user specifically selected to remove that filter
     // set to null so it is treated appropriately later on
         if (isset($_GET['subcat'])){
@@ -34,9 +31,9 @@ function displayBookList($connection) {
         //$sql .= " ORDER BY Title LIMIT 20;";
         $returnVar="";
         if(isset($_GET['subcat'])){
-            $result = $db->findByIdJoin($_GET['subcat'], "Subcategories");
+            $result = $db->getBooksBySubcategory($_GET['subcat']);
         }else if(isset($_GET['imprint'])){
-            $result = $db->findByIdJoin($_GET['imprint'],"Imprints");
+            $result = $db->getBooksByImprint($_GET['imprint']);
         }else{
             $result = $db->findAllLimit(null,20,null);
         }
@@ -45,10 +42,10 @@ function displayBookList($connection) {
                 $ISBN10=$row['ISBN10']; // variable for temporary storage of ISBN10
                 
                 // fetch sub category information
-                $subCategoryReturn=$scDB->findByID($row['SubcategoryID']);
+                $subCategoryReturn=$db->getSubcategoryByID($row['SubcategoryID']);
                 
                 // fetch imprint information
-                $imprintReturn=$impDB->findByID($row['ImprintID']);
+                $imprintReturn=$db->getImprintByID($row['ImprintID']);
                 
                 $returnVar .= "<tr><td><a href='single-book.php?ISBN10=" . $row['ISBN10'] . "'><img src='book-images/tinysquare/" . $ISBN10 . ".jpg' alt='$ISBN10'></a></td><td><a href='single-book.php?ISBN10=" . $row['ISBN10'] . "'>" . $row['Title'] . "</a></td><td>" . $row['CopyrightYear'] . "</td><td>".$subCategoryReturn['SubcategoryName']."</td><td>".$imprintReturn['Imprint']."</td></tr>";
             }
@@ -57,7 +54,7 @@ function displayBookList($connection) {
 }
 
 function displaySubCatList($connection) {
-    $db = new SubcategoriesGateway($connection);
+    $db = new BookGateway($connection);
     $imprint = '';
     $returnVar="";
     /**
@@ -70,7 +67,7 @@ function displaySubCatList($connection) {
     }
     */
     
-    $result = $db->findAllSorted(true);
+    $result = $db->getAllSubcategories();
     
     $returnVar .= ("<li><a href='browse-books.php?subcat=all" . $imprint . "'>All Sub Categories</a></li>");
     
@@ -85,7 +82,7 @@ function displaySubCatList($connection) {
 function displayImprintList($connection) {
     $subcat = '';
     $returnVar="";
-    $db = new ImprintsGateway($connection);
+    $db = new BookGateway($connection);
     /**
     if (isset($_GET['subcat'])) {
         // this checks to see if there is a subcategory specifed in the query string
@@ -96,7 +93,7 @@ function displayImprintList($connection) {
     }
     */
 
-    $result= $db->findAllSorted(true);
+    $result= $db->getAllImprints();
     
     $returnVar .= ("<li><a href='browse-books.php?imprint=all" . $subcat . "'>All Imprints</a></li>");
     

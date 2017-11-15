@@ -17,16 +17,42 @@ class BookGateway extends TableDataGateway {
  return "BookID";
  }
 
-protected function getSelectStatementJoin($table){
- if ($table == "Subcategories"){
- return "SELECT BookID, ISBN10, ISBN13, Title, CopyrightYear, SubcategoryID, ImprintID, ProductionStatusID, BindingTypeID, TrimSize, PageCountsEditorialEst, LatestInstockDate, Description, CoverImage FROM Books WHERE SubcategoryID=:id";
-}else if($table == "Imprints"){
- return "SELECT BookID, ISBN10, ISBN13, Title, CopyrightYear, SubcategoryID, ImprintID, ProductionStatusID, BindingTypeID, TrimSize, PageCountsEditorialEst, LatestInstockDate, Description, CoverImage FROM Books WHERE ImprintID=:id";
-}else{
- return getSelectStatement();
-}
+
+public function getBooksBySubcategory($id){
+  $sql= "SELECT BookID, ISBN10, ISBN13, Title, CopyrightYear, SubcategoryID, ImprintID, ProductionStatusID, BindingTypeID, TrimSize, PageCountsEditorialEst, LatestInstockDate, Description, CoverImage FROM Books WHERE SubcategoryID=:id";
+  $statement = DatabaseHelper::runQuery($this->connection, $sql, Array(':id' => $id));
+ return $statement->fetchAll();
 }
 
+public function getBooksByImprint($id){
+ $sql = "SELECT BookID, ISBN10, ISBN13, Title, CopyrightYear, SubcategoryID, ImprintID, ProductionStatusID, BindingTypeID, TrimSize, PageCountsEditorialEst, LatestInstockDate, Description, CoverImage FROM Books WHERE ImprintID=:id";
+ $statement = DatabaseHelper::runQuery($this->connection, $sql, Array(':id' => $id));
+ return $statement->fetchAll();
+}
+
+public function getAllSubcategories(){
+ $sql = "SELECT SubcategoryName, SubCategoryID FROM Subcategories ORDER BY SubcategoryName";
+ $statement = DatabaseHelper::runQuery($this->connection, $sql, null);
+ return $statement->fetchAll();
+}
+
+public function getSubcategoryByID($id){
+ $sql = "SELECT SubcategoryName, SubCategoryID FROM Subcategories WHERE SubCategoryID = :id ORDER BY SubcategoryName";
+ $statement = DatabaseHelper::runQuery($this->connection, $sql, Array(':id' => $id));
+ return $statement->fetch();
+}
+
+public function getAllImprints(){
+ $sql = "SELECT Imprint, ImprintID FROM Imprints ORDER BY Imprint";
+ $statement = DatabaseHelper::runQuery($this->connection, $sql, null);
+ return $statement->fetchAll();
+}
+
+public function getImprintByID($id){
+ $sql = "SELECT Imprint, ImprintID FROM Imprints WHERE ImprintID = :id ORDER BY Imprint";
+ $statement = DatabaseHelper::runQuery($this->connection, $sql, Array(':id' => $id));
+ return $statement->fetch();
+}
 protected function getSecondaryKeyName(){
   return "ISBN10";
 }

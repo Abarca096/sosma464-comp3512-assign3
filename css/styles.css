@@ -197,6 +197,7 @@ td, th, table, tbody, thead {
 .tWidth img{
   padding-right:4%;
 }
+<<<<<<< HEAD
 
 /* Single Book */
 #bookImg {
@@ -276,4 +277,21 @@ td, th, table, tbody, thead {
     .modal-content {
         width: 100%;
     }
+=======
+.tooltip{
+  margin-top: 5%;
+  visibility:hidden;
+  position: absolute;
+  z-index:-1;
+  width: 220px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+   
+}
+.show{
+  visibility: visible;
+>>>>>>> c9893d3fb654515f59857676ac0bc9ebef45711d
 }

@@ -21,9 +21,11 @@
           <input class="mdl-textfield__input" type="text" name="sample"
                  id="fixed-header-drawer-exp">
         </div>
-        <input type="text" id="search" value="Search Format 'City-LastName'">
-
+        <input type="text" id="search" value="">
+       
+         <p class="tooltip">Search Format: <br> 'LastName City' <br> 'LastName' <br> '-City'</p>
         </div>
       </div>
     </div>
+     
   </header>
