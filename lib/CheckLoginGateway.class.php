@@ -17,6 +17,12 @@ class CheckLoginGateway extends TableDataGateway {
   return "UserName ";
  }
  
+ public function getAdditionalUserData() {
+  $sql = "SELECT FirstName, LastName, UserID, FROM Employees WHERE Email=:email; ";
+  
+  $statement = DatabaseHelper::runQuery($this->connection,$sql,array(":email" => $email));
+  return $statement->fetchAll();
+ }
 }
 
 ?>
