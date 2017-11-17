@@ -1,21 +1,27 @@
 <?php 
 session_start();
 include "checklogin.php";
-
-header("Content-Type:text/html; charset=ISO-8859-1");
 //include 'includes/book-config.inc.php';
-if(!isset($_COOKIE['userid'])){
+//include 'includes/book-config.inc.php';
+$connection = createConnString();
+/*
+if(!isset($_SESSION['userid'])){
+>>>>>>> Stashed changes
     header('Location: index.php');
 }
-function getUserInfo(){
-    if(isset($_COOKIE['userid'])){
-    $userID = $_COOKIE['userid'];
-    $db = new UsersGateway();
+*/
+function getUserInfo($connection){
+    $userID=null;
+    if(isset($_SESSION['UserID'])){
+    $userID = $_SESSION['UserID'];
+    }
+    $db = new UsersGateway($connection);
     $result = $db->findById($userID);
-    $userInfo = "<td>".$result['FirstName']."</td><td>".$result['LastName']."</td><td>".$result['Address']."</td><td>".$result['City']."</td><td>".$result['Region']."</td><td>".$result['Country']."</td><td>".$result['Postal']."</td><td>".$result['Phone']."</td><td>".$result['Email']."</td>";
-}
+    $userInfo="";
+    $userInfo .= "<li><b>Address: </b>".$result['Address']."</li><li><b>City: </b>".$result['City']."</li><li><b>Region: </b>".$result['Region']."</li><li><b>Country: </b>".$result['Country']."</li><li><b>Postal: </b>".$result['Postal']."</li><li><b>Phone: </b>".$result['Phone']."</li><li><b>Email: </b>".$result['Email']."</li>";
 return $userInfo;
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -45,25 +51,31 @@ return $userInfo;
     <main class="mdl-layout__content mdl-color--grey-50">
         <section class="page-content">
             <div class="mdl-grid">
-                <table class="mdl-data-table  mdl-shadow--2dp">
-                                    <thead>
-                                        <tr>
-                                            <th class="mdl-data-table__cell--non-numeric">First Name</th>
-                                            <th class="mdl-data-table__cell--non-numeric">Last Name</th>
-                                            <th class="mdl-data-table__cell--non-numeric">Address</th>
-                                            <th class="mdl-data-table__cell--non-numeric">City</th>
-                                            <th class="mdl-data-table__cell--non-numeric">Region</th>
-                                            <th class="mdl-data-table__cell--non-numeric">Country</th>
-                                            <th class="mdl-data-table__cell--non-numeric">Postal</th>
-                                            <th class="mdl-data-table__cell--non-numeric">Phone</th>
-                                            <th class="mdl-data-table__cell--non-numeric">Email</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php echo getUserInfo(); ?>
-                                    </tbody>
-                                </table>
-                                </div>
+                <div class="mdl-cell mdl-cell--12-col card-lesson mdl-card  mdl-shadow--2dp">
+                    <div class="mdl-card__actions mdl-card--border content"></div>
+                    <div class="mdl-card__title title ">Your Profile</div>
+                    <div id="user" class="mdl-card__supporting-text support">
+                        <div id="userHeader">
+                            <img id="profilePicture" src = "https://image.flaticon.com/icons/svg/21/21294.svg"/>
+                            <h2>
+                            <?php
+                            if(isset($_SESSION['FirstName'])){
+                                echo "<b>".$_SESSION['FirstName']." </b>";
+                            }
+                            if(isset($_SESSION['LastName'])){
+                                echo "<b>".$_SESSION['LastName']."</b>";
+                            }
+                            ?>
+                            </h2>
+                        </div>
+                        <ul id="userInfo">
+                            <?php echo getUserInfo($connection) ?>
+                        </ul>
+                        <button><i class='material-icons'>mode_edit</i>Edit your Profile</button>
+                    </div>
+                </div>
+                
+                               </div>
                                 </section>
                                 </main>
                                 </html>

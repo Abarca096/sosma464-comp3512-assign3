@@ -1,6 +1,6 @@
 <?php
 
-class BookAuthorsGateway extends TableDataGateway {
+class UsersGateway extends TableDataGateway {
  public function __construct($connect) {
  parent::__construct($connect);
  }

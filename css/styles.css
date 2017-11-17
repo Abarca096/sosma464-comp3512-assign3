@@ -320,3 +320,27 @@ td, th, table, tbody, thead {
 #box{
   visibility: hidden;
 }
+
+#userInfo li{
+  list-style-type: none;
+}
+
+#userHeader{
+  margin-left:auto;
+  margin-right:auto;
+  text-align: center;
+}
+
+#profilePicture{
+  width:50%;
+  height:50%;
+}
+
+#user{
+  margin-top:5%;
+  text-align:center;
+}
+#user button{
+  margin-left:auto;
+  margin-right:auto;
+}
