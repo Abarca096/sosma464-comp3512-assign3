@@ -294,6 +294,19 @@ td, th, table, tbody, thead {
 
 }
 
+/* 100% Image Width on Smaller Screens */
+@media only screen and (min-width: 1350px){
+    .content{
+      margin-top:70px;
+  
+}
+
+
+
+}
+
+
+
 #filtercard{
   visibility: hidden;
 }

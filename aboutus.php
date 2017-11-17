@@ -97,6 +97,11 @@
                                     <td>https://getmdl.io/</td>
                                     <td>NA</td>
                                 </tr>
+                                <tr>
+                                    <td>Flag Icons</td>
+                                    <td>http://flag-icon-css.lip.is/r</td>
+                                    <td>NA</td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>

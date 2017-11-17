@@ -35,7 +35,7 @@ function displayAdoptedBooks($db){
         $analytics="";
         foreach($result as $row){
             $isbn = $row['ISBN10'];
-            $analytics.="<tr><td><img src ='book-images/small/$isbn.jpg'></td><td><a href ='single-book.php?ISBN10=$isbn'>".$row['Title']."</a></td><td>".$row['sum']."</td></tr>";
+            $analytics.="<tr><td><img src ='book-images/thumb/$isbn.jpg'></td><td><a href ='single-book.php?ISBN10=$isbn'>".$row['Title']."</a></td><td>".$row['sum']."</td></tr>";
         }
     return $analytics;
 }
@@ -71,7 +71,7 @@ function displayAdoptedBooks($db){
         <section class="page-content">
             <div class="mdl-grid">
                 
-                 <div class="mdl-cell mdl-cell--3-col card-lesson mdl-card  mdl-shadow--2dp">
+                 <div class="mdl-cell mdl-cell--3-col card-lesson mdl-card  mdl-shadow--2dp" id = "cont">
                     <div class="mdl-card__title title ">Visitors
                     </div>
                     <i class="material-icons">people</i>

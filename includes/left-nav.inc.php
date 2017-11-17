@@ -11,6 +11,7 @@
         <a class="mdl-navigation__link mdl-color-text--blue-grey-300" href="browse-universities.php"><i class="material-icons" role="presentation">view_list</i> Browse Universities</a>
         <a class="mdl-navigation__link mdl-color-text--blue-grey-300" href="browse-employees.php"><i class="material-icons" role="presentation">contacts</i> Browse Employees</a>
         <a class="mdl-navigation__link mdl-color-text--blue-grey-300" href="browse-books.php"><i class="material-icons" role="presentation">view_list</i> Browse Books</a>
-        <a class="mdl-navigation__link mdl-color-text--blue-grey-300" href="analytics.php"><i class="material-icons" role="presentation">insert_chart</i> Analytics</a>                              
+        <a class="mdl-navigation__link mdl-color-text--blue-grey-300" href="analytics.php"><i class="material-icons" role="presentation">insert_chart</i> Analytics</a>
+        <a class="mdl-navigation__link mdl-color-text--blue-grey-300" href="analytics.php"><i class="material-icons" role="presentation">person_outline</i> User Profile</a> 
     </nav>
   </div>
