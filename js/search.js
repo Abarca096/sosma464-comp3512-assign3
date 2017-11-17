@@ -1,12 +1,13 @@
 // JavaScript File
 function init (){
     var visible = document.getElementById("main");
-    visible.addEventListener("mouseover", function(){
+    var sear = document.getElementById("search");
+    sear.addEventListener("mouseover", function(){
 
             document.querySelector(".tooltip").classList.add("show");
             
         });  
-         visible.addEventListener("mouseout", function(){
+         sear.addEventListener("mouseout", function(){
 
             document.querySelector(".tooltip").classList.remove("show");
             
@@ -68,5 +69,37 @@ function init (){
         
       
     }
+    
+    
+    var filter = document.getElementById("filter");
+    var count = 0;
+    
+    filter.addEventListener("click",function(){
+        
+        
+       if(count ==0){
+           document.getElementById("tt1").innerHTML = "chevron_right";
+           document.getElementById("filtercard").id = "none";
+           document.getElementById("box").id = "none";
+           count = 1;
+       }else{
+            document.getElementById("tt1").innerHTML = "arrow_drop_down";
+           document.getElementById("none").id = "filtercard";
+           document.getElementById("none").id = "box";
+           count = 0;
+       }
+       
+       
+        
+    });
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }
 addEventListener("load",init);

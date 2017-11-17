@@ -23,7 +23,7 @@
         </div>
         <input type="text" id="search" value="">
        
-         <p class="tooltip">Search Format: <br> 'LastName City' <br> 'LastName' <br> '-City'</p>
+         <p class="tooltip">Search Format: <br> Search By Employees: LastName<br> Search Employees By City: -City <br> Search By Both: LastName City </p>
         </div>
       </div>
     </div>
