@@ -56,17 +56,20 @@ return $userInfo;
                     <div class="mdl-card__title title ">Your Profile</div>
                     <div id="user" class="mdl-card__supporting-text support">
                         <div id="userHeader">
-                            <img id="profilePicture" src = "https://image.flaticon.com/icons/svg/21/21294.svg"/>
-                            <h2>
+                            <!--<img id="profilePicture" src = "https://image.flaticon.com/icons/svg/21/21294.svg"/>
+                            <h2> -->
                             <?php
+                            echo '<img id="profilePicture" src="images/users/' . $_SESSION['PicID'] . '.jpg">
+                                    <h2>';
                             if(isset($_SESSION['FirstName'])){
                                 echo "<b>".$_SESSION['FirstName']." </b>";
                             }
                             if(isset($_SESSION['LastName'])){
                                 echo "<b>".$_SESSION['LastName']."</b>";
                             }
+                            echo "</h2>"
                             ?>
-                            </h2>
+                           <!-- </h2> -->
                         </div>
                         <ul id="userInfo">
                             <?php echo getUserInfo($connection) ?>

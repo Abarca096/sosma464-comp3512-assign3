@@ -2,7 +2,7 @@
 
 include 'includes/book-config.inc.php';
 session_start();
-
+    
 if (isset($_SESSION['Email'])) {
  } else {
      // not logged in
@@ -24,9 +24,12 @@ if (isset($_SESSION['Email'])) {
             $_SESSION['FirstName']=$additionalinfo['FirstName'];
             $_SESSION['LastName']=$additionalinfo['LastName'];
             $_SESSION['UserID']=$additionalinfo['UserID'];
+            //add a profile pic
+            $_SESSION['PicID']=rand(1,10);
             //echo $additionalinfo['FirstName'];
             header("Location:" . $_SESSION['last_page']);
-        } else {
+        }
+    else {
             // if not correct, send back to login page with error because login information is incorrect
             header("Location:login.php?error=true");
         }
@@ -38,3 +41,4 @@ if (isset($_SESSION['Email'])) {
  }
  
 ?>
+

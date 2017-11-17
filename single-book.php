@@ -1,6 +1,6 @@
 <?php
 
-header("Content-Type:text/html; charset=ISO-8859-1");
+header("Content-Type:text/html;");
 session_start();
 include "checklogin.php";
 
@@ -16,9 +16,9 @@ function displayBookInfo($connection) {
         $returnVar = "";
         if ($result != false) {
             $ISBN10=$_GET['ISBN10'];
-            $returnVar .= "<td id='bookDiv'><img src='book-images/medium/" . $ISBN10 . ".jpg' onload='addClick()' alt='". $result['Title'] . "' id='bookImg'></td>
+            $returnVar .= "<td id='bookDiv'><img src='book-images/medium/" . $ISBN10 . ".jpg' onload='addClick()' alt='". $ISBN10 . "' id='bookImg'></td>
                             </div>";
-            $returnVar .= "<td><ul><li><h5>" . $result['Title']
+            $returnVar .= "<td id='bookInfo'><ul><li><h5>" . $result['Title']
                         . "</h5></li><li>ISBN10: ". $ISBN10
                         . "</li><li>ISBN13: " . $result['ISBN13']
                         . "</li><li>Copyright: &copy;" . $result['CopyrightYear']
@@ -91,11 +91,14 @@ function displayAdoptedByUniverisities($connection) {
     <script src="js/search.js"></script>
     <script> 
     function addClick(){
-    // Get the image and insert it inside the modal - use its "alt" text as a caption
+    // Get the Image and add an onclick event listener
     document.getElementById('bookImg').addEventListener("click", function(e){
+        //Make the large image visible
         document.getElementById('imgModal').style.display = "block";
-        document.getElementById("largeImg").src = e.target.src;
-        document.getElementById("caption").textContent = e.target.alt;
+        //Add the source to the large image
+        document.getElementById("largeImg").src = "book-images/large/" + e.target.alt + ".jpg";
+        //Get the Title of the book and use it as a caption
+        document.getElementById("caption").textContent = document.querySelector("#bookInfo h5").textContent;
     });
     
     // When the user clicks on the image it closes it

@@ -37,9 +37,18 @@
                     <div class="mdl-card__supporting-text">
                         
                         <form action="checklogin.php" method="GET">
-                            Username: <input type="text" name="user"><br><br>
-                            Password: <input type="password" name="password"><br><br>
-
+                            <a>Username:</a> <input type="text" name="user" onfocus="removeText()"><br><br>
+                            <a>Password:</a> <input type="password" name="password" onfocus="removeText()"><br><br>
+                            <?php
+                                if($_GET['error']==true){
+                                    echo "<a id='errMsg'><font color='red'>Invalid username or password, please try again</font></a><br><br>";
+                                }
+                            ?>
+                            <script>
+                                function removeText(){
+                                    document.getElementById("errMsg").style.display="none";
+                                }
+                            </script>
                             <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">SUBMIT</button>
                         </form>
                     </div>    

@@ -2,7 +2,7 @@
 session_start();
 include "checklogin.php";
 
-header("Content-Type:text/html; charset=ISO-8859-1");
+header("Content-Type:text/html;");
 //include 'includes/book-config.inc.php';
 $connection = createConnString();
 

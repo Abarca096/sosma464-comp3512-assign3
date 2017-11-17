@@ -25,7 +25,7 @@
     session_start();
     include "checklogin.php";
 
-    header("Content-Type:text/html; charset=ISO-8859-1");
+    header("Content-Type:text/html;");
     //include 'includes/book-config.inc.php';
     include 'includes/header.inc.php'; ?>
     <?php include 'includes/left-nav.inc.php'; ?>
@@ -44,20 +44,47 @@
                         <p>This site is hypothetical and was created as an assignment for COMP-3532-001 at Mount Royal University taught by Randy Connolly.<br>
                         GitHub Project Page: <a href='https://github.com/samocr7/web-assign2'>https://github.com/samocr7/web-assign2</a><br><br>
                             Contributors:<br></p>
-                                <ul class="demo-list-control mdl-list">
-                                <li class="mdl-list__item">
-                                    <span class="mdl-list__item-primary-content"><i class="material-icons  mdl-list__item-avatar">person</i>Josh Blair</span>
-                                </li>
-                                <li class="mdl-list__item">
-                                    <span class="mdl-list__item-primary-content"><i class="material-icons  mdl-list__item-avatar">person</i>Sam Osman</span>
-                                </li>
-                                <li class="mdl-list__item">
-                                    <span class="mdl-list__item-primary-content"><i class="material-icons  mdl-list__item-avatar">person</i>Jorge Abarca</span>
-                                </li>
-                                <li class="mdl-list__item">
-                                    <span class="mdl-list__item-primary-content"><i class="material-icons  mdl-list__item-avatar">person</i>Cryston Robin</span>
-                                </li>
-                            </ul>
+                                <div class="mdl-grid">
+                                    <div class="josh-card-wide mdl-card mdl-shadow--2dp">
+                                        <div class="mdl-card__title"> 
+                                            <h2 class="mdl-card__title-text">Joshua Blair</h2>
+                                        </div>
+                                        <div class="mdl-card__supporting-text">
+                                            Josh was assigned the functionality for browse employees, and the log in function.
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="sam-card-wide mdl-card mdl-shadow--2dp">
+                                        <div class="mdl-card__title"> 
+                                            <h2 class="mdl-card__title-text">Samer Osman</h2>
+                                        </div>
+                                        <div class="mdl-card__supporting-text">
+                                            Sam was assigned the functionality for the browse universities, the User profile page,
+                                            and part of the Analytics page.
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="mdl-grid">
+                                    <div class="cryston-card-wide mdl-card mdl-shadow--2dp">
+                                        <div class="mdl-card__title"> 
+                                            <h2 class="mdl-card__title-text">Cryston Robin</h2>
+                                        </div>
+                                        <div class="mdl-card__supporting-text">
+                                            Cryston was assigned the functionality for the simple search, and part of the Analytics page.
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="jorge-card-wide mdl-card mdl-shadow--2dp">
+                                        <div class="mdl-card__title"> 
+                                            <h2 class="mdl-card__title-text">Jorge Abarca</h2>
+                                        </div>
+                                        <div class="mdl-card__supporting-text">
+                                            Jorge was assigned the functionality for the single book page, the log out functionality,
+                                            and general page style.
+                                        </div>
+                                    </div>
+                                </div>
                     </div>
                 </div>  
                 <!-- / mdl-cell + mdl-card -->

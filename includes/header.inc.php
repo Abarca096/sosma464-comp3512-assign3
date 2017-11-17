@@ -1,27 +1,26 @@
-  <header class="mdl-layout__header">
+<header class="mdl-layout__header">
     <div class="mdl-layout__header-row">
      <h1 class="mdl-layout-title"><span>CRM</span> Admin</h1>
- 
-
      
-      <div class="mdl-layout-spacer"></div>
-      
-      <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
+     <div class="mdl-layout-spacer"></div>
+
+<div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
                   mdl-textfield--floating-label mdl-textfield--align-right">
   <?php
+  //If there's a session create a log out button
   if($_SESSION['Email'] != null){
-      echo "<i class='material-icons' onload='userOut()' id = 'logout'>exit_to_app</i>";
+      echo "<i class='material-icons' id = 'logout'><a href='logOut.php'>exit_to_app </a></i>
+            <div class='mdl-tooltip' for='logout'>Log Out</div>";
   }
   ?>
-  
+  <!--
   <script type="text/javascript" src="">
    function userOut(){
     document.getElementById("logout").addEventListener("click", function(){
      window.location.href("logOut.php");
     });
-   }
-  </script>
-
+   } 
+  </script> -->
 <label id="tt2" class="material-icons mdl-badge mdl-badge--overlap" data-badge="5">account_box</label>  
 <div class="mdl-tooltip" for="tt2">Messages</div>                     
                  
@@ -41,4 +40,4 @@
       </div>
     </div>
      
-  </header>
+</header>
