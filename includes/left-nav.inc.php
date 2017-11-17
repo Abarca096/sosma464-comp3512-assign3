@@ -11,7 +11,7 @@
         }
         //otherwise display a generic user
         else {
-            $profile .= '<img src="/images/users/generic.jpg" class="avatar"> <span> Login to view your profile</span>';
+            $profile .= '<img src="/images/users/generic.jpg" class="avatar"> <span> <a href="login.php">Login to view your profile</a></span>';
         }
         return $profile;
     }

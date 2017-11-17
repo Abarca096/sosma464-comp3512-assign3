@@ -27,7 +27,11 @@ if (isset($_SESSION['Email'])) {
             //add a profile pic
             $_SESSION['PicID']=rand(1,10);
             //echo $additionalinfo['FirstName'];
+            if(isset($_SESSION['last_page'])){
             header("Location:" . $_SESSION['last_page']);
+            }else{
+                header("Location: index.php");
+            }
         }
     else {
             // if not correct, send back to login page with error because login information is incorrect

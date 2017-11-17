@@ -51,6 +51,8 @@
                                         </div>
                                         <div class="mdl-card__supporting-text">
                                             Josh was assigned the functionality for browse employees, and the log in function.
+                                            <br>
+                                            <a href="https://github.com/jblai698">Josh's GitHub</a>
                                         </div>
                                     </div>
                                     
@@ -59,8 +61,10 @@
                                             <h2 class="mdl-card__title-text">Samer Osman</h2>
                                         </div>
                                         <div class="mdl-card__supporting-text">
-                                            Sam was assigned the functionality for the browse universities, the User profile page,
+                                            Sam was assigned the functionality for the browse books, browse universities map, the User profile page,
                                             and part of the Analytics page.
+                                            <br>
+                                            <a href="https://github.com/samocr7">Sam's GitHub</a>
                                         </div>
                                     </div>
                                 </div>
@@ -71,7 +75,9 @@
                                             <h2 class="mdl-card__title-text">Cryston Robin</h2>
                                         </div>
                                         <div class="mdl-card__supporting-text">
-                                            Cryston was assigned the functionality for the simple search, and part of the Analytics page.
+                                            Cryston was assigned the functionality for the browse universities, simple search, employee filtering and part of the Analytics page.
+                                            <br>
+                                            <a href="github.com/crobin51">Cryston's GitHub</a>
                                         </div>
                                     </div>
                                     
@@ -80,8 +86,10 @@
                                             <h2 class="mdl-card__title-text">Jorge Abarca</h2>
                                         </div>
                                         <div class="mdl-card__supporting-text">
-                                            Jorge was assigned the functionality for the single book page, the log out functionality,
-                                            and general page style.
+                                            Jorge was assigned the functionality for the single book page, the log in/out functionality,
+                                            and general page design/style.
+                                            <br>
+                                            <a href="github.com/jorge00096">Jorge's GitHub</a>
                                         </div>
                                     </div>
                                 </div>
