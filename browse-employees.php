@@ -209,9 +209,9 @@ function displayCityFilterList($connection) {
               </div>  <!-- / mdl-cell + mdl-card -->   
               
               
-              <div class="mdl-cell mdl-cell--3-col card-lesson mdl-card  mdl-shadow--2dp">
-                    <div class="mdl-card__title mdl-color--light-green mdl-color-text--white">
-                        <h2 class="mdl-card__title-text"><div id="tt1" class="icon material-icons">chevron_right</div>Filters</h2>
+               <div class="mdl-cell mdl-cell--3-col card-lesson mdl-card  mdl-shadow--2dp" id = "box">
+                    <div class="mdl-card__title mdl-color--light-green mdl-color-text--white " id = "filter">
+                      <h2 class="mdl-card__title-text "><div id="tt1" class="icon material-icons">arrow_drop_down</div>Filters</h2>
                     </div>
                     <div class="mdl-card__supporting-text" id="filtercard">
                         
