@@ -66,7 +66,7 @@ function init (){
         }
         }
         
-        
+
       
     }
     
@@ -95,11 +95,7 @@ function init (){
     
     
     
-    
-    
-    
-    
-    
+
     
 }
 addEventListener("load",init);

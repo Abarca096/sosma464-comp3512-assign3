@@ -1,5 +1,9 @@
 <?php
-include 'includes/book-config.inc.php';
+session_start();
+include "checklogin.php";
+
+header("Content-Type:text/html; charset=ISO-8859-1");
+//include 'includes/book-config.inc.php';
 $connection = createConnString();
 function displayBookList($connection) {
     $db = new BookGateway($connection);

@@ -21,7 +21,13 @@
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer
             mdl-layout--fixed-header">
             
-    <?php include 'includes/header.inc.php'; ?>
+    <?php 
+    session_start();
+    include "checklogin.php";
+
+    header("Content-Type:text/html; charset=ISO-8859-1");
+    //include 'includes/book-config.inc.php';
+    include 'includes/header.inc.php'; ?>
     <?php include 'includes/left-nav.inc.php'; ?>
     
     <main class="mdl-layout__content mdl-color--grey-50">

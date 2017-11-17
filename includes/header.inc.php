@@ -9,12 +9,13 @@
       <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
                   mdl-textfield--floating-label mdl-textfield--align-right">
   <?php
-  if(isset($_SESSION['user'])){
-   echo "<i class='material-icons'>exit_to_app</i>";
+  if($_SESSION['Email'] != null){
+      echo "<i class='material-icons' id = 'logout'>exit_to_app</i>";
   }
   
+  
   ?>
-  <i class="material-icons">exit_to_app</i>                
+                 
 <label id="tt2" class="material-icons mdl-badge mdl-badge--overlap" data-badge="5">account_box</label>  
 <div class="mdl-tooltip" for="tt2">Messages</div>                     
                  
