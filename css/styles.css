@@ -202,16 +202,13 @@ td, th, table, tbody, thead {
   visibility:hidden;
   position: absolute;
   z-index:-1;
-  width: 220px;
+  width: 240px;
     background-color: #555;
     color: #fff;
     text-align: center;
     padding: 5px 0;
     border-radius: 6px;
    
-}
-.show{
-  visibility: visible;
 }
 
 /* Single Book */
@@ -295,4 +292,18 @@ td, th, table, tbody, thead {
 
 
 
+}
+
+#filtercard{
+  visibility: hidden;
+}
+.show{
+  visibility: visible;
+  
+}
+#filter{
+  visibility: visible;
+}
+#box{
+  visibility: hidden;
 }
