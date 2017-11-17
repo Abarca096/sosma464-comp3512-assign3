@@ -77,7 +77,7 @@
                                         <div class="mdl-card__supporting-text">
                                             Cryston was assigned the functionality for the browse universities, simple search, employee filtering and part of the Analytics page.
                                             <br>
-                                            <a href="github.com/crobin51">Cryston's GitHub</a>
+                                            <a href="https://github.com/crobin51">Cryston's GitHub</a>
                                         </div>
                                     </div>
                                     
@@ -89,7 +89,7 @@
                                             Jorge was assigned the functionality for the single book page, the log in/out functionality,
                                             and general page design/style.
                                             <br>
-                                            <a href="github.com/jorge00096">Jorge's GitHub</a>
+                                            <a href="https://github.com/jorge00096">Jorge's GitHub</a>
                                         </div>
                                     </div>
                                 </div>
