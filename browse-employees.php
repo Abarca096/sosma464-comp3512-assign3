@@ -57,7 +57,7 @@ function displayDetailedEmpToDoRecords($connection) {
     if (isset($_GET['emp'])) { // check to see if server query exists
         //$sql="SELECT DateBy, Status, Priority, Description FROM EmployeeToDo WHERE EmployeeID=? order by DateBy;";
         $employee = new EmployeesGateway($connection);
-        $result=$employee->findByIdJoin($_GET['emp'],"EmployeeToDo");
+        $result=$employee->getEmployeeToDoRecords($_GET['emp']);
         $returnVar = "";
 
         if ($result != false) { // check for errors getting data from mysql
@@ -79,7 +79,7 @@ function displayEmpMessages($connection) {
     if (isset($_GET['emp'])) { // check to see if server query exists
         //$sql = "SELECT MessageDate, Category, ContactID, Content FROM EmployeeMessages WHERE EmployeeID=?;";
         $employee = new EmployeesGateway($connection);
-        $result=$employee->findByIdJoin($_GET['emp'],"EmployeeMessages");
+        $result=$employee->getEmpMessages($_GET['emp']);
         $returnVar = "";
         
         if ($result != false) { // check for errors getting data from mysql

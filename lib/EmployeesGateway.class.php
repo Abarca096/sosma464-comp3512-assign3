@@ -20,14 +20,6 @@ class EmployeesGateway extends TableDataGateway {
  protected function getEmployeeMessages() {
   return "SELECT DateBy, Status, Priority, Description FROM EmployeeToDo ";
  }
-
- protected function getSelectStatementJoin($table){
-  if ($table == "EmployeeToDo") {
-   return "SELECT DateBy, Status, Priority, Description FROM EmployeeToDo WHERE EmployeeID=:id order by DateBy;";
-  } else if ($table == "EmployeeMessages") {
-   return "SELECT MessageDate, Category, ContactID, Content FROM EmployeeMessages WHERE EmployeeID=:id;";
-  }
- }
  
  public function getEmployeeCities() {
   $sql = "SELECT DISTINCT City FROM Employees;";
@@ -35,6 +27,19 @@ class EmployeesGateway extends TableDataGateway {
   $statement = DatabaseHelper::runQuery($this->connection, $sql, null);
   return $statement->fetchAll();
  }
+ 
+ public function getEmpMessages($id){
+   $sql = "SELECT MessageDate, Category, ContactID, Content FROM EmployeeMessages WHERE EmployeeID=:id;";
+  $statement = DatabaseHelper::runQuery($this->connection,$sql,array(":id" => $id));
+  return $statement->fetchAll();
+ }
+ 
+ public function getEmployeeToDoRecords($id){
+  $sql = "SELECT DateBy, Status, Priority, Description FROM EmployeeToDo WHERE EmployeeID=:id order by DateBy;";
+  $statement = DatabaseHelper::runQuery($this->connection,$sql,array(":id" => $id));
+  return $statement->fetchAll();
+ }
+ 
  
  public function getEmployeeByCity($city) {
   $sql = "SELECT EmployeeID, FirstName, LastName FROM Employees WHERE City=:city; ";
