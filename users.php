@@ -55,24 +55,33 @@ return $userInfo;
                     <div class="mdl-card__actions mdl-card--border content"></div>
                     <div class="mdl-card__title title ">Your Profile</div>
                     <div id="user" class="mdl-card__supporting-text support">
-                        <div id="userHeader">
+                        <ul class="demo-list-item mdl-list">
+                            <table>
+                                <thead>
+                                        <tr><td></td><td></td></tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
                             <!--<img id="profilePicture" src = "https://image.flaticon.com/icons/svg/21/21294.svg"/>
                             <h2> -->
                             <?php
-                            echo '<img id="profilePicture" src="images/users/' . $_SESSION['PicID'] . '.jpg">
-                                    <h2>';
+                            echo '<td><img id="profilePicture" src="images/users/' . $_SESSION['PicID'] . '.jpg"></td>
+                                    <li><h2>';
                             if(isset($_SESSION['FirstName'])){
                                 echo "<b>".$_SESSION['FirstName']." </b>";
                             }
                             if(isset($_SESSION['LastName'])){
                                 echo "<b>".$_SESSION['LastName']."</b>";
                             }
-                            echo "</h2>"
+                            echo "</h2></li>"
                             ?>
                            <!-- </h2> -->
-                        </div>
-                        <ul id="userInfo">
+                           <td>
                             <?php echo getUserInfo($connection) ?>
+                            </td>
+                        </tr>
+                        </tbody>
+                        </table>
                         </ul>
                         <button><i class='material-icons'>mode_edit</i>Edit your Profile</button>
                     </div>

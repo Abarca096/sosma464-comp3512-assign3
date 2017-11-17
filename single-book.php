@@ -16,8 +16,7 @@ function displayBookInfo($connection) {
         $returnVar = "";
         if ($result != false) {
             $ISBN10=$_GET['ISBN10'];
-            $returnVar .= "<td id='bookDiv'><img src='book-images/medium/" . $ISBN10 . ".jpg' onload='addClick()' alt='". $ISBN10 . "' id='bookImg'></td>
-                            </div>";
+            $returnVar .= "<td id='bookDiv'><img src='book-images/medium/" . $ISBN10 . ".jpg' onload='addClick()' alt='". $ISBN10 . "' id='bookImg'></td>";
             $returnVar .= "<td id='bookInfo'><ul><li><h5>" . $result['Title']
                         . "</h5></li><li>ISBN10: ". $ISBN10
                         . "</li><li>ISBN13: " . $result['ISBN13']
