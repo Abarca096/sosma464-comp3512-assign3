@@ -34,7 +34,7 @@
                     <div class="mdl-card__title mdl-color--light-green mdl-color-text--white">
                         <h2 class="mdl-card__title-text">Login</h2>
                     </div>
-                    <div class="mdl-card__supporting-text" id="filtercard">
+                    <div class="mdl-card__supporting-text">
                         
                         <form action="checklogin.php" method="GET">
                             Username: <input type="text" name="user"><br><br>

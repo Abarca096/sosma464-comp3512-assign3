@@ -13,12 +13,18 @@ if (isset($_SESSION['Email'])) {
         $user = new CheckLoginGateway($connection);
         $result = $user->findById($_GET['user']);
         
-        //if (($_GET['password'] != "") && ($_GET['password'] != null) && ($result['Password'] == md5($_GET['password'] . $result['Salt']))) {
-        if (($_GET['user'] == "pepe") && ($_GET['password'] == "")) {
+        if (($_GET['password'] != "") && ($_GET['password'] != null) && ($result['Password'] == md5($_GET['password'] . $result['Salt']))) {
+        //if (($_GET['user'] == "") && ($_GET['password'] == "")) {
             // check if username and password is correct
             // if correct, save session state and send them back where they came from, consider them now 'logged in'
             
+            $additionalinfo = $user->getAdditionalUserData($_GET['user']);
+            
             $_SESSION['Email']=$_GET['user'];
+            $_SESSION['FirstName']=$additionalinfo['FirstName'];
+            $_SESSION['LastName']=$additionalinfo['LastName'];
+            $_SESSION['UserID']=$additionalinfo['UserID'];
+            //echo $additionalinfo['FirstName'];
             header("Location:" . $_SESSION['last_page']);
         } else {
             // if not correct, send back to login page with error because login information is incorrect
