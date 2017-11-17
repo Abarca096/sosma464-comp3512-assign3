@@ -5,7 +5,7 @@
      <div class="mdl-layout-spacer"></div>
 
 <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
-                  mdl-textfield--floating-label mdl-textfield--align-right">
+                  mdl-textfield--floating-label mdl-textfield--align-right" >
   <?php
   //If there's a session create a log out button
   if($_SESSION['Email'] != null){
@@ -21,6 +21,7 @@
     });
    } 
   </script> -->
+ 
 <label id="tt2" class="material-icons mdl-badge mdl-badge--overlap" data-badge="5">account_box</label>  
 <div class="mdl-tooltip" for="tt2">Messages</div>                     
                  

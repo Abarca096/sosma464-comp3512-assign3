@@ -75,11 +75,11 @@ function displayAdoptedBooks($db){
         <section class="page-content">
             <div class="mdl-grid">
                 
-                 <div class="mdl-cell mdl-cell--3-col card-lesson mdl-card  mdl-shadow--2dp" id = "cont">
+                 <div class="mdl-cell mdl-cell--3-col card-lesson mdl-card  mdl-shadow--2dp cont">
                     <div class="mdl-card__title title ">Visitors
                     </div>
                     <i class="material-icons">people</i>
-                    <div class="mdl-card__actions mdl-card--border content">
+                    <div class="mdl-card__actions mdl-card--border content" id = "cont1">
                         <b>
                         <?php $visits =  displayVisitors($db); echo $visits?>
                         </b>
@@ -89,11 +89,11 @@ function displayAdoptedBooks($db){
                     </div>
                 </div>
                 
-                 <div class="mdl-cell mdl-cell--3-col card-lesson mdl-card  mdl-shadow--2dp">
+                 <div class="mdl-cell mdl-cell--3-col card-lesson mdl-card  mdl-shadow--2dp cont">
                     <div class="mdl-card__title title">Unique Countries
                     </div>
                     <i class="material-icons">public</i>
-                    <div class="mdl-card__actions mdl-card--border content">
+                    <div class="mdl-card__actions mdl-card--border content"id = "cont2">
                         <b><?php $countries =  displayUniqueCountries($db); echo $countries?></b>
                     </div>
                     <div class="mdl-card__supporting-text support">
@@ -101,11 +101,11 @@ function displayAdoptedBooks($db){
                     </div>
                 </div>
                 
-                 <div class="mdl-cell mdl-cell--3-col card-lesson mdl-card  mdl-shadow--2dp">
+                 <div class="mdl-cell mdl-cell--3-col card-lesson mdl-card  mdl-shadow--2dp cont">
                     <div class="mdl-card__title title">Employee Tasks
                     </div>
                     <i class="material-icons">content_paste</i>
-                    <div class="mdl-card__actions mdl-card--border content">
+                    <div class="mdl-card__actions mdl-card--border content" id = "cont3">
                         <b><?php $toDos= displayEmployeeToDo($db); echo $toDos?></b>
                     </div>
                     <div class="mdl-card__supporting-text support">
@@ -113,11 +113,11 @@ function displayAdoptedBooks($db){
                     </div>
                 </div>
                 
-                 <div class="mdl-cell mdl-cell--3-col card-lesson mdl-card  mdl-shadow--2dp">
+                 <div class="mdl-cell mdl-cell--3-col card-lesson mdl-card  mdl-shadow--2dp cont">
                     <div class="mdl-card__title title">Messages Exchanged
                     </div>
                     <i class="material-icons">message</i>
-                    <div class="mdl-card__actions mdl-card--border content">
+                    <div class="mdl-card__actions mdl-card--border content"id = "cont4">
                         
                         <b><?php $messages =  displayMessages($db); echo $messages?></b>
                     </div>
