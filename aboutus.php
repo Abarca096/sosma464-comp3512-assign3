@@ -35,7 +35,7 @@
             <div class="mdl-grid">
                 
                 <!-- mdl-cell + mdl-card-->
-                <div class="mdl-cell mdl-cell--9-col card-lesson mdl-card  mdl-shadow--2dp">
+                <div class="mdl-cell mdl-cell--8-col card-lesson mdl-card  mdl-shadow--2dp">
                     <div class="mdl-card__title mdl-color--orange">
                         <h2 class="mdl-card__title-text">About Us</h2>
                     </div>

@@ -35,7 +35,6 @@
                         <h2 class="mdl-card__title-text">Login</h2>
                     </div>
                     <div class="mdl-card__supporting-text">
-                        
                         <form action="checklogin.php" method="GET">
                             <a>Username:</a> <input type="text" name="user" onfocus="removeText()"><br><br>
                             <a>Password:</a> <input type="password" name="password" onfocus="removeText()"><br><br>
@@ -53,11 +52,9 @@
                         </form>
                     </div>    
               </div>  <!-- / mdl-cell + mdl-card -->  
-                
             </div>
         </section>
     </main>    
 </div>    <!-- / mdl-layout --> 
-          
 </body>
 </html>

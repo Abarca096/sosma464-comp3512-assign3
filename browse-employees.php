@@ -1,9 +1,6 @@
 <?php
 session_start();
 include "checklogin.php";
-
-header("Content-Type:text/html;");
-//include 'includes/book-config.inc.php';
 $connection = createConnString();
 
 function displayEmpList($connection) {
@@ -18,10 +15,12 @@ function displayEmpList($connection) {
         // if lastname is set and is not null
         $result = $employee->getEmployeeByName($_GET['filter_lastname']);
     } else {
+        // if nothing is set, show all employees
         $result = $employee->findAllSorted(true);
     }
     $returnVar = "";
     foreach ($result as $row) {
+        // for each row in result, generate html and return it
         $EmployeeID=$row['EmployeeID'];
         $returnVar .= ("<li><a href='?emp=$EmployeeID'>" . $row['FirstName'] . " " . $row['LastName'] . "</a></li>");
     }
@@ -30,20 +29,18 @@ function displayEmpList($connection) {
 
 function displayDetailedEmpInformation($connection) {
     if (isset($_GET['emp'])) { // check to see if server query exists
-        //$sql="SELECT FirstName, LastName, Address, City, Region, Country, Postal, Email FROM Employees WHERE EmployeeID=? order by LastName;";
-        //$result=queryDatabase($sql, array($_GET['emp']));
         $employee = new EmployeesGateway($connection);
         $result=$employee->findById($_GET['emp']);
         $returnVar = "";
         
         if ($result != false) { // check for errors getting data from mysql
-            // go through mysql results, echo appropriate information
+            // go through mysql results, generate appropriate information
             $returnVar .= ("<h3>" . $result['FirstName'] . " " . $result['LastName'] . "</h3>");
             $returnVar .= ("<p>" . $result['Address'] . "<br />");
             $returnVar .= ($result['City'] . ", " . $result['Region'] . "<br />");
             $returnVar .= ($result['Country'] . ", " . $result['Postal'] . "<br />");
             $returnVar .= ($result['Email'] . "</p>");
-        } else {
+        } else { // error, display appropriate message
             $returnVar .= ("An error has occurred!<br>");
             $returnVar .= ("No employee found that matches request! ... try clicking on an employee from the list.<br>"); 
         }
@@ -55,41 +52,36 @@ function displayDetailedEmpInformation($connection) {
 
 function displayDetailedEmpToDoRecords($connection) {
     if (isset($_GET['emp'])) { // check to see if server query exists
-        //$sql="SELECT DateBy, Status, Priority, Description FROM EmployeeToDo WHERE EmployeeID=? order by DateBy;";
         $employee = new EmployeesGateway($connection);
         $result=$employee->getEmployeeToDoRecords($_GET['emp']);
         $returnVar = "";
 
         if ($result != false) { // check for errors getting data from mysql
-            foreach ($result as $row) { // loop through mysql results, echo appropriate information
+            foreach ($result as $row) { // for each row in result, generate html and return it
                 $returnVar .= ("<tr><td>" . date('Y-M-d',strtotime($row['DateBy'])) . "</td><td>" . $row['Status'] . "</td><td>" . $row['Priority'] . "</td><td>" . substr($row['Description'],0,40));
             }
-        } else {
+        } else { // error, display appropriate message
             $returnVar .= ("An error has occurred!<br>");
             $returnVar .= ("No employee found that matches request! ... try clicking on an employee from the list.<br>"); 
         }
     return $returnVar;
     } else { // inform the user that nothing was queried
-        //echo "Your query was misunderstood! No employee found that matches request!<br>";
         return ("<p>Please try clicking on an employee from the list.</p>");
     }
 }
 
 function displayEmpMessages($connection) {
     if (isset($_GET['emp'])) { // check to see if server query exists
-        //$sql = "SELECT MessageDate, Category, ContactID, Content FROM EmployeeMessages WHERE EmployeeID=?;";
         $employee = new EmployeesGateway($connection);
         $result=$employee->getEmpMessages($_GET['emp']);
         $returnVar = "";
         
         if ($result != false) { // check for errors getting data from mysql
-            foreach ($result as $row) { // loop through mysql results, echo appropriate information
-                //$sql2 = 'SELECT FirstName, LastName FROM Employees WHERE EmployeeID=?;';
+            foreach ($result as $row) { // for each row in result, generate html and return it
                 $var=$employee->findById($row['ContactID']);
-                //$contactInfo=$result2->fetch();
                 $returnVar .= ("<tr><td>" . date("Y-M-d",strtotime($row['MessageDate'])) . "</td><td>" . $row['Category'] . "</td><td>" . $var['FirstName'] . " " . $var['LastName'] . "</td><td>" . substr($row['Content'],0,40) . "</td></tr>");
             }
-        } else {
+        } else { // error, display appropriate message
             $returnVar .= ("An error has occurred!<br>");
             $returnVar .= ("No employee found that matches request! ... try clicking on an employee from the list.<br>"); 
         }
@@ -104,7 +96,7 @@ function displayCityFilterList($connection) {
     $result=$employee->getEmployeeCities(true);
     
     $returnVar = "<option value=''></option>";
-    foreach ($result as $row) {
+    foreach ($result as $row) { // for each row in result, generate html and return it
         $returnVar .= "<option value='" . $row['City'] . "'>" . $row['City'] . "</option>";
     }
     return $returnVar;
@@ -200,6 +192,7 @@ function displayCityFilterList($connection) {
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <!-- display requested employees messages list based on employee id -->
                                         <?php echo displayEmpMessages($connection); ?>
                                     </tbody>
                                 </table>
@@ -218,7 +211,7 @@ function displayCityFilterList($connection) {
                         <form action="browse-employees.php" method="GET">
                             <!-- Filter by city -->
                             Filter By City: <select name="filter_city">
-                            
+                                <!-- display requested list of citie -->
                                 <?php echo displayCityFilterList($connection); ?>
                             </select><br><br>
                             
