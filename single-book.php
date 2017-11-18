@@ -5,7 +5,6 @@ session_start();
 include "checklogin.php";
 
 
-//include 'includes/book-config.inc.php';
 
 $connection = createConnString();
 

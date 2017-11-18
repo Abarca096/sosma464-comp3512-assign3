@@ -147,20 +147,32 @@ td, th, table, tbody, thead {
     white-space: normal;
     word-wrap: break-word;
 }
+/* SIMPLE SEARCH */
 #searchbar{
  display: none;
-
 
 }
 #reveal{
   padding:0;
-
   visibility: visible;
-  
 }
+.tooltip{
+  margin-top: 5%;
+  visibility:hidden;
+  position: absolute;
+  z-index:-1;
+  width: 240px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+   
+}
+
+/* ANALYTICS */
 .title{
   margin:auto;
-  
 
 }
 .content{
@@ -194,7 +206,6 @@ td, th, table, tbody, thead {
   
 }
 
-
 #special{
   margin-left:auto;
   margin-right:auto;
@@ -213,19 +224,7 @@ td, th, table, tbody, thead {
 .tWidth img{
   padding-right:4%;
 }
-.tooltip{
-  margin-top: 5%;
-  visibility:hidden;
-  position: absolute;
-  z-index:-1;
-  width: 240px;
-    background-color: #555;
-    color: #fff;
-    text-align: center;
-    padding: 5px 0;
-    border-radius: 6px;
-   
-}
+
 
 /* Single Book */
 #bookImg {
@@ -309,13 +308,7 @@ td, th, table, tbody, thead {
 }
 
 
-
-/* #indexPage{
-  background-image: url("/images/green/Forests.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-} */
-
+/* Employee Filter Card */
 #filtercard{
   visibility: hidden;
 }

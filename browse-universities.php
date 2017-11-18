@@ -4,21 +4,19 @@ session_start();
 include "checklogin.php";
 
 header("Content-Type:text/html;");
-//include 'includes/book-config.inc.php';
 $connection = createConnString();
+//Displays a select list of states
 function displayStates($connection) {
     $connection = createConnString();
     $university = new UniversitiesGateway($connection);
     $result = $university->findStates();
-    
-    
-    
+
    foreach ($result as $row) {
         $returnVar .= ("<option 'value='" . $row['State'] . "'>" . $row['State'] . "</option>");
     }
     return $returnVar;
 }
-
+//Displays the university list
 function displayUniversities($connection) {
      
      $university = new UniversitiesGateway($connection);
@@ -62,7 +60,9 @@ function displayDetailedUniversity($connection) {
         return $returnVar;
     }
 }
+//Generates the map of a university
 function generateMapScript($lat, $long){
+    
    $script = "<script> 
    function initMap(){
     var location = {lat: $lat, lng: $long};

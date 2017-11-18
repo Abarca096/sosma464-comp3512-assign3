@@ -13,14 +13,7 @@
             <div class='mdl-tooltip' for='logout'>Log Out</div>";
   }
   ?>
-  <!--
-  <script type="text/javascript" src="">
-   function userOut(){
-    document.getElementById("logout").addEventListener("click", function(){
-     window.location.href("logOut.php");
-    });
-   } 
-  </script> -->
+ 
  
 <label id="tt2" class="material-icons mdl-badge mdl-badge--overlap" data-badge="5">account_box</label>  
 <div class="mdl-tooltip" for="tt2">Messages</div>                     

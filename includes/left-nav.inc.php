@@ -19,9 +19,7 @@
 <div class="mdl-layout__drawer mdl-color--blue-grey-800 mdl-color-text--amber-200">
        <div class="profile">
            <?php echo generateProfile(); ?>
-          <!-- <img src="images/profile.jpg" class="avatar">
-           <h4>Josh Blair</h4>           
-           <span>jblai698@mtroyal.ca</span> -->
+        
        </div>
 
     <nav class="mdl-navigation mdl-color-text--blue-grey-300">
