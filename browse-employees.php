@@ -4,6 +4,7 @@ include "checklogin.php";
 $connection = createConnString();
 
 function displayEmpList($connection) {
+    // display list of employees depending on filter conditions
     $employee = new EmployeesGateway($connection);
     if ((isset($_GET['filter_city'])) && (isset($_GET['filter_lastname'])) && ($_GET['filter_city']!=null) && ($_GET['filter_lastname']!=null)) {
         // if city and lastname are set and are not null
@@ -28,6 +29,7 @@ function displayEmpList($connection) {
 }
 
 function displayDetailedEmpInformation($connection) {
+    // display detailed information about each employee
     if (isset($_GET['emp'])) { // check to see if server query exists
         $employee = new EmployeesGateway($connection);
         $result=$employee->findById($_GET['emp']);
@@ -51,6 +53,7 @@ function displayDetailedEmpInformation($connection) {
 }
 
 function displayDetailedEmpToDoRecords($connection) {
+    // display detailed employee todo records
     if (isset($_GET['emp'])) { // check to see if server query exists
         $employee = new EmployeesGateway($connection);
         $result=$employee->getEmployeeToDoRecords($_GET['emp']);
@@ -71,6 +74,7 @@ function displayDetailedEmpToDoRecords($connection) {
 }
 
 function displayEmpMessages($connection) {
+    // display employee messages
     if (isset($_GET['emp'])) { // check to see if server query exists
         $employee = new EmployeesGateway($connection);
         $result=$employee->getEmpMessages($_GET['emp']);
@@ -92,6 +96,7 @@ function displayEmpMessages($connection) {
 }
 
 function displayCityFilterList($connection) {
+    // display filter list options
     $employee = new EmployeesGateway($connection);
     $result=$employee->getEmployeeCities(true);
     
