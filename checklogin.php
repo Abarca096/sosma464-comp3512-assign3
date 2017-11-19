@@ -35,7 +35,8 @@ if (!isset($_SESSION['Email'])) {
         }
     } else {
         // if string nonexistant then redirect to login page
-        $_SESSION['last_page']=basename($_SERVER['PHP_SELF']);
+        //$_SESSION['last_page']=basename($_SERVER['PHP_SELF']);
+        $_SESSION['last_page']='https://'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
         header("Location:login.php");
     }
 }
