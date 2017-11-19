@@ -27,11 +27,11 @@ function init (){
         var search = document.querySelector("#reveal button");
 
         visible.addEventListener("click",submit);
-
+        sear.addEventListener("keypress",submit);
        
-        function submit(){
+        function submit(e){
        
-       
+            if(e.keyCode==13||e.type=="click"){
             var text = document.querySelector("#search").value;
             var query= [text.substr(0,text.indexOf(' ')),text.substr(text.indexOf(' ')+1)];
             
@@ -56,7 +56,6 @@ function init (){
                 query[1]="";
             }
             
-
            
 
             //redirects the page to browse emplyees with the respective search strings as a query
@@ -66,7 +65,7 @@ function init (){
           window.location.href = "../browse-employees.php?filter_city="+query[1]+"&filter_lastname="+query[0];
         }
         }
-        
+        }
 
       
     }

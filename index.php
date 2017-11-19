@@ -13,7 +13,7 @@
     
     <script src="https://code.getmdl.io/1.1.3/material.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.7.2.min.js" ></script>
-    <script src="js/search.js"></script>
+    <script src="js/functions.js"></script>
     
 </head>
 
