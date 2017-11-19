@@ -5,19 +5,19 @@ session_start();
     
 if (!isset($_SESSION['Email'])) {
      // not logged in
-     if ((isset($_GET['user'])) && (isset($_GET['password']))) {
+     if ((isset($_POST['user'])) && (isset($_POST['password']))) {
         // check for query string - if string exists then user is trying to login
 
         $connection = createConnString();
         $user = new CheckLoginGateway($connection);
-        $result = $user->findById($_GET['user']);
+        $result = $user->findById($_POST['user']);
 
-        if ($result['Password'] == md5($_GET['password'] . $result['Salt'])) {
+        if ($result['Password'] == md5($_POST['password'] . $result['Salt'])) {
             // if the password entered matches the user entered
-            $additionalinfo = $user->getAdditionalUserData($_GET['user']);
+            $additionalinfo = $user->getAdditionalUserData($_POST['user']);
             
             // set session variables
-            $_SESSION['Email']=$_GET['user'];
+            $_SESSION['Email']=$_POST['user'];
             $_SESSION['FirstName']=$additionalinfo['FirstName'];
             $_SESSION['LastName']=$additionalinfo['LastName'];
             $_SESSION['UserID']=$additionalinfo['UserID'];
