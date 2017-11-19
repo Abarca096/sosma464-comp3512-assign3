@@ -1,22 +1,16 @@
 <?php 
 session_start();
 include "checklogin.php";
-//include 'includes/book-config.inc.php';
-//include 'includes/book-config.inc.php';
 $connection = createConnString();
-/*
-if(!isset($_SESSION['userid'])){
->>>>>>> Stashed changes
-    header('Location: index.php');
-}
-*/
+
+//this function returns user profile information, based on the userID of the session.
 function getUserInfo($connection){
     $userID=null;
     if(isset($_SESSION['UserID'])){
-    $userID = $_SESSION['UserID'];
+    $userID = $_SESSION['UserID']; //sets the userID to the value stored in the session
     }
     $db = new UsersGateway($connection);
-    $result = $db->findById($userID);
+    $result = $db->findById($userID); //queries for user information based on the userID.
     $userInfo="";
     $userInfo .= "<li><b>Address: </b>".$result['Address']."</li><li><b>City: </b>".$result['City']."</li><li><b>Region: </b>".$result['Region']."</li><li><b>Country: </b>".$result['Country']."</li><li><b>Postal: </b>".$result['Postal']."</li><li><b>Phone: </b>".$result['Phone']."</li><li><b>Email: </b>".$result['Email']."</li>";
 return $userInfo;
@@ -62,9 +56,6 @@ return $userInfo;
                                         <tr><td></td><td></td></tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                            <!--<img id="profilePicture" src = "https://image.flaticon.com/icons/svg/21/21294.svg"/>
-                            <h2> -->
                             <?php
                             echo '<td><img id="profilePicture" src="images/users/' . $_SESSION['PicID'] . '.jpg"></td>
                                     <li><h2>';

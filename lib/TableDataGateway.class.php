@@ -69,7 +69,7 @@ public function findAll($sortFields=null)
 }
 
 /*
-Returns all records in the table, with a limit 20
+Returns all records in the table, with desired limit passed as a parameter
 */
 public function findAllLimit($sortFields=null, $limit, $ascending = null){
     $sql = $this->getSelectStatement();
@@ -115,13 +115,6 @@ public function findById($id)
  return $statement->fetch();
 } 
 
-public function findByIdJoin($id, $table){
-    $sql = $this->getSelectStatementJoin($table);
-
- $statement = DatabaseHelper::runQuery($this->connection, $sql,
- Array(':id' => $id));
- return $statement->fetchAll();
-}
 
 public function findBySecondaryKey($id)
 {
@@ -133,7 +126,6 @@ public function findBySecondaryKey($id)
  return $statement->fetch();
 } 
 
- 
 
 public function fetchSpecificQuery($sortFields=null, $id)
 {
