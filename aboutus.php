@@ -35,7 +35,7 @@
             <div class="mdl-grid">
                 
                 <!-- mdl-cell + mdl-card-->
-                <div class="mdl-cell mdl-cell--8-col card-lesson mdl-card  mdl-shadow--2dp">
+                <div class="mdl-cell mdl-cell--12-col card-lesson mdl-card  mdl-shadow--2dp">
                     <div class="mdl-card__title mdl-color--orange">
                         <h2 class="mdl-card__title-text">About Us</h2>
                     </div>
@@ -139,9 +139,63 @@
                                     <td>NA</td>
                                 </tr>
                                 <tr>
-                                    <td>Flag Icons</td>
-                                    <td>http://flag-icon-css.lip.is/r</td>
-                                    <td>NA</td>
+                                    <td>Card Image on About Us page</td>
+                                    <td>https://www-tc.pbs.org/wnet/nature/files/2014/09/mezzanine_431.jpg</td>
+                                    <td>4</td>
+                                </tr>
+                                <tr>
+                                    <td>User Profile Picture #1</td>
+                                    <td>https://vignette.wikia.nocookie.net/animal-jam-clans-1/images/b/b8/Red-panda-06.jpg/revision/latest?cb=20170205033304</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td>User Profile Picture #2</td>
+                                    <td>https://fortunedotcom.files.wordpress.com/2014/09/174187214.jpg</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td>User Profile Picture #3</td>
+                                    <td>http://weknowyourdreams.com/images/fox/fox-01.jpg</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td>User Profile Picture #4</td>
+                                    <td>https://pixabay.com/p-1895080/?no_redirectg</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td>User Profile Picture #5</td>
+                                    <td>https://cdn.pixabay.com/photo/2017/07/02/17/52/dog-2465173_960_720.jpg</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td>User Profile Picture #6</td>
+                                    <td>https://www.bluecross.org.uk/sites/default/files/styles/content_small/public/assets/images/124044lpr_0.jpg?itok=FLit9A9K</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td>User Profile Picture #7</td>
+                                    <td>http://cdn1.bostonmagazine.com/wp-content/uploads/sites/2/2017/04/chicken.jpg</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td>User Profile Picture #8</td>
+                                    <td>http://thewallpaper.co/wp-content/uploads/2017/07/animalskitten-lion-free-high-definition-wildlife-backgrounds-eyes-mane-face-fur-cats-predator-desktop-images_1920x1200.jpg</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td>User Profile Picture #9</td>
+                                    <td>https://www.askideas.com/media/39/Baby-Goat-Showing-Tongue-Funny-Face-Image.jpg</td>
+                                </tr>
+                                <tr>
+                                    <td>User Profile Picture #10</td>
+                                    <td>https://ohsinsider.com/wp-content/uploads/2016/09/wolf2.jpg</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td>Generic Profile Picture</td>
+                                    <td>https://i.pinimg.com/originals/a4/62/fe/a462fe48b68997e1b2c70746004ce437.jpg</td>
+                                    <td>1</td>
                                 </tr>
                             </tbody>
                         </table>
