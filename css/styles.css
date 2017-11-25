@@ -403,3 +403,10 @@ td, th, table, tbody, thead {
 .mdl-layout__header-row{
   margin-top:0.5%;
 }
+
+.error {
+    background: #FFCDD2 url(../images/error.png) no-repeat 98% center;
+    box-shadow: 0 0 5px #FF5252;
+    border-color: #FF1744;
+    background-size: 15px 15px;
+}
