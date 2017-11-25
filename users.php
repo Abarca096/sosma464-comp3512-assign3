@@ -33,6 +33,7 @@ return $userInfo;
     <script src="https://code.jquery.com/jquery-1.7.2.min.js" ></script>
     <script src="https://code.getmdl.io/1.1.3/material.min.js"></script>
     <script src="js/functions.js"></script>
+    <script src ="js/users.js"></script>
     
 </head>
 
@@ -49,8 +50,21 @@ return $userInfo;
                 <div class="mdl-cell mdl-cell--12-col card-lesson mdl-card  mdl-shadow--2dp">
                     <div class="mdl-card__actions mdl-card--border content"></div>
                     <div class="mdl-card__title title ">Your Profile</div>
-                    <div id="user" class="mdl-card__supporting-text support">
-                        <ul class="demo-list-item mdl-list">
+                    <div id="user" class="mdl-card__supporting-text" id = "supported">
+                        <div id="editProfile">
+                            <form action = "editProfile.php" method="POST">
+                                <label>First Name:</label> <input type="text" name="firstName"> <br>
+                                <label>Last Name:</label> <input type="text" name="lastName"> <br>
+                                <label>Address:</label> <input type="text" name="address"> <br>
+                                <label>City:</label> <input type="text" name="city"> <br>
+                                <label>Region:</label> <input type="text" name="region"> <br>
+                                <label>Country:</label> <input type="text" name="country"> <br>
+                                <label>Postal:</label> <input type="text" name="postal"> <br>
+                                <label>Phone:</label> <input type="text" name="phone"> <br>
+                                <label>Email:</label> <input type="text" name="email"> <br>
+                                <input type="submit" value="Submit changes">
+                            </form>
+                        </div>
                             <table>
                                 <thead>
                                         <tr><td></td><td></td></tr>
@@ -74,8 +88,7 @@ return $userInfo;
                         </tr>
                         </tbody>
                         </table>
-                        </ul>
-                        <button><i class='material-icons'>mode_edit</i>Edit your Profile</button>
+                        <button id="editButton"><i class='material-icons'>mode_edit</i>Edit your Profile</button>
                     </div>
                 </div>
                 
