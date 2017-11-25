@@ -12,10 +12,37 @@ function getUserInfo($connection){
     $db = new UsersGateway($connection);
     $result = $db->findById($userID); //queries for user information based on the userID.
     $userInfo="";
-    $userInfo .= "<li><b>Address: </b>".$result['Address']."</li><li><b>City: </b>".$result['City']."</li><li><b>Region: </b>".$result['Region']."</li><li><b>Country: </b>".$result['Country']."</li><li><b>Postal: </b>".$result['Postal']."</li><li><b>Phone: </b>".$result['Phone']."</li><li><b>Email: </b>".$result['Email']."</li>";
+    $userInfo .= "<li><b>Address: </b>".$result['Address']
+                ."</li><li><b>City: </b>".$result['City']
+                ."</li><li><b>Region: </b>".$result['Region']
+                ."</li><li><b>Country: </b>".$result['Country']
+                ."</li><li><b>Postal: </b>".$result['Postal']
+                ."</li><li><b>Phone: </b>".$result['Phone']
+                ."</li><li><b>Email: </b>".$result['Email']."</li>";
 return $userInfo;
 }
 
+function generateUserForm($connection){
+    $userID=null;
+    if(isset($_SESSION['UserID'])){
+    $userID = $_SESSION['UserID']; //sets the userID to the value stored in the session
+    }
+    $db = new UsersGateway($connection);
+    $result = $db->findById($userID); //queries for user information based on the userID.
+    /* FirstName, LastName, Address, City, Region, Country, Postal, Phone, Email, Privacy */
+    $form = "";
+    $form .= '<label>First Name:</label> <input type="text" name="firstName" value="'. $result['FirstName'] . '"> <br>
+            <label>Last Name:</label> <input type="text" name="lastName" value="' . $result['LastName'] . '"> <br>
+            <label>Address:</label> <input type="text" name="address" value="' . $result['Address'] . '"> <br>
+            <label>City:</label> <input type="text" name="city" value="' . $result['City'] . '"> <br>
+            <label>Region:</label> <input type="text" name="region" value="' . $result['Region'] . '"> <br>
+            <label>Country:</label> <input type="text" name="country" value="' . $result['Country'] . '"> <br>
+            <label>Postal:</label> <input type="text" name="postal" value="' . $result['Postal'] . '"> <br>
+            <label>Phone:</label> <input type="text" name="phone" value ="' . $result['Phone'] . '"> <br>
+            <label>Email:</label> <input type="text" name="email" value ="' . $result['Email'] . '"> <br>';
+    
+    return $form;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -48,21 +75,14 @@ return $userInfo;
         <section class="page-content">
             <div class="mdl-grid">
                 <div class="mdl-cell mdl-cell--12-col card-lesson mdl-card  mdl-shadow--2dp">
-                    <div class="mdl-card__actions mdl-card--border content"></div>
-                    <div class="mdl-card__title title ">Your Profile</div>
                     <div id="user" class="mdl-card__supporting-text" id = "supported">
                         <div id="editProfile">
                             <form action = "editProfile.php" method="POST">
-                                <label>First Name:</label> <input type="text" name="firstName"> <br>
-                                <label>Last Name:</label> <input type="text" name="lastName"> <br>
-                                <label>Address:</label> <input type="text" name="address"> <br>
-                                <label>City:</label> <input type="text" name="city"> <br>
-                                <label>Region:</label> <input type="text" name="region"> <br>
-                                <label>Country:</label> <input type="text" name="country"> <br>
-                                <label>Postal:</label> <input type="text" name="postal"> <br>
-                                <label>Phone:</label> <input type="text" name="phone"> <br>
-                                <label>Email:</label> <input type="text" name="email"> <br>
-                                <input type="submit" value="Submit changes">
+                                <h4>Edit your Information</h4>
+                                <?php echo generateUserForm($connection); ?>
+                                <button type="submit" value="Submit changes">Submit Changes</button>
+                                <button type="button" id="cancelButton">Cancel</button>
+                                <p><i><font color="#405d27">Items in green will be changed</font></i></p>
                             </form>
                         </div>
                             <table>
@@ -72,17 +92,17 @@ return $userInfo;
                                     <tbody>
                             <?php
                             echo '<td><img id="profilePicture" src="images/users/' . $_SESSION['PicID'] . '.jpg"></td>
-                                    <li><h2>';
+                                    <h2>';
                             if(isset($_SESSION['FirstName'])){
                                 echo "<b>".$_SESSION['FirstName']." </b>";
                             }
                             if(isset($_SESSION['LastName'])){
                                 echo "<b>".$_SESSION['LastName']."</b>";
                             }
-                            echo "</h2></li>"
+                            echo "</h2>"
                             ?>
                            <!-- </h2> -->
-                           <td>
+                           <td id="userInformation">
                             <?php echo getUserInfo($connection) ?>
                             </td>
                         </tr>

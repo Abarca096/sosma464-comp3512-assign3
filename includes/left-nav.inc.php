@@ -5,7 +5,7 @@
          if($_SESSION['Email'] != null){
             $profile .= '<img src="images/users/' . $_SESSION['PicID'] . '.jpg" class="avatar">';
             if(isset($_SESSION['FirstName'])&&isset($_SESSION['LastName'])){
-                $profile .= " <h4 id='profilePic'>" . $_SESSION['FirstName'] . " " . $_SESSION['LastName'] . "</h4>";
+                $profile .= " <h4 id='profileName'>" . $_SESSION['FirstName'] . " " . $_SESSION['LastName'] . "</h4>";
             }
             $profile .= '<span>' . $_SESSION['Email'] . '</span>';
         }
