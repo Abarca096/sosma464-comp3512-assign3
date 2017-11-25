@@ -15,7 +15,7 @@ protected function getPrimaryKeyName(){
 }
  protected function getBookVisits()
  {
- return "SELECT COUNT(b1.CountryCode) as count, b1.CountryCode as Code, c1.CountryName as countryName FROM BookVisits as b1, Countries as c1 WHERE c1.CountryCode = b1.CountryCode GROUP BY c1.CountryName ORDER BY COUNT(b1.CountryCode) DESC LIMIT 15";
+ return "SELECT COUNT(b1.CountryCode) AS count, b1.CountryCode AS Code, c1.CountryName AS countryName FROM BookVisits as b1, Countries as c1 WHERE c1.CountryCode = b1.CountryCode GROUP BY c1.CountryName ORDER BY COUNT(b1.CountryCode) DESC LIMIT 15";
  }
  protected function getTopTen() {
  return "SELECT SUM(Quantity) as sum,ISBN10, Title FROM AdoptionBooks as a1 JOIN Books as b1 ON a1.BookID = b1.BookID GROUP BY a1.BookID ORDER BY SUM(Quantity) DESC LIMIT 10";
@@ -25,7 +25,7 @@ protected function getPrimaryKeyName(){
  }
  
  protected function getNumberofVisits(){
-  return "SELECT COUNT(DateViewed) as visits FROM BookVisits WHERE DateViewed LIKE '06/%' ";
+  return "SELECT COUNT(DateViewed) as visits,DateViewed FROM BookVisits WHERE DateViewed LIKE '06/%' ";
  }
   protected function getEmployeeMessageCount(){
   return "Select Count(MessageID) as messages from EmployeeMessages WHERE MessageDate LIKE '%-06-%'; ";
@@ -93,7 +93,27 @@ public function findEmployeeToDoCount($sortFields=null){
 }
 
 
+public function findByCC($id)
+{
+ $sql = 'SELECT COUNT(b1.CountryCode) as count, b1.CountryCode as Code, c1.CountryName as countryName FROM BookVisits as b1, Countries as c1 WHERE c1.CountryCode = b1.CountryCode AND b1.CountryCode =:id GROUP BY c1.CountryName ORDER BY COUNT(b1.CountryCode) DESC LIMIT 15';
 
-}
+ $statement = DatabaseHelper::runQuery($this->connection, $sql,
+ Array(':id' => $id));
+ return $statement->fetch();
+} 
+
+public function findDate($sortFields = null)
+{
+ $sql = "SELECT COUNT(DateViewed) as visits, SUBSTRING(DateViewed,4,2) as day FROM BookVisits WHERE DateViewed LIKE '06/%' GROUP BY SUBSTRING(DateViewed,4,2) ORDER BY SUBSTRING(DateViewed,4,2) ";
+
+ // add sort order if required
+ if (! is_null($sortFields)) {
+ $sql .= ' ORDER BY ' . $sortFields;
+ }
+ $statement = DatabaseHelper::runQuery($this->connection, $sql, null);
+ return $statement->fetchAll();
+
+
+}}
 
 ?>
