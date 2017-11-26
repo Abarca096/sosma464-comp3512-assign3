@@ -115,18 +115,6 @@ public function findById($id)
  return $statement->fetch();
 } 
 
-
-public function findBySecondaryKey($id)
-{
- $sql = $this->getSelectStatement() . ' WHERE ' .
- $this->getSecondaryKeyName() . '=:id';
-
- $statement = DatabaseHelper::runQuery($this->connection, $sql,
- Array(':id' => $id));
- return $statement->fetch();
-} 
-
-
 public function fetchSpecificQuery($sortFields=null, $id)
 {
  $sql = $this->getQuery() . '=:id';

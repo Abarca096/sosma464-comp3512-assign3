@@ -36,23 +36,24 @@
                         <h2 class="mdl-card__title-text">Register</h2>
                     </div>
                     <div class="mdl-card__supporting-text">
-                        <form  method="POST" onsubmit="return validateForm()">
-                            <a>First Name:</a> <input type="text" name="firstname"><br><br>
-                            <a>Last Name:</a> <input type="text" name="lastname"><br><br>
-                            <a>Address:</a> <input type="text" name="address"><br><br>
-                            <a>City:</a> <input type="text" name="city"<br><br><br>
-                            <a>Region:</a> <input type="text" name="region"><br><br>
-                            <a>Country:</a> <input type="text" name="country"><br><br>
-                            <a>Postal:</a> <input type="text" name="postal"><br><br>
-                            <a>Phone:</a> <input type="text" name="phone"><br><br>
-                            <a>Username:</a> <input type="text" name="user"><br><br>
-                            <a>Password:</a> <input type="password" name="password"><br><br>
+                        <form id="registerForm" method="POST" action="updateUser.php">
+                            <label>First Name:</label> <input type="text" name="firstname"><br><br>
+                            <label>Last Name:</label> <input class="required" type="text" name="lastname"><br><br>
+                            <label>Address:</label> <input type="text" name="address"><br><br>
+                            <label>City:</label> <input class="required" type="text" name="city"><br><br><br>
+                            <label>Region:</label> <input type="text" name="region"><br><br>
+                            <label>Country:</label> <input class="required" type="text" name="country"><br><br>
+                            <label>Postal:</label> <input type="text" name="postal"><br><br>
+                            <label>Phone:</label> <input type="text" name="phone"><br><br>
+                            <label>Username:</label> <input id="userName" class="required" type="text" name="user"><br><br>
+                            <label>Password:</label> <input class="required passwd" type="password" name="password"><br><br>
+                            <label>Confirm Password:</label> <input class="required passwd" type="password" name="password"><br><br>
                             <?php
                                 if($_GET['error']==true){
                                     echo "<a id='errMsg'><font color='red'>Invalid username or password, please try again</font></a><br><br>";
                                 }
                             ?>
-                            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">SUBMIT</button>
+                            <input type="submit" value="SUBMIT" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
                         </form>
                     </div>    
               </div>  <!-- / mdl-cell + mdl-card -->  

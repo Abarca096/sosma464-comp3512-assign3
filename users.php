@@ -32,14 +32,15 @@ function generateUserForm($connection){
     /* FirstName, LastName, Address, City, Region, Country, Postal, Phone, Email, Privacy */
     $form = "";
     $form .= '<label>First Name:</label> <input type="text" name="firstName" value="'. $result['FirstName'] . '"> <br>
-            <label>Last Name:</label> <input type="text" name="lastName" value="' . $result['LastName'] . '"> <br>
+            <label>Last Name:</label> <input class="required" type="text" name="lastName" value="' . $result['LastName'] . '"> <br>
             <label>Address:</label> <input type="text" name="address" value="' . $result['Address'] . '"> <br>
-            <label>City:</label> <input type="text" name="city" value="' . $result['City'] . '"> <br>
+            <label>City:</label> <input class="required" type= "text" name="city" value="' . $result['City'] . '"> <br>
             <label>Region:</label> <input type="text" name="region" value="' . $result['Region'] . '"> <br>
-            <label>Country:</label> <input type="text" name="country" value="' . $result['Country'] . '"> <br>
+            <label>Country:</label> <input class="required" type="text" name="country" value="' . $result['Country'] . '"> <br>
             <label>Postal:</label> <input type="text" name="postal" value="' . $result['Postal'] . '"> <br>
             <label>Phone:</label> <input type="text" name="phone" value ="' . $result['Phone'] . '"> <br>
-            <label>Email:</label> <input type="text" name="email" value ="' . $result['Email'] . '"> <br>';
+            <label>Email:</label> <input id="userName" class="required" type="text" name="email" value ="' . $result['Email'] . '"> <br>
+            <input type="hidden" name="UserID" value="'.$_SESSION['UserID'].'" />';
     
     return $form;
 }
@@ -77,7 +78,7 @@ function generateUserForm($connection){
                 <div class="mdl-cell mdl-cell--12-col card-lesson mdl-card  mdl-shadow--2dp">
                     <div id="user" class="mdl-card__supporting-text" id = "supported">
                         <div id="editProfile">
-                            <form action = "editProfile.php" method="POST">
+                            <form id = "profileForm" action = "updateUser.php" method="POST">
                                 <h4>Edit your Information</h4>
                                 <?php echo generateUserForm($connection); ?>
                                 <button type="submit" value="Submit changes">Submit Changes</button>
