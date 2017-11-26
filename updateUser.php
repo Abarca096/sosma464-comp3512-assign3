@@ -9,7 +9,7 @@ if(isset($_POST['UserID'])){
     if(isset($_POST['firstName'])){
         $fName = $_POST['firstName'];
     }
-    if(isset($_POST['lastname'])){
+    if(isset($_POST['lastName'])){
         $lName = $_POST['lastName'];
     }
     if(isset($_POST['address'])){
