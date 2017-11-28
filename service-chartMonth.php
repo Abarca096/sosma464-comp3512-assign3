@@ -7,15 +7,13 @@ $connection = createConnString();
 $db = new AnalyticsGateway($connection);
 
    
-$result = $db->findAllVisits(null);
-
-$countries =[];
+$result = $db->findDate(null);
+$dates = [];
 
 foreach($result as $row){
-    $countries[] = array("Country"=>$row['countryName'], "Count"=>$row['count']);
+    $dates[] = array("Day"=>$row['day'], "Visits"=>$row['visits']);
 }
-
-$j = json_encode($countries);
+$j = json_encode($dates);
 print_r ($j);
 
 

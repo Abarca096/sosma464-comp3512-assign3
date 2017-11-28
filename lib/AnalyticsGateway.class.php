@@ -114,6 +114,18 @@ public function findDate($sortFields = null)
  return $statement->fetchAll();
 
 
-}}
+}
+  public function findAllVisits($sortFields=null)
+{
+ $sql = "SELECT COUNT(b1.CountryCode) AS count, b1.CountryCode AS Code, c1.CountryName AS countryName FROM BookVisits as b1, Countries as c1 WHERE c1.CountryCode = b1.CountryCode GROUP BY c1.CountryName ORDER BY COUNT(b1.CountryCode) DESC";
+ // add sort order if required
+ if (! is_null($sortFields)) {
+ $sql .= ' ORDER BY ' . $sortFields;
+ }
+ $statement = DatabaseHelper::runQuery($this->connection, $sql, null);
+ return $statement->fetchAll();
+}
+ 
+}
 
 ?>

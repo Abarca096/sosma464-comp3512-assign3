@@ -12,7 +12,7 @@ $result = $db->findAllVisits(null);
 $countries =[];
 
 foreach($result as $row){
-    $countries[] = array("Country"=>$row['countryName'], "Count"=>$row['count']);
+    $countries[] = array("Country"=>$row['countryName'], "Count"=>(int)$row['count']);
 }
 
 $j = json_encode($countries);

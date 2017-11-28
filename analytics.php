@@ -62,6 +62,12 @@ function displayAdoptedBooks($db){
     <script src="https://code.getmdl.io/1.1.3/material.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.7.2.min.js" ></script>
     <script src="js/functions.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript" src="js/monthChart.js"> </script>
+    <script type="text/javascript" src="js/geoMap.js"> </script>
+
+    
 </head>
 
 <body>
@@ -135,7 +141,16 @@ function displayAdoptedBooks($db){
                     </div>
                 </div>
                 
-                <div class="mdl-cell mdl-cell--4-col card-lesson mdl-card  mdl-shadow--2dp">
+                <div class="mdl-cell mdl-cell--5-col card-lesson mdl-card  mdl-shadow--2dp">
+                    <div class="mdl-card__title" id = "special">Top Visitor Countries
+                    </div>
+                    <div class="mdl-card__actions mdl-card--border" id ="charts" >
+                        <div id = "chart_div"></div>
+                        <div id = "geoMap"></div>
+                    </div>
+                </div>
+                
+                <div class="mdl-cell mdl-cell--5-col card-lesson mdl-card  mdl-shadow--2dp">
                     <div class="mdl-card__title" id = "special">Top Visitor Countries
                     </div>
                     <div class="mdl-card__actions mdl-card--border">

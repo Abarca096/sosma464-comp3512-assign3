@@ -224,7 +224,23 @@ td, th, table, tbody, thead {
 .tWidth img{
   padding-right:4%;
 }
+#chart_div{
+    position: absolute;
+ margin-top:150px;
+ width:95%;
 
+
+}
+#geoMap{
+  position: absolute;
+  width:80%;
+  margin-left: 50px;
+    margin-top:500px;
+
+}
+#charts{
+  position: absolute;
+}
 
 /* Single Book */
 #bookImg {
