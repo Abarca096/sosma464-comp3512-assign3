@@ -1,3 +1,9 @@
+<?php
+
+session_start();
+include "checklogin.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,12 +29,12 @@
             mdl-layout--fixed-header">
             
     <?php 
-    session_start();
-    if($_SESSION['Email'] != null) {
-        include "checklogin.php";
-    }
-    include 'includes/header.inc.php'; ?>
-    <?php include 'includes/left-nav.inc.php'; ?>
+    //session_start();
+    //if($_SESSION['Email'] != null) {
+    //    include "checklogin.php";
+    //}
+    include 'includes/header.inc.php'; 
+    include 'includes/left-nav.inc.php';?>
     
     <main class="mdl-layout__content mdl-color--grey-50" id="indexPage">
         <section class="page-content">
