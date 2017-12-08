@@ -145,7 +145,7 @@ function displayAdoptedBooks($db){
                     <div class="mdl-card__title" id = "special">Visits Per Day
                     </div>
                     <div class="mdl-card__actions mdl-card--border charts">
-                        <div id = "chart_div"></div>
+                        <div id = "chart_div" style=" height: 250px;"></div>
                         
                     </div>
                 </div>

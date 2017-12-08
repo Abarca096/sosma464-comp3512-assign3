@@ -199,7 +199,7 @@ td, th, table, tbody, thead {
    
 }
 .cont i{
-  left:45%;
+  left:46.5%;
   margin-top:50px;
   position: absolute;
   padding-bottom:5%;
@@ -228,9 +228,12 @@ td, th, table, tbody, thead {
 #geoMap{
   margin:auto;
 
+}
+#chart_div{
+
+  margin:auto;
 
 }
-
 /* Single Book */
 #bookImg {
 	transition: .6s ease-in-out;
