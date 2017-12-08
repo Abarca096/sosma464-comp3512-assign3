@@ -20,9 +20,12 @@ google.charts.setOnLoadCallback(drawVisits);
               
                 
                  var options = {
+                 chartArea:{left:50},
                  title: 'Visits Per Day in June',
-                hAxis: {title: 'Day',  titleTextStyle: {color: '#333'}},
-                vAxis: {minValue: 0}
+                 hAxis: {title: 'Day',  titleTextStyle: {color: '#333'}},
+                 vAxis: {baseline: 0, minValue: 200}
+               
+                
         };
                 
                 

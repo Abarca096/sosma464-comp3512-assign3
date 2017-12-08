@@ -21,7 +21,13 @@
                 }
               
 
-                     var options = { };
+                      var options = {
+                    
+                    colorAxis: {values:[0,50,5000],colors: ['green', "yellow", 'red']},
+                    backgroundColor: '#81d4fa',
+                    datalessRegionColor: '#grey',
+
+        };
 
         var chart = new google.visualization.GeoChart(document.getElementById('geoMap'));
 
