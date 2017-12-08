@@ -7,16 +7,14 @@ $connection = createConnString();
 $db = new AnalyticsGateway($connection);
 
    
-$result = $db->findAllVisits(null);
+$result = $db->findGetBookVisits(null);
 
 $countries =[];
 $i =0;
 foreach($result as $row){
-    $countries[] = array("Country"=>$row['countryName'], "Code"=>$row['Code']);
+    $countries[] = array("Country"=>$row['countryName'], "Code"=>$row['Code'], "Count"=>$row['count']);
     $i++;
-    if($i==16){
-        break;
-    }
+ 
 }
 
 $j = json_encode($countries);

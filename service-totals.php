@@ -12,7 +12,7 @@ $empMsg = $db->findEmployeeMessageCount();
 $countryCount = $db->findUniqueCountries();
 $visitsNum = $db->findNumberofVisits();
 
-$totals[]=array("Visits"=>$visitsNum['visits'], "Countries"=>$countryCount['countries'], "Employee to-do's"=>$empToDo['todos'], "Employee Messages"=>$empMsg['messages']);
+$totals[]=array("Visits"=>$visitsNum['visits'], "Countries"=>$countryCount['countries'], "ToDos"=>$empToDo['todos'], "Messages"=>$empMsg['messages']);
 
 
 $j = json_encode($totals);

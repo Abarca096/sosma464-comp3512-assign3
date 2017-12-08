@@ -66,6 +66,7 @@ function displayAdoptedBooks($db){
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type="text/javascript" src="js/monthChart.js"> </script>
     <script type="text/javascript" src="js/geoMap.js"> </script>
+    <script type="text/javascript" src="js/services.js"> </script>
 
     
 </head>
@@ -90,12 +91,12 @@ function displayAdoptedBooks($db){
                     <div class="mdl-card__actions mdl-card--border content" id = "cont1">
                         <b>
                         <!-- Display the Number of Vistors in June 2017 -->
-                        <?php $visits =  displayVisitors($db); echo $visits?>
+                        <?php //$visits =  displayVisitors($db); echo $visits?>
                         </b>
                     </div>
-                    <div class="mdl-card__supporting-text support">
+                    <div id = "sup1" class="mdl-card__supporting-text support" >
                         <!-- Describes the queried number -->
-                        <p>There were <?php echo $visits?> visits in June</p>
+                        <p>There were <?php //echo $visits?> visits in June</p>
                     </div>
                 </div>
                 
@@ -105,11 +106,11 @@ function displayAdoptedBooks($db){
                     <i class="material-icons">public</i>
                     <div class="mdl-card__actions mdl-card--border content"id = "cont2">
                         <!-- Display the Number of Unique Countires the site had Vistors from -->
-                        <b><?php $countries =  displayUniqueCountries($db); echo $countries?></b>
+                        <b><?php //$countries =  displayUniqueCountries($db); echo $countries?></b>
                     </div>
-                    <div class="mdl-card__supporting-text support">
+                    <div class="mdl-card__supporting-text support" id = "sup2">
                         <!-- Describes the queried number -->
-                        <p>There were <?php echo $countries?> unique countries</p>
+                        <p>There were <?php //echo $countries?> unique countries</p>
                     </div>
                 </div>
                 
@@ -119,11 +120,11 @@ function displayAdoptedBooks($db){
                     <i class="material-icons">content_paste</i>
                     <div class="mdl-card__actions mdl-card--border content" id = "cont3">
                         <!-- Display the Total Number of Employee to-dos in June 2017 -->
-                        <b><?php $toDos= displayEmployeeToDo($db); echo $toDos?></b>
+                        <b><?php //$toDos= displayEmployeeToDo($db); echo $toDos?></b>
                     </div>
-                    <div class="mdl-card__supporting-text support">
+                    <div class="mdl-card__supporting-text support" id = "sup3">
                         <!-- Describes the queried number -->
-                        <p>There were <?php echo $toDos?> employee tasks</p>
+                        <p>There were <?php //echo $toDos?> employee tasks</p>
                     </div>
                 </div>
                 
@@ -133,11 +134,11 @@ function displayAdoptedBooks($db){
                     <i class="material-icons">message</i>
                     <div class="mdl-card__actions mdl-card--border content"id = "cont4">
                         <!-- Display the Total Number of Employee Messages in June 2017 -->
-                        <b><?php $messages =  displayMessages($db); echo $messages?></b>
+                        <b><?php// $messages =  displayMessages($db); echo $messages?></b>
                     </div>
-                    <div class="mdl-card__supporting-text support">
+                    <div class="mdl-card__supporting-text support" id = "sup4">
                         <!-- Describes the queried number -->
-                        <p>There were <?php echo $messages?> messages exchanged</p>
+                        <p>There were <?php// echo $messages?> messages exchanged</p>
                     </div>
                 </div>
                 
@@ -161,10 +162,10 @@ function displayAdoptedBooks($db){
                 <div class="mdl-cell mdl-cell--4-col card-lesson mdl-card  mdl-shadow--2dp">
                     <div class="mdl-card__title" id = "special">Top Visitor Countries
                     </div>
-                    <div class="mdl-card__actions mdl-card--border">
+                    <div class="mdl-card__actions mdl-card--border" id = "top15">
                         <table class='mdl-data-table  mdl-shadow--2dp tWidth '><th class='mdl-data-table__cell--non-numeric'>Country</th><th class='mdl-data-table__cell--non-numeric'>Count</th>
                         <!--Displays the top 15 countries their count -->
-                        <?php echo displayCountries($db);?>
+                        <?php// echo displayCountries($db);?>
                         </table>
                     </div>
                 </div>
@@ -172,10 +173,10 @@ function displayAdoptedBooks($db){
                 <div class="mdl-cell mdl-cell--8-col card-lesson mdl-card  mdl-shadow--2dp  ">
                     <div class="mdl-card__title title">Top Adopted Books
                     </div>
-                    <div class="mdl-card__actions mdl-card--border">
+                    <div class="mdl-card__actions mdl-card--border" id ="top10">
                         <table class='mdl-data-table  mdl-shadow--2dp tWidthD'><th class='mdl-data-table__cell--non-numeric'></th><th class='mdl-data-table__cell--non-numeric'>Title</th><th class='mdl-data-table__cell--non-numeric'>Quantity</th>
                          <!-- Displays table of the top 10 adopted books with their title, cover, and amount adopted-->
-                        <?php echo displayAdoptedBooks($db);?>
+                        <?php //echo displayAdoptedBooks($db);?>
                         </table>
                     </div>
                 </div>
