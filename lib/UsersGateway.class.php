@@ -22,16 +22,23 @@ class UsersGateway extends TableDataGateway {
  }
  
  public function registerUser($firstname, $lastname, $address, $city, $region, $country, $postal, $phone, $username, $password) {
-  // insert into UsersLogin table
   $dateJoined = date('Y-m-d H:i:s');
   $salt = md5(microtime());
   $encPassword = md5($password.$salt);
+  //check if the user already exists, if it does, we return false and exit this function.
+  $userCheck=DatabaseHelper::runQuery($this ->connection, "SELECT UserID FROM UsersLogin WHERE UserName = :email",Array(":email"=>$username))->fetch();
+  if(!empty($userCheck)){ //if there is a userID in the set, then that user is already registered
+  return false;
+  }else{
+   // insert into UsersLogin table
   $sql = "INSERT INTO UsersLogin VALUES (NULL, :username, :password, :salt, :state, :datejoined, :datelastmodified)";
   $statement = DatabaseHelper::runQuery($this->connection, $sql, Array(":username"=> $username, ":password" => $encPassword, ":salt"=>$salt, ":state"=> 1, ":datejoined" => $dateJoined, ":datelastmodified"=>$dateJoined));
   
   // insert into Users table
   $sql2 = "INSERT INTO Users VALUES (LAST_INSERT_ID(), :firstname, :lastname, :address, :city, :region, :country, :postal, :phone, :username, NULL)";
   $statement = DatabaseHelper::runQuery($this->connection,$sql2,Array(":firstname" => $firstname, ":lastname" => $lastname, ":address" => $address, ":city" => $city, ":region" => $region, ":country" => $country, ":postal" => $postal, ":phone" => $phone, ":username"=>$username));
+  return true; //user was successfully registered
+ }
  }
  
  public function updateUser($firstname, $lastname, $address, $city, $region, $country, $postal, $phone, $username, $userID){

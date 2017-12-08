@@ -1,5 +1,3 @@
-<?php
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,6 +35,13 @@
                     </div>
                     <div class="mdl-card__supporting-text">
                         <form id="registerForm" method="POST" action="updateUser.php">
+                           <?php 
+                           if(isset($_GET['reg'])){
+                               if($_GET['reg']=="false"){
+                           echo "<a id='errMsg'><font color='red'>This Username Already Exists!</font></a><br><br>";
+                           }
+                           }
+                           ?>
                             <label>First Name:</label> <input type="text" name="firstname"><br><br>
                             <label>Last Name:</label> <input class="required" type="text" name="lastname"><br><br>
                             <label>Address:</label> <input type="text" name="address"><br><br>
@@ -48,11 +53,6 @@
                             <label>Username:</label> <input id="userName" class="required" type="text" name="user"><br><br>
                             <label>Password:</label> <input class="required passwd" type="password" name="password"><br><br>
                             <label>Confirm Password:</label> <input class="required passwd" type="password" name="password"><br><br>
-                            <?php
-                                if($_GET['error']==true){
-                                    echo "<a id='errMsg'><font color='red'>Invalid username or password, please try again</font></a><br><br>";
-                                }
-                            ?>
                             <input type="submit" value="SUBMIT" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
                         </form>
                     </div>    

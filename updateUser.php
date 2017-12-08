@@ -73,7 +73,11 @@ if(isset($_POST['UserID'])){
         $password = $_POST['password'];
     }
     
-    $db->registerUser($fName, $lName, $address, $city, $region, $country, $postal, $phone, $user, $password);
-    header("location:login.php");
+    $status = $db->registerUser($fName, $lName, $address, $city, $region, $country, $postal, $phone, $user, $password);
+    if($status == false){ //the username already exists, go back to the register page.
+    header("location:register.php?reg=false");
+    }else{ //a new user was successfully created, go to the login page
+        header("location:login.php?reg=true");
+    }
 }
 ?>

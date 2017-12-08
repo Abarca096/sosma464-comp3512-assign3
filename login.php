@@ -1,5 +1,3 @@
-<?php
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,6 +34,13 @@
                     </div>
                     <div class="mdl-card__supporting-text">
                         <form action="checklogin.php" method="POST">
+                            <?php
+                            if(isset($_GET['reg'])){
+                                    if($_GET['reg'] == "true"){
+                                        echo "<a id='reg'><font color='red'>Thank you for registering! You can log in below!</font></a><br><br>";
+                                     }
+                                    }
+                            ?>
                             <a>Username:</a> <input type="text" name="user" onfocus="removeText()"><br><br>
                             <a>Password:</a> <input type="password" name="password" onfocus="removeText()"><br><br>
                             <?php
@@ -49,6 +54,7 @@
                                 }
                             </script>
                             <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">SUBMIT</button>
+                            <a href="register.php"><button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Register</button></a>
                         </form>
                     </div>    
               </div>  <!-- / mdl-cell + mdl-card -->  

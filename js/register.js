@@ -35,8 +35,6 @@ var regEx = /[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z0-9]{2,4}/g;
     }
     if(error){
         e.preventDefault();
-    }else{
-        alert("Thanks for registering!");
     }
 });
 }
