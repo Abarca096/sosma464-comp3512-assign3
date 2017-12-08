@@ -25,14 +25,19 @@ protected function getPrimaryKeyName(){
  }
  
  protected function getNumberofVisits(){
-  return "SELECT COUNT(DateViewed) as visits,DateViewed FROM BookVisits WHERE DateViewed LIKE '06/%' ";
+  return "SELECT COUNT(DateViewed) as visits,DateViewed FROM BookVisits WHERE DateViewed LIKE '06/%/2017' ";
  }
   protected function getEmployeeMessageCount(){
-  return "Select Count(MessageID) as messages from EmployeeMessages WHERE MessageDate LIKE '%-06-%'; ";
+  return "Select Count(MessageID) as messages from EmployeeMessages WHERE MessageDate LIKE '2017-06-%'; ";
  }
  protected function getEmployeeToDoCount(){
-  return "Select Count(DateBy) as todos from EmployeeToDo WHERE DateBy LIKE '%-06-%'; ";
+  return "Select Count(DateBy) as todos from EmployeeToDo WHERE DateBy LIKE '2017-06-%'; ";
  }
+ 
+ protected function getUniqueCountries() {
+ return "SELECT COUNT(DISTINCT(CountryCode)) as countries FROM BookVisits WHERE DateViewed LIKE '06/%/2017'; ";
+ }
+ 
  public function findGetBookVisits($sortFields=null)
 {
  $sql = $this->getBookVisits();
@@ -55,6 +60,15 @@ public function findTopTen($sortFields=null){
 }
 public function findUniqueCountryCount($sortFields=null){
  $sql = $this->getUniqueCountryCount();
+ // add sort order if required
+ if (! is_null($sortFields)) {
+ $sql .= ' ORDER BY ' . $sortFields;
+ }
+ $statement = DatabaseHelper::runQuery($this->connection, $sql, null);
+ return $statement->fetch();
+}
+public function findUniqueCountries($sortFields=null){
+ $sql = $this->getUniqueCountries();
  // add sort order if required
  if (! is_null($sortFields)) {
  $sql .= ' ORDER BY ' . $sortFields;
@@ -117,7 +131,9 @@ public function findDate($sortFields = null)
 }
   public function findAllVisits($sortFields=null)
 {
- $sql = "SELECT COUNT(b1.CountryCode) AS count, b1.CountryCode AS Code, c1.CountryName AS countryName FROM BookVisits as b1, Countries as c1 WHERE c1.CountryCode = b1.CountryCode GROUP BY c1.CountryName ORDER BY COUNT(b1.CountryCode) DESC";
+ $sql = "SELECT COUNT(b1.CountryCode) AS count, b1.CountryCode AS Code, c1.CountryName AS countryName 
+       FROM BookVisits as b1, Countries as c1 
+       WHERE c1.CountryCode = b1.CountryCode GROUP BY c1.CountryName ORDER BY COUNT(b1.CountryCode) DESC";
  // add sort order if required
  if (! is_null($sortFields)) {
  $sql .= ' ORDER BY ' . $sortFields;
