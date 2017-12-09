@@ -35,7 +35,7 @@
                     <div class="mdl-card__supporting-text">
                         <form action="checklogin.php" method="POST">
                             <?php
-                            if(isset($_GET['reg'])){
+                            if(isset($_GET['reg'])){ //updateUser.php redirects to here with a query string after a user successfully registers.
                                     if($_GET['reg'] == "true"){
                                         echo "<a id='reg'><font color='red'>Thank you for registering! You can log in below!</font></a><br><br>";
                                      }

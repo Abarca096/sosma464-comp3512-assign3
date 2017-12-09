@@ -33,7 +33,7 @@ if(isset($_POST['UserID'])){
     if(isset($_POST['email'])){
         $user = $_POST['email'];
     }
-    $db->updateUser($fName, $lName, $address, $city, $region, $country, $postal, $phone, $user, $userID);
+    $db->updateUser($fName, $lName, $address, $city, $region, $country, $postal, $phone, $user, $userID); //updates the user in the database
     $_SESSION['Email'] = $_POST['email'];
     $_SESSION['FirstName'] = $_POST['firstName'];
     $_SESSION['LastName'] = $_POST['lastName'];
@@ -73,7 +73,7 @@ if(isset($_POST['UserID'])){
         $password = $_POST['password'];
     }
     
-    $status = $db->registerUser($fName, $lName, $address, $city, $region, $country, $postal, $phone, $user, $password);
+    $status = $db->registerUser($fName, $lName, $address, $city, $region, $country, $postal, $phone, $user, $password); //creates a record for the new user in the database
     if($status == false){ //the username already exists, go back to the register page.
     header("location:register.php?reg=false");
     }else{ //a new user was successfully created, go to the login page

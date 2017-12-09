@@ -36,6 +36,7 @@
                     <div class="mdl-card__supporting-text">
                         <form id="registerForm" method="POST" action="updateUser.php">
                            <?php 
+                           //this happens when a user tries to register, but their username is already taken. (uodateUser.php redirects back to here with a query string if registration fails)
                            if(isset($_GET['reg'])){
                                if($_GET['reg']=="false"){
                            echo "<a id='errMsg'><font color='red'>This Username Already Exists!</font></a><br><br>";
