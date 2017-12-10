@@ -1,5 +1,5 @@
 <?php
-/* Returns JSON data for the top 15 countries*/
+/* Returns JSON data for the top 15 visited countries*/
 header('Content-Type: application/json');
 
 include "checklogin.php";

@@ -85,7 +85,7 @@
                                             <h2 class="mdl-card__title-text">Jorge Abarca</h2>
                                         </div>
                                         <div class="mdl-card__supporting-text">
-                                            Jorge was assigned the functionality for the single book page, the log in/out functionality,
+                                            Jorge was assigned the functionality for the single book page, the log in/out functionality, some web services,
                                             and general page design/style.
                                             <br>
                                             <a href="https://github.com/jorge00096">Jorge's GitHub</a>

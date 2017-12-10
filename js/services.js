@@ -16,10 +16,7 @@ function init(){
               
              $("#cont4 b").text(info[0].Messages);
               $("#sup4 p").text("There were " + info[0].Messages + " messages exchanged");
-         
-         
-         
-         
+
         }).fail(function(){
                    alert("$.get failed");
                });
@@ -56,9 +53,7 @@ function init(){
                 var markup = "<tr><td><img src ='book-images/thumb/"+info[i].ISBN10+".jpg'></td>"+ "<td><a href ='single-book.php?ISBN10="+info[i].ISBN10+"'>"+info[i].Title+"</a></td><td>"+info[i].Adoptions+"</td></tr>";
                 $("#top10 table").append(markup);
             }
-        
-        
-        
+
             }).fail(function(){
                    alert("$.get failed");
                });
@@ -74,20 +69,13 @@ function init(){
         $.get("service-countryVisits.php?Code="+code).done(function(info){
     
            $("#info").append("<img src = 'images/flags/"+code.toLowerCase()+".svg' width = '35' height = '25'><p>Country: "+ info.Country + " <br> Visits: " +info.Count+ "</p>");
-          
-          
-           
-           
+
        }).fail(function(){
            alert("$.get failed");
        });
-       
-        
-        
+
     });
-    
-    
-    
+
     //sets the infomration for the analytics page
     statistics();
 }

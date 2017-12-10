@@ -1,5 +1,5 @@
 <?php
-/* Returns JSON data for the number of visits in each country in the Month of June 2017*/
+/* Returns JSON data for the number of visits in each country based on the country code */
 header('Content-Type: application/json');
 
 include "checklogin.php";
