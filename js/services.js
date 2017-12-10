@@ -73,7 +73,7 @@ function init(){
         $('#info').text("");
         $.get("service-countryVisits.php?Code="+code).done(function(info){
     
-           $("#info").append("<img src = 'images/flags/"+code.toLowerCase()+".svg' width = '30' height = '20'><p>Country: "+ info.Country + " <br> Visits: " +info.Count+ "</p>");
+           $("#info").append("<img src = 'images/flags/"+code.toLowerCase()+".svg' width = '35' height = '25'><p>Country: "+ info.Country + " <br> Visits: " +info.Count+ "</p>");
           
           
            
