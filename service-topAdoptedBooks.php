@@ -1,4 +1,5 @@
 <?php
+/* Returns JSON for the top 10 adopted books*/
 header('Content-Type: application/json');
 
 include "checklogin.php";

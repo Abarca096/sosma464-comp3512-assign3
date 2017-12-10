@@ -1,4 +1,5 @@
 <?php
+/* Returns JSON data for the total number of visits, total country unique visitors, and total employee To Do's, and the total number of Messages */
 header('Content-Type: application/json');
 
 include "checklogin.php";

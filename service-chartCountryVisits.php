@@ -1,4 +1,5 @@
 <?php
+/* Returns JSON data for the number of visits in each country*/
 header('Content-Type: application/json');
 
 include "checklogin.php";
