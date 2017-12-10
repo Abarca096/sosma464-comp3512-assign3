@@ -42,7 +42,7 @@
                     
                     <div class="mdl-card__supporting-text">
                         <p>This site is hypothetical and was created as an assignment for COMP-3532-001 at Mount Royal University taught by Randy Connolly.<br>
-                        GitHub Project Page: <a href='https://github.com/samocr7/web-assign2'>https://github.com/samocr7/web-assign2</a><br><br>
+                        GitHub Project Page: <a href='https://github.com/samocr7/sosma464-comp3512-assign3'>https://github.com/samocr7/sosma464-comp3512-assign3</a><br><br>
                             Contributors:<br></p>
                                 <div class="mdl-grid">
                                     <div class="josh-card-wide mdl-card mdl-shadow--2dp">
@@ -61,8 +61,7 @@
                                             <h2 class="mdl-card__title-text">Samer Osman</h2>
                                         </div>
                                         <div class="mdl-card__supporting-text">
-                                            Sam was assigned the functionality for the browse books, browse universities map, the User profile page,
-                                            and part of the Analytics page.
+                                            Sam was assigned the functionality for user registration and user profile edit functionality.
                                             <br>
                                             <a href="https://github.com/samocr7">Sam's GitHub</a>
                                         </div>
