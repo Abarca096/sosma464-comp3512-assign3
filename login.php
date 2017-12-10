@@ -53,7 +53,7 @@
                                     document.getElementById("errMsg").style.display="none";
                                 }
                             </script>
-                            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">SUBMIT</button>
+                            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">LOGIN</button>
                             <a href="register.php"><button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Register</button></a>
                         </form>
                     </div>    
