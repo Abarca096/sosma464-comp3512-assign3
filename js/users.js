@@ -28,12 +28,13 @@ formValidation();
 function formValidation(){
 $("#profileForm").on("submit", function(e){
     var error = false;
+    var regEx = /[\S]+[\s]?/g; //validation for required fields. this checks for fields that are just empty spaces.
     $(".required").each(function (index){
-        if( $(this).val() == ""){
+        if(regEx.test($(this).val()) == false){
             $(this).addClass("error"); //add the error class if the field is empty (red highlight on the field)
             $('.reqMsg').show();
             error=true;
-        } else if( $(this).val() != ""){
+        } else if( regEx.test($(this).val()) == true){
             $(this).removeClass("error"); //remove the error class if there isn't a validation problem
         }
     });

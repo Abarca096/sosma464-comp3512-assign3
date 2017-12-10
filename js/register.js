@@ -9,15 +9,16 @@ window.onload = formValidation;
 function formValidation(){
 $("#registerForm").on("submit", function(e){
     var error = false;
+     var regEx = /[\S]+[\s]?/g; //validation for required fields. this checks for fields that are just empty spaces.
     $(".required").each(function (index){
         $(this).on("focus", function(){
             $(this).removeClass("error");
         });
-        if( $(this).val() == ""){
+        if(regEx.test($(this).val()) == false){
             $(this).addClass("error"); //add the error class if the field is blank (red highlight)
             $('.reqMsg').show();
             error=true;
-        } else if( $(this).val() != ""){
+        } else if(regEx.test($(this).val()) == true){
             $(this).removeClass("error"); //remove the error class if formatting is okay
         }
     });
