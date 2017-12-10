@@ -50,7 +50,7 @@
                                             <h2 class="mdl-card__title-text">Joshua Blair</h2>
                                         </div>
                                         <div class="mdl-card__supporting-text">
-                                            Josh was assigned the functionality for browse employees, and the log in function.
+                                            Fixed previous errors from last assignment, worked on registration page, worked on photos, worked on documentation.
                                             <br>
                                             <a href="https://github.com/jblai698">Josh's GitHub</a>
                                         </div>
