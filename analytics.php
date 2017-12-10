@@ -156,7 +156,7 @@ function displayAdoptedBooks($db){
                     </div>
                     <div class="mdl-card__actions mdl-card--border" id ="charts" >
                          <select id = "top15">
-                             <option>Select A Country</option>
+                             <option disabled selected>Select A Country</option>
                          </select>
                          <div id = "info"></div>
                         <div id = "geoMap">
