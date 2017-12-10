@@ -46,7 +46,7 @@
                             <label>First Name:</label> <input type="text" name="firstname"><br><br>
                             <label>Last Name:</label> <input class="required" type="text" name="lastname"><br><br>
                             <label>Address:</label> <input type="text" name="address"><br><br>
-                            <label>City:</label> <input class="required" type="text" name="city"><br><br><br>
+                            <label>City:</label> <input class="required" type="text" name="city"><br><br>
                             <label>Region:</label> <input type="text" name="region"><br><br>
                             <label>Country:</label> <input class="required" type="text" name="country"><br><br>
                             <label>Postal:</label> <input type="text" name="postal"><br><br>
