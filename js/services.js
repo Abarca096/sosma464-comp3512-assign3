@@ -71,9 +71,10 @@ function init(){
     $("select").on("change",function(){
        var code = this.value;
         $('#info').text("");
-       $.get("service-countryVisits.php?Code="+code).done(function(info){
+        $.get("service-countryVisits.php?Code="+code).done(function(info){
     
-           $("#info").append("<p>"+ info.Country + "<img src = 'images/flags/"+code.toLowerCase()+".svg' width = '35' height = '25'><br> Visits: " +info.Count+ "</p>");
+           $("#info").append("<img src = 'images/flags/"+code.toLowerCase()+".svg' width = '30' height = '20'><p>Country: "+ info.Country + " <br> Visits: " +info.Count+ "</p>");
+          
           
            
            
