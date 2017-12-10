@@ -146,16 +146,18 @@ function displayAdoptedBooks($db){
                     <div class="mdl-card__title" id = "special">Visits Per Day
                     </div>
                     <div class="mdl-card__actions mdl-card--border charts">
-                        <div id = "chart_div" style=" height: 250px;"></div>
-                        
+                        <div id = "chart_div" style=" height: 250px;">
+                            <div class="loader"></div>
+                        </div>
                     </div>
                 </div>
                         <div class="mdl-cell mdl-cell--7-col card-lesson mdl-card  mdl-shadow--2dp">
                     <div class="mdl-card__title" id = "special">Visits Per Countries
                     </div>
                     <div class="mdl-card__actions mdl-card--border" id ="charts" >
-                        
-                        <div id = "geoMap"></div>
+                        <div id = "geoMap">
+                            <div class="loader"></div>
+                        </div>
                     </div>
                 </div>
                 

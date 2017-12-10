@@ -4,10 +4,13 @@
         //if there's a session, display the user
          if($_SESSION['Email'] != null){
             $profile .= '<img src="images/users/' . $_SESSION['PicID'] . '.jpg" class="avatar">';
-            if(isset($_SESSION['FirstName'])&&isset($_SESSION['LastName'])){
-                $profile .= " <h4 id='profileName'>" . $_SESSION['FirstName'] . " " . $_SESSION['LastName'] . "</h4>";
+            if(isset($_SESSION['FirstName'])){
+                $profile .= " <h4 id='profileName'>" . $_SESSION['FirstName'];
             }
-            $profile .= '<span>' . $_SESSION['Email'] . '</span>';
+            if(isset($_SESSION['LastName'])){
+                $profile .= " " . $_SESSION['LastName'];
+            }
+            $profile .= '</h4><span>' . $_SESSION['Email'] . '</span>';
         }
         //otherwise display a generic user
         else {

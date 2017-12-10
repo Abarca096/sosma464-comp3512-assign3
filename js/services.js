@@ -1,6 +1,5 @@
 function init(){
     function statistics(){
-        alert("hello");
         //gets the totals from the service-totals web service
         $.get("service-totals.php").done(function(info){
              $("#cont1 b").text(info[0].Visits);

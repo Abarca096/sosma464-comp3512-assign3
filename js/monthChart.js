@@ -6,6 +6,8 @@ google.charts.setOnLoadCallback(drawVisits);
         function drawVisits() {
             
             $.get("service-chartMonth.php").done(function(info){
+                //Hide Loader
+                $(".loader").hide();
                 //create visualization object
                 var data = new google.visualization.DataTable();
                 data.addColumn("number","Day");

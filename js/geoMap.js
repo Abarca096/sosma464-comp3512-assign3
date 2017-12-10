@@ -5,6 +5,8 @@
 
       function drawGeoMap(){
             $.get("service-chartCountryVisits.php").done(function(info){
+                //Hide Loader
+                $(".loader").hide();
                 //create visualization object
                 var data = new google.visualization.DataTable();
                 data.addColumn("string", "Country");

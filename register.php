@@ -54,7 +54,7 @@
                             <label>Username:</label> <input id="userName" class="required" type="text" name="user"><br><br>
                             <label>Password:</label> <input class="required passwd" type="password" name="password"><br><br>
                             <label>Confirm Password:</label> <input class="required passwd" type="password" name="password"><br><br>
-                            <input type="submit" value="SUBMIT" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                            <button type="submit">Submit Changes</button>
                         </form>
                     </div>    
               </div>  <!-- / mdl-cell + mdl-card -->  
