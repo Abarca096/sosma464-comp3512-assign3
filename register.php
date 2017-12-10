@@ -51,10 +51,12 @@
                             <label>Country:</label> <input class="required" type="text" name="country"><br><br>
                             <label>Postal:</label> <input type="text" name="postal"><br><br>
                             <label>Phone:</label> <input type="text" name="phone"><br><br>
-                            <label>Username:</label> <input id="userName" class="required" type="text" name="user"><br><br>
+                            <label>Email</label> <input id="userName" class="required" type="text" name="user">
+                            <a id="aside">(This will be your Username)</a><br><br>
                             <label>Password:</label> <input class="required passwd" type="password" name="password"><br><br>
                             <label>Confirm Password:</label> <input class="required passwd" type="password" name="password"><br><br>
-                            <button type="submit">Submit Changes</button>
+                            <button type="submit">Register</button><br><br>
+                            <a class="reqMsg">Please fill out the required fields</a>
                         </form>
                     </div>    
               </div>  <!-- / mdl-cell + mdl-card -->  

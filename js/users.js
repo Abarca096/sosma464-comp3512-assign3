@@ -19,6 +19,7 @@ inputs.change(function(){
 inputs.focus(function(){
     $(this).val('');
     $(this).css("color", "black");
+    $(this).removeClass("error");
 })
 
 formValidation();
@@ -30,6 +31,7 @@ $("#profileForm").on("submit", function(e){
     $(".required").each(function (index){
         if( $(this).val() == ""){
             $(this).addClass("error"); //add the error class if the field is empty (red highlight on the field)
+            $('.reqMsg').show();
             error=true;
         } else if( $(this).val() != ""){
             $(this).removeClass("error"); //remove the error class if there isn't a validation problem

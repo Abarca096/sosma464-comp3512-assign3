@@ -84,6 +84,7 @@ function generateUserForm($connection){
                                 <button type="submit" value="Submit changes">Submit Changes</button>
                                 <button type="button" id="cancelButton">Cancel</button>
                                 <p><i><font color="#405d27">Items in green will be changed</font></i></p>
+                                <a class="reqMsg">Please fill out the required fields</a>
                             </form>
                         </div>
                             <table>

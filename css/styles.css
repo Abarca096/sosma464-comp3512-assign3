@@ -526,6 +526,11 @@ td, th, table, tbody, thead {
     background-size: 15px 15px;
 }
 
+.reqMsg {
+  display: none;
+  color: 	#B22222;
+}
+
 /* Loader from W3School */
 .loader {
     border: 16px solid #f3f3f3; /* Light grey */
@@ -569,4 +574,8 @@ td, th, table, tbody, thead {
 #registerForm button:hover {
   background-color: #008CBA; 
   color: white;
+}
+
+#aside{
+  color: #228B22;
 }

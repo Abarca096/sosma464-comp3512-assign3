@@ -10,8 +10,12 @@ function formValidation(){
 $("#registerForm").on("submit", function(e){
     var error = false;
     $(".required").each(function (index){
+        $(this).on("focus", function(){
+            $(this).removeClass("error");
+        });
         if( $(this).val() == ""){
             $(this).addClass("error"); //add the error class if the field is blank (red highlight)
+            $('.reqMsg').show();
             error=true;
         } else if( $(this).val() != ""){
             $(this).removeClass("error"); //remove the error class if formatting is okay
