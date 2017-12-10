@@ -155,24 +155,18 @@ function displayAdoptedBooks($db){
                     <div class="mdl-card__title" id = "special">Visits Per Countries
                     </div>
                     <div class="mdl-card__actions mdl-card--border" id ="charts" >
+                         <select id = "top15">
+                           
+                       </select>
+                         <div id = "info"></div>
                         <div id = "geoMap">
                             <div class="loader"></div>
                         </div>
                     </div>
                 </div>
                 
-                <div class="mdl-cell mdl-cell--4-col card-lesson mdl-card  mdl-shadow--2dp">
-                    <div class="mdl-card__title" id = "special">Top Visitor Countries
-                    </div>
-                    <div class="mdl-card__actions mdl-card--border" id = "top15">
-                        <table class='mdl-data-table  mdl-shadow--2dp tWidth '><th class='mdl-data-table__cell--non-numeric'>Country</th><th class='mdl-data-table__cell--non-numeric'>Count</th>
-                        <!--Displays the top 15 countries their count -->
-                        <?php// echo displayCountries($db);?>
-                        </table>
-                    </div>
-                </div>
- 
-                <div class="mdl-cell mdl-cell--8-col card-lesson mdl-card  mdl-shadow--2dp  ">
+             
+                <div class="mdl-cell mdl-cell--12-col card-lesson mdl-card  mdl-shadow--2dp  ">
                     <div class="mdl-card__title title">Top Adopted Books
                     </div>
                     <div class="mdl-card__actions mdl-card--border" id ="top10">

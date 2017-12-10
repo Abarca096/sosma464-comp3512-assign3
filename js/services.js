@@ -1,5 +1,7 @@
 function init(){
     function statistics(){
+
+
         //gets the totals from the service-totals web service
         $.get("service-totals.php").done(function(info){
              $("#cont1 b").text(info[0].Visits);
@@ -23,7 +25,7 @@ function init(){
                });
                
                
-        //generates the values for the top visitor countries table
+        //generates the values for Visits per country select list
         countries();
         function countries(){
               //gets the top vistor countries from the topCountries web service
@@ -31,9 +33,9 @@ function init(){
 
                for(var i =0; i<info.length; i++){
                    
-                  var markup = "<tr><td><img src = 'images/flags/"+info[i].Code.toLowerCase()+".svg' width = '35' height = '25'>"+info[i].Country+"</td><td>"+info[i].Count+"</td></tr>";
+                  var markup = "<option value='" + info[i].Code+"'>"+info[i].Country+"</option>";
                    
-                   $("#top15 table").append(markup);
+                   $("select").append(markup);
                }
               
                 
@@ -64,6 +66,24 @@ function init(){
         }
   
     }
+    
+    //displays how many visits per country in a seperate div based on selection
+    $("select").on("change",function(){
+       var code = this.value;
+        $('#info').text("");
+       $.get("service-countryVisits.php?Code="+code).done(function(info){
+    
+           $("#info").append("<p>"+ info.Country + "<img src = 'images/flags/"+code.toLowerCase()+".svg' width = '35' height = '25'><br> Visits: " +info.Count+ "</p>");
+          
+           
+           
+       }).fail(function(){
+           alert("$.get failed");
+       });
+       
+        
+        
+    });
     
     
     

@@ -234,6 +234,16 @@ td, th, table, tbody, thead {
   margin:auto;
 
 }
+
+#info{
+  position:absolute;
+  padding-right:15%;
+  top:62%;
+}
+#info br{
+  padding-top:2%;
+}
+
 /* Single Book */
 #bookImg {
 	transition: .6s ease-in-out;

@@ -74,7 +74,7 @@
                                             <h2 class="mdl-card__title-text">Cryston Robin</h2>
                                         </div>
                                         <div class="mdl-card__supporting-text">
-                                            Cryston was assigned the functionality for the browse universities, simple search, employee filtering and part of the Analytics page.
+                                            Cryston was assigned the functionality for multiple web services and their implementation on the Analytics page.
                                             <br>
                                             <a href="https://github.com/crobin51">Cryston's GitHub</a>
                                         </div>
